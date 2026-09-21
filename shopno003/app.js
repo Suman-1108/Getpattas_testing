@@ -750,9 +750,34 @@ window.addEventListener('DOMContentLoaded', () => {
   }, 900);
 });
 
+const categoryDisplayNames = {
+  'sparkles': 'Sparkles (மத்தாப்பு)',
+  'foundation': 'Foundation (பவுண்டன் & சட்டி)',
+  'sound': 'Sound (சவுண்ட் வெடி & பாம்)',
+  'rockets': 'Rockets (ராக்கெட் வகைகள்)',
+  'fancy': 'Fancy & Sky Shots (பேன்சி வெடி)',
+  'kids': 'Kids Special (கிட்ஸ் ஸ்பெஷல்)',
+  'gift-box': 'Gift Boxes (பரிசு பெட்டகம்)',
+  'family-combo': 'Family Combos (காம்போ பேக்)'
+};
+
+function updateCategoryIndicator(catSlug) {
+  const catNameEl = document.getElementById('activeCategoryName');
+  const resetBtn = document.getElementById('tacResetBtn');
+  if (!catNameEl) return;
+  if (!catSlug || catSlug === 'all') {
+    catNameEl.innerText = 'All Sivakasi Crackers (180+ Items)';
+    if (resetBtn) resetBtn.style.display = 'none';
+  } else {
+    catNameEl.innerText = categoryDisplayNames[catSlug] || `${catSlug.toUpperCase()} Crackers`;
+    if (resetBtn) resetBtn.style.display = 'inline-flex';
+  }
+}
+
 function filterCategoryBySlug(slug) {
   closeMobileMenu();
   const resolvedSlug = resolveCategorySlug(slug);
+  updateCategoryIndicator(resolvedSlug);
   if (resolvedSlug !== 'all') {
     handleCategoryJump(resolvedSlug);
   } else {
@@ -772,6 +797,7 @@ function filterCategoryBySlug(slug) {
 
 function showAllCrackers() {
   closeMobileMenu();
+  updateCategoryIndicator('all');
   filterByCategory('all');
   const selectEl = document.getElementById('categoryJumpSelect');
   if (selectEl) selectEl.value = 'all';
@@ -785,6 +811,7 @@ function showAllCrackers() {
 
 function handleCategoryJump(catSlug) {
   const resolved = resolveCategorySlug(catSlug);
+  updateCategoryIndicator(resolved);
   if (resolved === 'all') {
     filterByCategory('all');
     const selectEl = document.getElementById('categoryJumpSelect');
@@ -802,7 +829,7 @@ function handleCategoryJump(catSlug) {
   const selectEl = document.getElementById('categoryJumpSelect');
   if (selectEl) selectEl.value = resolved;
   setTimeout(() => {
-    const targetEl = document.getElementById(resolved) || document.getElementById('products');
+    const targetEl = document.getElementById('products') || document.getElementById(resolved);
     if (targetEl) {
       const yOffset = -85;
       const y = targetEl.getBoundingClientRect().top + window.pageYOffset + yOffset;

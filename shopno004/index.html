@@ -77,11 +77,8 @@
         </div>
 
         <a href="#hero" class="nav-link active" onclick="closeMobileMenu();">Home</a>
-        <a href="#products" class="nav-link" onclick="showAllCrackers();">Crackers</a>
-        <a href="#offers" class="nav-link" onclick="closeMobileMenu();">Combo Packs</a>
-        <a href="#products" class="nav-link" onclick="filterCategoryBySlug('gift-boxes');">Gift Boxes</a>
-        <a href="#products" class="nav-link" onclick="filterCategoryBySlug('aerial-shots');">New Arrivals</a>
-        <a href="#offers" class="nav-link" onclick="closeMobileMenu();">Offers</a>
+        <a href="#products" class="nav-link" onclick="closeMobileMenu(); showAllCrackers();">Product</a>
+        <a href="#about" class="nav-link" onclick="closeMobileMenu();">About</a>
         <a href="#contact" class="nav-link" onclick="closeMobileMenu();">Contact</a>
 
         <div class="mobile-menu-actions">
@@ -234,10 +231,10 @@
     </picture>
   </section>
 
-  <!-- Full-Width Wholesale Price List Section (No Filter Sidebar, No Photo Grid) -->
-  <section class="products-section wholesale-table-section" id="products">
+  <!-- Categories Card Section with Active Brand Banner (User-Friendly Navigation) -->
+  <section class="categories-showcase-section" id="categories">
     <div class="container">
-      <!-- Active Brand Header Strip -->
+      <!-- Active Brand Header Strip (Moved into Categories Card Section) -->
       <div class="active-brand-banner" id="activeBrandBanner">
         <div class="brand-banner-info">
           <span class="current-brand-badge" id="currentBrandBadge" style="background: #d97706;"><i
@@ -253,6 +250,160 @@
           <div class="meta-pill"><span><i class="fa-solid fa-truck-fast"></i> Min Order:</span> <strong>₹3,000</strong>
           </div>
         </div>
+      </div>
+
+      <!-- Categories Section Header -->
+      <div class="cat-showcase-header">
+        <span class="cat-showcase-tag">SIVAKASI FESTIVE COLLECTION</span>
+        <h3 class="cat-showcase-title">Shop by Categories</h3>
+        <p class="cat-showcase-desc">Select any category below to instantly browse and order wholesale crackers</p>
+      </div>
+
+      <!-- 8 Categories Cards Grid -->
+      <div class="categories-cards-grid">
+        <!-- 1. Sparkles -->
+        <div class="cat-showcase-card" onclick="filterCategoryBySlug('sparkles');" title="View Sparklers">
+          <div class="csc-img-box">
+            <img src="assets/product_sparklers_color.jpg" alt="Sparkles - மத்தாப்பு" class="csc-img" />
+            <span class="csc-badge">80% OFF</span>
+          </div>
+          <div class="csc-body">
+            <div class="csc-icon-row">
+              <span class="csc-icon cat-icon-sparkles"><i class="fa-solid fa-wand-magic-sparkles"></i></span>
+              <h4 class="csc-title">Sparkles</h4>
+            </div>
+            <p class="csc-tamil">மத்தாப்பு வகைகள்</p>
+            <span class="csc-cta">Explore Products <i class="fa-solid fa-arrow-right"></i></span>
+          </div>
+        </div>
+
+        <!-- 2. Foundation -->
+        <div class="cat-showcase-card" onclick="filterCategoryBySlug('foundation');" title="View Fountains & Pots">
+          <div class="csc-img-box">
+            <img src="assets/product_flowerpots.jpg" alt="Foundation - பவுண்டன் & சட்டி" class="csc-img" />
+            <span class="csc-badge">80% OFF</span>
+          </div>
+          <div class="csc-body">
+            <div class="csc-icon-row">
+              <span class="csc-icon cat-icon-foundation"><i class="fa-solid fa-mountain-sun"></i></span>
+              <h4 class="csc-title">Foundation</h4>
+            </div>
+            <p class="csc-tamil">பவுண்டன் & பூச்சட்டி</p>
+            <span class="csc-cta">Explore Products <i class="fa-solid fa-arrow-right"></i></span>
+          </div>
+        </div>
+
+        <!-- 3. Sound -->
+        <div class="cat-showcase-card" onclick="filterCategoryBySlug('sound');" title="View Sound Crackers & Bombs">
+          <div class="csc-img-box">
+            <img src="assets/product_bombs.jpg" alt="Sound - சவுண்ட் வெடி" class="csc-img" />
+            <span class="csc-badge">80% OFF</span>
+          </div>
+          <div class="csc-body">
+            <div class="csc-icon-row">
+              <span class="csc-icon cat-icon-sound"><i class="fa-solid fa-volume-high"></i></span>
+              <h4 class="csc-title">Sound</h4>
+            </div>
+            <p class="csc-tamil">சவுண்ட் வெடி & பாம்</p>
+            <span class="csc-cta">Explore Products <i class="fa-solid fa-arrow-right"></i></span>
+          </div>
+        </div>
+
+        <!-- 4. Rockets -->
+        <div class="cat-showcase-card" onclick="filterCategoryBySlug('rockets');" title="View Rockets">
+          <div class="csc-img-box">
+            <img src="assets/product_rockets.jpg" alt="Rockets - ராக்கெட்" class="csc-img" />
+            <span class="csc-badge">80% OFF</span>
+          </div>
+          <div class="csc-body">
+            <div class="csc-icon-row">
+              <span class="csc-icon cat-icon-rockets"><i class="fa-solid fa-rocket"></i></span>
+              <h4 class="csc-title">Rockets</h4>
+            </div>
+            <p class="csc-tamil">ராக்கெட் வகைகள்</p>
+            <span class="csc-cta">Explore Products <i class="fa-solid fa-arrow-right"></i></span>
+          </div>
+        </div>
+
+        <!-- 5. Fancy -->
+        <div class="cat-showcase-card" onclick="filterCategoryBySlug('fancy');" title="View Fancy & Sky Shots">
+          <div class="csc-img-box">
+            <img src="assets/product_skyshots.jpg" alt="Fancy - பேன்சி வெடி" class="csc-img" />
+            <span class="csc-badge">80% OFF</span>
+          </div>
+          <div class="csc-body">
+            <div class="csc-icon-row">
+              <span class="csc-icon cat-icon-fancy"><i class="fa-solid fa-meteor"></i></span>
+              <h4 class="csc-title">Fancy</h4>
+            </div>
+            <p class="csc-tamil">பேன்சி பைப் & ஸ்கை ஷாட்ஸ்</p>
+            <span class="csc-cta">Explore Products <i class="fa-solid fa-arrow-right"></i></span>
+          </div>
+        </div>
+
+        <!-- 6. Kids -->
+        <div class="cat-showcase-card" onclick="filterCategoryBySlug('kids');" title="View Kids Special">
+          <div class="csc-img-box">
+            <img src="assets/product_peacock.jpg" alt="Kids - கிட்ஸ் ஸ்பெஷல்" class="csc-img" />
+            <span class="csc-badge">80% OFF</span>
+          </div>
+          <div class="csc-body">
+            <div class="csc-icon-row">
+              <span class="csc-icon cat-icon-kids"><i class="fa-solid fa-face-smile"></i></span>
+              <h4 class="csc-title">Kids</h4>
+            </div>
+            <p class="csc-tamil">கிட்ஸ் ஸ்பெஷல் வெடிகள்</p>
+            <span class="csc-cta">Explore Products <i class="fa-solid fa-arrow-right"></i></span>
+          </div>
+        </div>
+
+        <!-- 7. Gift Box -->
+        <div class="cat-showcase-card" onclick="filterCategoryBySlug('gift-box');" title="View Gift Boxes">
+          <div class="csc-img-box">
+            <img src="assets/product_skyshots_box.jpg" alt="Gift Box - பரிசு பெட்டகம்" class="csc-img" />
+            <span class="csc-badge">80% OFF</span>
+          </div>
+          <div class="csc-body">
+            <div class="csc-icon-row">
+              <span class="csc-icon cat-icon-gifts"><i class="fa-solid fa-gift"></i></span>
+              <h4 class="csc-title">Gift Box</h4>
+            </div>
+            <p class="csc-tamil">தீபாவளி பரிசு பெட்டகம்</p>
+            <span class="csc-cta">Explore Products <i class="fa-solid fa-arrow-right"></i></span>
+          </div>
+        </div>
+
+        <!-- 8. Family Combo -->
+        <div class="cat-showcase-card" onclick="filterCategoryBySlug('family-combo');" title="View Family Combos">
+          <div class="csc-img-box">
+            <img src="assets/product_combopack.jpg" alt="Family Combo - காம்போ பேக்" class="csc-img" />
+            <span class="csc-badge">80% OFF</span>
+          </div>
+          <div class="csc-body">
+            <div class="csc-icon-row">
+              <span class="csc-icon cat-icon-combos"><i class="fa-solid fa-boxes-stacked"></i></span>
+              <h4 class="csc-title">Family Combo</h4>
+            </div>
+            <p class="csc-tamil">குடும்ப காம்போ பேக்</p>
+            <span class="csc-cta">Explore Products <i class="fa-solid fa-arrow-right"></i></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Full-Width Wholesale Price List Section (No Filter Sidebar, No Photo Grid) -->
+  <section class="products-section wholesale-table-section" id="products">
+    <div class="container">
+      <!-- Active Category Dynamic Indicator Bar -->
+      <div class="table-active-category-strip" id="tableCategoryIndicator">
+        <div class="tac-left">
+          <span class="tac-badge"><i class="fa-solid fa-filter"></i> Category Filter:</span>
+          <strong class="tac-name" id="activeCategoryName">All Sivakasi Crackers (180+ Items)</strong>
+        </div>
+        <button type="button" class="tac-reset-btn" id="tacResetBtn" onclick="showAllCrackers()" style="display: none;">
+          <i class="fa-solid fa-rotate-left"></i> Show All Products
+        </button>
       </div>
 
       <!-- Controls & Search Bar -->
@@ -395,6 +546,52 @@
             <li>Avoid wearing synthetic or loose flowing clothes near flames.</li>
             <li>Never throw crackers towards people, animals, or vehicles.</li>
           </ul>
+        </div>
+      </div>
+    </div>
+  <!-- About Get Pattas Kadai Section -->
+  <section class="about-kadai-section" id="about">
+    <div class="container">
+      <div class="about-kadai-grid">
+        <div class="about-kadai-image-wrap">
+          <img src="assets/about_getpattas.jpeg" alt="About Get Pattas Kadai Sivakasi" class="about-kadai-img" />
+          <div class="about-image-badge">
+            <span class="aib-pct">80%</span>
+            <span class="aib-text">Wholesale Savings</span>
+          </div>
+        </div>
+        <div class="about-kadai-text-wrap">
+          <span class="section-tag">Direct Sivakasi Factory</span>
+          <h2 class="about-kadai-heading">About Get Pattas Kadai</h2>
+          <p class="about-kadai-lead">
+            <strong>Get Pattas Kadai</strong> is Sivakasi’s premier direct-to-customer fireworks wholesale platform, delivering genuine Sivakasi crackers directly to homes and businesses across India.
+          </p>
+          <p class="about-kadai-desc">
+            By connecting you directly with our Sivakasi manufacturing hub, we eliminate retail markups and agent commissions—giving you honest factory wholesale pricing with flat 80% discount on all 180+ certified green fireworks.
+          </p>
+          <div class="about-features-grid">
+            <div class="af-item">
+              <i class="fa-solid fa-certificate"></i>
+              <div>
+                <strong>100% Genuine Sivakasi</strong>
+                <span>Certified green crackers with high quality testing</span>
+              </div>
+            </div>
+            <div class="af-item">
+              <i class="fa-solid fa-truck-fast"></i>
+              <div>
+                <strong>Safe Express Logistics</strong>
+                <span>Direct delivery booking across Tamil Nadu & All India</span>
+              </div>
+            </div>
+            <div class="af-item">
+              <i class="fa-solid fa-headset"></i>
+              <div>
+                <strong>Dedicated Kadai Support</strong>
+                <span>WhatsApp and phone assistance for order packing</span>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
