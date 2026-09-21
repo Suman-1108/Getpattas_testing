@@ -1274,70 +1274,73 @@
     </div>
   </div>
 
-  <!-- Floating 80% Festive Offer Badge -->
-  <div class="festive-floating-badge" id="festiveFloatingBadge" onclick="toggleOfferBadgePopup(true)" title="Click to view Mega 80% Festive Offers!">
-    <div class="badge-pulse-ring"></div>
-    <div class="badge-content">
-      <span class="badge-sparkle-icon"><i class="fa-solid fa-fire"></i></span>
-      <div class="badge-label-group">
-        <span class="badge-pct">80% OFF</span>
-        <span class="badge-sub">DIWALI DHAMAKA</span>
-      </div>
-    </div>
+  <!-- Vertical Edge Tab Badge (Left Screen Edge, as shown in reference) -->
+  <div class="festive-edge-badge" id="festiveFloatingBadge" onclick="toggleOfferBadgePopup(true)" title="Click to view 80% Off Diwali Offer!">
+    <span class="edge-badge-icon"><i class="fa-solid fa-fire"></i></span>
+    <span class="edge-badge-text">Get 80% Off</span>
   </div>
 
-  <!-- Interactive 80% Festive Offer Modal -->
+  <!-- Interactive 80% Festive Offer Modal (Split-Screen Design as in reference) -->
   <div class="festive-offer-modal" id="festiveOfferPopup">
     <div class="festive-offer-backdrop" onclick="toggleOfferBadgePopup(false)"></div>
-    <div class="festive-offer-card">
-      <button type="button" class="offer-close-btn" onclick="toggleOfferBadgePopup(false)" aria-label="Close offer">&times;</button>
-      <div class="offer-card-header">
-        <div class="offer-firework-decor">💥 🎇 🎆</div>
-        <span class="offer-mega-tag">LIMITED TIME FESTIVE DEALS</span>
-        <h3 class="offer-main-title">FLAT 80% OFF</h3>
-        <p class="offer-subtitle">Direct Factory Wholesale Price • Sivakasi Standard</p>
+    <div class="festive-offer-card split-layout">
+      <!-- Circular Dark Close Button on Top Right -->
+      <button type="button" class="offer-close-btn" onclick="toggleOfferBadgePopup(false)" aria-label="Close offer">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+
+      <!-- Left Side: Warm Festive Diwali Image -->
+      <div class="offer-card-media">
+        <img src="assets/diwali_offer.jpg" alt="Diwali Crackers Celebration Offer" class="offer-card-img" />
+        <div class="offer-media-overlay">
+          <span class="media-badge">SIVAKASI DIRECT 2024</span>
+        </div>
       </div>
-      <div class="offer-card-body">
-        <div class="offer-feature-grid">
-          <div class="offer-feat-item">
-            <i class="fa-solid fa-tags"></i>
-            <div>
-              <strong>Genuine 80% Discount</strong>
-              <span>Direct factory wholesale discount applied on all items</span>
+
+      <!-- Right Side: Content Box -->
+      <div class="offer-card-content">
+        <div class="offer-card-inner">
+          <h2 class="offer-hero-title">Want 80% Off?</h2>
+          <p class="offer-hero-desc">Direct factory wholesale price on all 180+ Sivakasi crackers for your grand Diwali celebrations!</p>
+
+          <div class="offer-benefit-features">
+            <div class="benefit-chip">
+              <i class="fa-solid fa-tags"></i>
+              <span>Flat 80% Wholesale Discount Pre-Applied</span>
+            </div>
+            <div class="benefit-chip">
+              <i class="fa-solid fa-box"></i>
+              <span>Minimum Booking ₹3,000 Only</span>
+            </div>
+            <div class="benefit-chip">
+              <i class="fa-solid fa-sparkles"></i>
+              <span>180+ Premium Sivakasi Varieties</span>
             </div>
           </div>
-          <div class="offer-feat-item">
-            <i class="fa-solid fa-truck-fast"></i>
-            <div>
-              <strong>Fast Express Transport</strong>
-              <span>Safe delivery booking across Tamil Nadu & All India</span>
-            </div>
-          </div>
-          <div class="offer-feat-item">
-            <i class="fa-solid fa-shield-halved"></i>
-            <div>
-              <strong>100% Sivakasi Standard</strong>
-              <span>Certified sparklers, fancy sky shots & family packs</span>
-            </div>
-          </div>
-        </div>
-        <div class="offer-quick-cats">
-          <span class="quick-cats-title">Shop by Trending Categories:</span>
-          <div class="quick-cats-buttons">
-            <button type="button" onclick="toggleOfferBadgePopup(false); filterCategoryBySlug('sparkles');">✨ Sparkles</button>
-            <button type="button" onclick="toggleOfferBadgePopup(false); filterCategoryBySlug('foundation');">🌋 Foundation</button>
-            <button type="button" onclick="toggleOfferBadgePopup(false); filterCategoryBySlug('sound');">💥 Sound</button>
-            <button type="button" onclick="toggleOfferBadgePopup(false); filterCategoryBySlug('rockets');">🚀 Rockets</button>
-            <button type="button" onclick="toggleOfferBadgePopup(false); filterCategoryBySlug('fancy');">🎆 Fancy</button>
-            <button type="button" onclick="toggleOfferBadgePopup(false); filterCategoryBySlug('kids');">🧒 Kids</button>
-            <button type="button" onclick="toggleOfferBadgePopup(false); filterCategoryBySlug('gift-box');">🎁 Gift Box</button>
-            <button type="button" onclick="toggleOfferBadgePopup(false); filterCategoryBySlug('family-combo');">📦 Combo</button>
-          </div>
-        </div>
-        <div class="offer-cta-row">
-          <button type="button" class="btn btn-offer-explore" onclick="toggleOfferBadgePopup(false); showAllCrackers();">
-            <i class="fa-solid fa-cart-shopping"></i> Start Shopping (80% Off)
+
+          <button type="button" class="btn-offer-cta" onclick="toggleOfferBadgePopup(false); showAllCrackers();">
+            Shop 80% Off Now
           </button>
+
+          <div class="offer-trust-row">
+            <div class="offer-trust-col">
+              <div class="trust-circle"><i class="fa-solid fa-truck-fast"></i></div>
+              <div class="trust-info">
+                <strong>Express Transport</strong>
+                <span>Safe TN & All India</span>
+              </div>
+            </div>
+            <div class="offer-trust-divider"></div>
+            <div class="offer-trust-col">
+              <div class="trust-circle"><i class="fa-solid fa-shield-halved"></i></div>
+              <div class="trust-info">
+                <strong>100% Genuine</strong>
+                <span>Sivakasi Standard</span>
+              </div>
+            </div>
+          </div>
+
+          <p class="offer-disclaimer">*Direct wholesale discount already applied. No coupon needed.</p>
         </div>
       </div>
     </div>

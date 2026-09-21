@@ -8951,105 +8951,57 @@ body[data-brand="getpattasu"] .mobile-menu-actions .btn-primary {
 }
 
 /* ==========================================================================
-   FESTIVE 80% OFFER FLOATING BADGE & POPUP MODAL
+   FESTIVE 80% OFFER EDGE BADGE & SPLIT-MODAL (REFERENCE DESIGN)
    ========================================================================== */
-.festive-floating-badge {
+.festive-edge-badge {
   position: fixed;
-  bottom: 24px;
-  right: 24px;
-  z-index: 99998;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+  z-index: 99980;
   cursor: pointer;
   display: flex;
   align-items: center;
-  user-select: none;
-  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.3s ease;
-  animation: badgeFloatingGlow 3s infinite ease-in-out;
-}
-
-.festive-floating-badge.badge-hidden {
-  opacity: 0;
-  pointer-events: none;
-  transform: scale(0.6) translateY(20px);
-}
-
-.badge-pulse-ring {
-  position: absolute;
-  inset: -6px;
-  border-radius: 999px;
-  background: radial-gradient(circle, rgba(234, 88, 12, 0.5) 0%, rgba(220, 38, 38, 0) 75%);
-  animation: badgePulse 2s infinite;
-  pointer-events: none;
-}
-
-.badge-content {
-  position: relative;
-  display: flex;
-  align-items: center;
-  gap: 0.65rem;
-  background: linear-gradient(135deg, #dc2626 0%, #ea580c 50%, #b45309 100%);
+  gap: 0.4rem;
+  background: #111827;
   color: #ffffff;
-  padding: 0.65rem 1.1rem;
-  border-radius: 999px;
-  box-shadow: 0 10px 25px -3px rgba(220, 38, 38, 0.4), 0 4px 10px rgba(0, 0, 0, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.3);
-  border: 1.5px solid rgba(255, 255, 255, 0.35);
+  padding: 14px 9px;
+  border-radius: 0 10px 10px 0;
+  box-shadow: 2px 4px 16px rgba(0, 0, 0, 0.25);
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  transform: translateY(-50%) rotate(180deg);
+  user-select: none;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-left: none;
 }
 
-.badge-sparkle-icon {
-  width: 32px;
-  height: 32px;
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.25);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1rem;
-  color: #fef08a;
-  animation: fireFlicker 1.5s infinite alternate ease-in-out;
+.festive-edge-badge .edge-badge-icon {
+  font-size: 0.85rem;
+  color: #f97316;
 }
 
-.badge-label-group {
-  display: flex;
-  flex-direction: column;
-  line-height: 1.1;
-}
-
-.badge-pct {
-  font-size: 1rem;
-  font-weight: 900;
-  letter-spacing: 0.5px;
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
-  color: #fff;
-}
-
-.badge-sub {
-  font-size: 0.62rem;
+.festive-edge-badge .edge-badge-text {
+  font-size: 0.82rem;
   font-weight: 800;
-  letter-spacing: 0.8px;
-  color: #fef08a;
+  letter-spacing: 1.5px;
   text-transform: uppercase;
 }
 
-.festive-floating-badge:hover {
-  transform: scale(1.08) translateY(-4px);
+.festive-edge-badge:hover {
+  background: #ea580c;
+  padding-right: 13px;
+  box-shadow: 4px 6px 20px rgba(234, 88, 12, 0.35);
 }
 
-@keyframes badgePulse {
-  0% { transform: scale(0.95); opacity: 0.8; }
-  50% { transform: scale(1.15); opacity: 0.2; }
-  100% { transform: scale(0.95); opacity: 0.8; }
+.festive-edge-badge.badge-hidden {
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(-50%) rotate(180deg) translateX(40px);
 }
 
-@keyframes fireFlicker {
-  0% { transform: scale(1) rotate(-5deg); }
-  100% { transform: scale(1.15) rotate(5deg); }
-}
-
-@keyframes badgeFloatingGlow {
-  0%, 100% { transform: translateY(0); filter: drop-shadow(0 4px 12px rgba(234, 88, 12, 0.35)); }
-  50% { transform: translateY(-5px); filter: drop-shadow(0 8px 20px rgba(220, 38, 38, 0.5)); }
-}
-
-/* Festive Offer Modal */
+/* Festive Offer Modal Overlay */
 .festive-offer-modal {
   position: fixed;
   inset: 0;
@@ -9057,7 +9009,7 @@ body[data-brand="getpattasu"] .mobile-menu-actions .btn-primary {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 1rem;
+  padding: 1.25rem;
   opacity: 0;
   pointer-events: none;
   transition: opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1);
@@ -9071,216 +9023,264 @@ body[data-brand="getpattasu"] .mobile-menu-actions .btn-primary {
 .festive-offer-backdrop {
   position: absolute;
   inset: 0;
-  background: rgba(15, 23, 42, 0.7);
-  backdrop-filter: blur(6px);
-  -webkit-backdrop-filter: blur(6px);
+  background: rgba(15, 23, 42, 0.72);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
 }
 
-.festive-offer-card {
+/* Split-Screen Modal Card (Matching Reference Layout) */
+.festive-offer-card.split-layout {
   position: relative;
   width: 100%;
-  max-width: 480px;
+  max-width: 800px;
+  min-height: 450px;
   background: #ffffff;
-  border-radius: 20px;
-  overflow: hidden;
-  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.35);
-  transform: scale(0.9) translateY(20px);
+  border-radius: 16px;
+  display: grid;
+  grid-template-columns: 48% 52%;
+  box-shadow: 0 25px 60px -12px rgba(0, 0, 0, 0.45);
+  transform: scale(0.92) translateY(20px);
   transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
-  border: 1px solid rgba(255, 255, 255, 0.8);
+  overflow: visible;
 }
 
-.festive-offer-modal.is-active .festive-offer-card {
+.festive-offer-modal.is-active .festive-offer-card.split-layout {
   transform: scale(1) translateY(0);
 }
 
+/* Circular Close Button (Overlapping Top-Right Corner) */
 .offer-close-btn {
   position: absolute;
-  top: 14px;
-  right: 14px;
-  width: 32px;
-  height: 32px;
+  top: -15px;
+  right: -15px;
+  width: 36px;
+  height: 36px;
   border-radius: 50%;
-  background: rgba(0, 0, 0, 0.25);
-  color: #fff;
-  border: none;
-  font-size: 1.4rem;
+  background: #18181b;
+  color: #ffffff;
+  border: 2.5px solid #ffffff;
+  font-size: 1.1rem;
   line-height: 1;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  z-index: 10;
-  transition: background 0.2s ease;
-}
-
-.offer-close-btn:hover {
-  background: rgba(0, 0, 0, 0.5);
-}
-
-.offer-card-header {
-  background: linear-gradient(135deg, #7f1d1d 0%, #b91c1c 45%, #ea580c 100%);
-  color: #ffffff;
-  padding: 2rem 1.5rem 1.5rem;
-  text-align: center;
-  position: relative;
-}
-
-.offer-firework-decor {
-  font-size: 1.8rem;
-  margin-bottom: 0.35rem;
-}
-
-.offer-mega-tag {
-  display: inline-block;
-  background: rgba(254, 240, 138, 0.25);
-  border: 1px solid rgba(254, 240, 138, 0.5);
-  color: #fef08a;
-  font-size: 0.72rem;
-  font-weight: 800;
-  letter-spacing: 1px;
-  padding: 0.25rem 0.75rem;
-  border-radius: 999px;
-  text-transform: uppercase;
-  margin-bottom: 0.65rem;
-}
-
-.offer-main-title {
-  font-size: 2.2rem;
-  font-weight: 900;
-  letter-spacing: -0.5px;
-  margin: 0;
-  line-height: 1.1;
-  color: #ffffff;
-  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
-}
-
-.offer-subtitle {
-  font-size: 0.85rem;
-  color: rgba(255, 255, 255, 0.9);
-  margin: 0.5rem 0 0;
-  font-weight: 500;
-}
-
-.offer-card-body {
-  padding: 1.5rem;
-}
-
-.offer-feature-grid {
-  display: flex;
-  flex-direction: column;
-  gap: 0.85rem;
-  margin-bottom: 1.25rem;
-}
-
-.offer-feat-item {
-  display: flex;
-  align-items: flex-start;
-  gap: 0.85rem;
-  background: #f8fafc;
-  padding: 0.75rem 0.9rem;
-  border-radius: 10px;
-  border-left: 3.5px solid #ea580c;
-}
-
-.offer-feat-item i {
-  color: #ea580c;
-  font-size: 1.1rem;
-  margin-top: 2px;
-}
-
-.offer-feat-item strong {
-  display: block;
-  font-size: 0.88rem;
-  color: #0f172a;
-  font-weight: 700;
-}
-
-.offer-feat-item span {
-  display: block;
-  font-size: 0.76rem;
-  color: #64748b;
-  margin-top: 1px;
-}
-
-.offer-quick-cats {
-  margin-bottom: 1.25rem;
-}
-
-.quick-cats-title {
-  display: block;
-  font-size: 0.75rem;
-  font-weight: 700;
-  color: #64748b;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-  margin-bottom: 0.5rem;
-}
-
-.quick-cats-buttons {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.4rem;
-}
-
-.quick-cats-buttons button {
-  background: #f1f5f9;
-  border: 1px solid #e2e8f0;
-  color: #334155;
-  padding: 0.35rem 0.65rem;
-  border-radius: 6px;
-  font-size: 0.75rem;
-  font-weight: 600;
-  cursor: pointer;
+  z-index: 20;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
   transition: all 0.2s ease;
 }
 
-.quick-cats-buttons button:hover {
-  background: #ea580c;
-  border-color: #ea580c;
-  color: #fff;
+.offer-close-btn:hover {
+  background: #000000;
+  transform: scale(1.12);
 }
 
-.offer-cta-row {
-  margin-top: 0.5rem;
+/* Left Media Container */
+.offer-card-media {
+  position: relative;
+  overflow: hidden;
+  border-radius: 16px 0 0 16px;
+  background: #fdf2e9;
+  min-height: 100%;
 }
 
-.btn-offer-explore {
+.offer-card-img {
   width: 100%;
-  padding: 0.85rem 1.25rem;
-  background: linear-gradient(135deg, #ea580c 0%, #dc2626 100%);
-  color: #ffffff;
-  border: none;
-  border-radius: 12px;
-  font-size: 1rem;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.offer-media-overlay {
+  position: absolute;
+  bottom: 14px;
+  left: 14px;
+}
+
+.media-badge {
+  display: inline-block;
+  background: rgba(15, 23, 42, 0.75);
+  backdrop-filter: blur(4px);
+  color: #fef08a;
+  padding: 4px 10px;
+  border-radius: 6px;
+  font-size: 0.68rem;
   font-weight: 800;
-  letter-spacing: 0.3px;
-  cursor: pointer;
+  letter-spacing: 0.8px;
+}
+
+/* Right Content Box */
+.offer-card-content {
+  padding: 2.5rem 2.2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  background: #ffffff;
+  border-radius: 0 16px 16px 0;
+}
+
+.offer-card-inner {
+  width: 100%;
+}
+
+.offer-hero-title {
+  font-size: 2.2rem;
+  font-weight: 900;
+  letter-spacing: -0.5px;
+  color: #111827;
+  margin: 0 0 0.5rem;
+  line-height: 1.15;
+}
+
+.offer-hero-desc {
+  font-size: 0.92rem;
+  color: #4b5563;
+  margin: 0 0 1.25rem;
+  line-height: 1.45;
+}
+
+/* Benefit Chips */
+.offer-benefit-features {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+  margin-bottom: 1.25rem;
+}
+
+.benefit-chip {
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
-  box-shadow: 0 4px 14px rgba(234, 88, 12, 0.4);
+  background: #fff7ed;
+  border: 1px solid #fed7aa;
+  color: #9a3412;
+  padding: 0.45rem 0.8rem;
+  border-radius: 8px;
+  font-size: 0.82rem;
+  font-weight: 700;
+}
+
+.benefit-chip i {
+  color: #ea580c;
+  font-size: 0.85rem;
+}
+
+/* Warm Terracotta CTA Button (Reference Style) */
+.btn-offer-cta {
+  width: 100%;
+  padding: 0.88rem 1.25rem;
+  background: #c47a47;
+  color: #ffffff;
+  border: none;
+  border-radius: 8px;
+  font-size: 1.05rem;
+  font-weight: 700;
+  letter-spacing: 0.2px;
+  cursor: pointer;
+  box-shadow: 0 4px 14px rgba(196, 122, 71, 0.35);
   transition: all 0.2s ease;
 }
 
-.btn-offer-explore:hover {
-  background: linear-gradient(135deg, #c2410c 0%, #b91c1c 100%);
+.btn-offer-cta:hover {
+  background: #b06535;
   transform: translateY(-1px);
-  box-shadow: 0 6px 20px rgba(220, 38, 38, 0.45);
+  box-shadow: 0 6px 18px rgba(196, 122, 71, 0.45);
 }
 
-@media (max-width: 640px) {
-  .festive-floating-badge {
-    bottom: 80px;
-    right: 16px;
+/* Trust Badges Row (Reference Style) */
+.offer-trust-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.25rem;
+  width: 100%;
+  margin: 1.25rem 0 0.65rem;
+  padding-top: 1rem;
+  border-top: 1px solid #f1f5f9;
+}
+
+.offer-trust-col {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  text-align: left;
+}
+
+.trust-circle {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 1.5px solid #cbd5e1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.78rem;
+  color: #475569;
+  flex-shrink: 0;
+}
+
+.trust-info strong {
+  display: block;
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: #1e293b;
+  line-height: 1.2;
+}
+
+.trust-info span {
+  display: block;
+  font-size: 0.68rem;
+  color: #64748b;
+  line-height: 1.1;
+}
+
+.offer-trust-divider {
+  width: 1px;
+  height: 26px;
+  background: #e2e8f0;
+}
+
+.offer-disclaimer {
+  font-size: 0.72rem;
+  color: #94a3b8;
+  margin: 0.4rem 0 0;
+  font-style: italic;
+}
+
+/* Mobile & Tablet Responsiveness */
+@media (max-width: 768px) {
+  .festive-offer-card.split-layout {
+    grid-template-columns: 1fr;
+    max-width: 400px;
+    max-height: 92vh;
+    overflow-y: auto;
+    overflow-x: hidden;
   }
-  .badge-content {
-    padding: 0.5rem 0.85rem;
+  
+  .offer-close-btn {
+    top: 12px;
+    right: 12px;
   }
-  .badge-pct {
-    font-size: 0.88rem;
+  
+  .offer-card-media {
+    height: 200px;
+    border-radius: 16px 16px 0 0;
   }
-  .badge-sub {
-    font-size: 0.55rem;
+  
+  .offer-card-content {
+    padding: 1.6rem 1.4rem;
+    border-radius: 0 0 16px 16px;
+  }
+  
+  .offer-hero-title {
+    font-size: 1.7rem;
+  }
+  
+  .festive-edge-badge {
+    padding: 10px 7px;
+    font-size: 0.72rem;
   }
 }

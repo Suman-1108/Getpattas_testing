@@ -743,6 +743,13 @@ function toggleOfferBadgePopup(open) {
   }
 }
 
+// Automatically display 80% offer popup when page first opens
+window.addEventListener('DOMContentLoaded', () => {
+  setTimeout(() => {
+    toggleOfferBadgePopup(true);
+  }, 900);
+});
+
 function filterCategoryBySlug(slug) {
   closeMobileMenu();
   const resolvedSlug = resolveCategorySlug(slug);
