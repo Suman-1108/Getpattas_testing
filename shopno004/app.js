@@ -752,11 +752,14 @@ function toggleOfferBadgePopup(open) {
   }
 }
 
-// Automatically display 80% offer popup when page first opens
+// Automatically display 80% offer popup when page first opens (Homepage index.html only)
 window.addEventListener('DOMContentLoaded', () => {
-  setTimeout(() => {
-    toggleOfferBadgePopup(true);
-  }, 900);
+  const isProductsPage = window.location.pathname.toLowerCase().includes('products.html');
+  if (!isProductsPage) {
+    setTimeout(() => {
+      toggleOfferBadgePopup(true);
+    }, 900);
+  }
 });
 
 const categoryDisplayNames = {
