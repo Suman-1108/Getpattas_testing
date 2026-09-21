@@ -160,45 +160,65 @@
     </div>
   </header>
 
-  <!-- Category Bar Below Navbar -->
+  <!-- Category Bar Below Navbar (User-Friendly & Unique Design) -->
   <nav class="category-strip-nav" aria-label="Cracker Categories">
     <div class="category-strip-container">
-      <a href="#products" class="cat-pill cat-pill-chakkars" onclick="filterCategoryBySlug('ground-chakkars')">
-        <span class="cat-icon"><i class="fa-solid fa-compact-disc"></i></span>
-        <span class="cat-name">Chakkars</span>
-      </a>
-      <a href="#products" class="cat-pill cat-pill-pots" onclick="filterCategoryBySlug('flower-pots')">
-        <span class="cat-icon"><i class="fa-solid fa-mountain"></i></span>
-        <span class="cat-name">Flower Pots</span>
-      </a>
-      <a href="#products" class="cat-pill cat-pill-rockets" onclick="filterCategoryBySlug('rockets')">
-        <span class="cat-icon"><i class="fa-solid fa-rocket"></i></span>
-        <span class="cat-name">Rockets</span>
-      </a>
-      <a href="#products" class="cat-pill cat-pill-sparklers" onclick="filterCategoryBySlug('sparklers')">
+      <button type="button" class="cat-pill cat-pill-sparkles" onclick="filterCategoryBySlug('sparkles');" title="Sparklers / மத்தாப்பு">
         <span class="cat-icon"><i class="fa-solid fa-wand-magic-sparkles"></i></span>
-        <span class="cat-name">Sparklers</span>
-      </a>
-      <a href="#products" class="cat-pill cat-pill-fancy" onclick="filterCategoryBySlug('fancy-novelties')">
-        <span class="cat-icon"><i class="fa-solid fa-burst"></i></span>
-        <span class="cat-name">Fancy Crackers</span>
-      </a>
-      <a href="#products" class="cat-pill cat-pill-shots" onclick="filterCategoryBySlug('aerial-shots')">
+        <div class="cat-text-group">
+          <span class="cat-name">Sparkles</span>
+          <span class="cat-tamil">மத்தாப்பு</span>
+        </div>
+      </button>
+      <button type="button" class="cat-pill cat-pill-foundation" onclick="filterCategoryBySlug('foundation');" title="Fountains & Pots / பவுண்டன் & பூச்சட்டி">
+        <span class="cat-icon"><i class="fa-solid fa-mountain-sun"></i></span>
+        <div class="cat-text-group">
+          <span class="cat-name">Foundation</span>
+          <span class="cat-tamil">பவுண்டன் & சட்டி</span>
+        </div>
+      </button>
+      <button type="button" class="cat-pill cat-pill-sound" onclick="filterCategoryBySlug('sound');" title="Sound Crackers & Bombs / சவுண்ட் வெடி">
+        <span class="cat-icon"><i class="fa-solid fa-volume-high"></i></span>
+        <div class="cat-text-group">
+          <span class="cat-name">Sound</span>
+          <span class="cat-tamil">சவுண்ட் வெடி</span>
+        </div>
+      </button>
+      <button type="button" class="cat-pill cat-pill-rockets" onclick="filterCategoryBySlug('rockets');" title="Rockets / ராக்கெட்">
+        <span class="cat-icon"><i class="fa-solid fa-rocket"></i></span>
+        <div class="cat-text-group">
+          <span class="cat-name">Rockets</span>
+          <span class="cat-tamil">ராக்கெட்</span>
+        </div>
+      </button>
+      <button type="button" class="cat-pill cat-pill-fancy" onclick="filterCategoryBySlug('fancy');" title="Fancy Mega Pipes & Shots / பேன்சி வெடி">
         <span class="cat-icon"><i class="fa-solid fa-meteor"></i></span>
-        <span class="cat-name">Multi Colour Shots</span>
-      </a>
-      <a href="#products" class="cat-pill cat-pill-kids" onclick="filterCategoryBySlug('kids-specials')">
+        <div class="cat-text-group">
+          <span class="cat-name">Fancy</span>
+          <span class="cat-tamil">பேன்சி பைப்</span>
+        </div>
+      </button>
+      <button type="button" class="cat-pill cat-pill-kids" onclick="filterCategoryBySlug('kids');" title="Kids Special Novelty / கிட்ஸ் ஸ்பெஷல்">
         <span class="cat-icon"><i class="fa-solid fa-face-smile"></i></span>
-        <span class="cat-name">Kids Special</span>
-      </a>
-      <a href="#offers" class="cat-pill cat-pill-combos">
-        <span class="cat-icon"><i class="fa-solid fa-box-open"></i></span>
-        <span class="cat-name">Combo Packs</span>
-      </a>
-      <a href="#products" class="cat-pill cat-pill-gifts" onclick="filterCategoryBySlug('gift-boxes')">
+        <div class="cat-text-group">
+          <span class="cat-name">Kids</span>
+          <span class="cat-tamil">கிட்ஸ் ஸ்பெஷல்</span>
+        </div>
+      </button>
+      <button type="button" class="cat-pill cat-pill-gifts" onclick="filterCategoryBySlug('gift-box');" title="Gift Boxes / பரிசு பெட்டகம்">
         <span class="cat-icon"><i class="fa-solid fa-gift"></i></span>
-        <span class="cat-name">Gift Boxes</span>
-      </a>
+        <div class="cat-text-group">
+          <span class="cat-name">Gift Box</span>
+          <span class="cat-tamil">பரிசு பெட்டகம்</span>
+        </div>
+      </button>
+      <button type="button" class="cat-pill cat-pill-combos" onclick="filterCategoryBySlug('family-combo');" title="Family Combo Packs / காம்போ பேக்">
+        <span class="cat-icon"><i class="fa-solid fa-boxes-stacked"></i></span>
+        <div class="cat-text-group">
+          <span class="cat-name">Family Combo</span>
+          <span class="cat-tamil">காம்போ பேக்</span>
+        </div>
+      </button>
     </div>
   </nav>
 
@@ -1517,6 +1537,75 @@
           <i class="fa-solid fa-star"></i> Submit Google Review
         </button>
       </form>
+    </div>
+  </div>
+
+  <!-- Floating 80% Festive Offer Badge -->
+  <div class="festive-floating-badge" id="festiveFloatingBadge" onclick="toggleOfferBadgePopup(true)" title="Click to view Mega 80% Festive Offers!">
+    <div class="badge-pulse-ring"></div>
+    <div class="badge-content">
+      <span class="badge-sparkle-icon"><i class="fa-solid fa-fire"></i></span>
+      <div class="badge-label-group">
+        <span class="badge-pct">80% OFF</span>
+        <span class="badge-sub">DIWALI DHAMAKA</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Interactive 80% Festive Offer Modal -->
+  <div class="festive-offer-modal" id="festiveOfferPopup">
+    <div class="festive-offer-backdrop" onclick="toggleOfferBadgePopup(false)"></div>
+    <div class="festive-offer-card">
+      <button type="button" class="offer-close-btn" onclick="toggleOfferBadgePopup(false)" aria-label="Close offer">&times;</button>
+      <div class="offer-card-header">
+        <div class="offer-firework-decor">💥 🎇 🎆</div>
+        <span class="offer-mega-tag">LIMITED TIME FESTIVE DEALS</span>
+        <h3 class="offer-main-title">FLAT 80% OFF</h3>
+        <p class="offer-subtitle">Direct Factory Wholesale Price • Sivakasi Standard</p>
+      </div>
+      <div class="offer-card-body">
+        <div class="offer-feature-grid">
+          <div class="offer-feat-item">
+            <i class="fa-solid fa-tags"></i>
+            <div>
+              <strong>Genuine 80% Discount</strong>
+              <span>Direct factory wholesale discount applied on all items</span>
+            </div>
+          </div>
+          <div class="offer-feat-item">
+            <i class="fa-solid fa-truck-fast"></i>
+            <div>
+              <strong>Fast Express Transport</strong>
+              <span>Safe delivery booking across Tamil Nadu & All India</span>
+            </div>
+          </div>
+          <div class="offer-feat-item">
+            <i class="fa-solid fa-shield-halved"></i>
+            <div>
+              <strong>100% Sivakasi Standard</strong>
+              <span>Certified sparklers, fancy sky shots & family packs</span>
+            </div>
+          </div>
+        </div>
+        <div class="offer-quick-cats">
+          <span class="quick-cats-title">Shop by Trending Categories:</span>
+          <div class="quick-cats-buttons">
+            <button type="button" onclick="toggleOfferBadgePopup(false); filterCategoryBySlug('sparkles');">✨ Sparkles</button>
+            <button type="button" onclick="toggleOfferBadgePopup(false); filterCategoryBySlug('foundation');">🌋 Foundation</button>
+            <button type="button" onclick="toggleOfferBadgePopup(false); filterCategoryBySlug('sound');">💥 Sound</button>
+            <button type="button" onclick="toggleOfferBadgePopup(false); filterCategoryBySlug('rockets');">🚀 Rockets</button>
+            <button type="button" onclick="toggleOfferBadgePopup(false); filterCategoryBySlug('fancy');">🎆 Fancy</button>
+            <button type="button" onclick="toggleOfferBadgePopup(false); filterCategoryBySlug('kids');">🧒 Kids</button>
+            <button type="button" onclick="toggleOfferBadgePopup(false); filterCategoryBySlug('gift-box');">🎁 Gift Box</button>
+            <button type="button" onclick="toggleOfferBadgePopup(false); filterCategoryBySlug('family-combo');">📦 Combo</button>
+          </div>
+        </div>
+        <div class="offer-cta-row">
+          <button type="button" class="btn btn-offer-explore" onclick="toggleOfferBadgePopup(false); showAllCrackers();">
+            <i class="fa-solid fa-cart-shopping"></i> Start Shopping (80% Off)
+          </button>
+        </div>
+      </div>
     </div>
   </div>
 

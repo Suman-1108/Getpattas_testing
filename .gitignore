@@ -49,3 +49,7 @@ scratch/
 dist/
 build/
 coverage/
+
+# Testing Repo Exclusions (Keep only shopno003 and shopno004)
+shopno001/
+shopno002/

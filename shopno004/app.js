@@ -690,15 +690,27 @@ function resolveCategorySlug(slug) {
   const categoryNames = [...new Set(products.map(p => p.category))];
 
   const slugKeywords = {
-    'sparklers': ['sparkler', 'மத்தாப்பு', 'colour matches', 'குச்சி'],
+    'sparklers': ['sparkler', 'மத்தாப்பு', 'sparkle'],
+    'sparkles': ['sparkler', 'மத்தாப்பு', 'sparkle'],
+    'foundation': ['fountain', 'பவுண்டன்', 'flower', 'பூச்சட்டி'],
+    'fountains': ['fountain', 'பவுண்டன்', 'flower', 'பூச்சட்டி'],
     'flower-pots': ['flower', 'பூச்சட்டி', 'koti', 'கோட்டி', 'fountain', 'பவுண்டன்'],
     'ground-chakkars': ['chakkar', 'சக்கரம்', 'wheel', 'வீல்'],
+    'sound': ['sound', 'சவுண்ட்', 'bomb', 'பாம்', 'one sound', 'வெடி'],
+    'sound-crackers': ['sound', 'சவுண்ட்', 'bomb', 'பாம்', 'one sound', 'வெடி'],
     'rockets': ['rocket', 'ராக்கெட்', 'bijili', 'பிஜிலி'],
+    'fancy': ['fancy', 'பேன்சி', 'pipe', 'பைப்', 'shots', 'ஷாட்ஸ்', 'aerial'],
+    'fancy-novelties': ['fancy', 'பேன்சி', 'pipe', 'பைப்', 'shots', 'ஷாட்ஸ்', 'aerial'],
     'aerial-shots': ['aerial', 'sky', 'வான', 'shot', 'ஷாட்ஸ்', 'shell', 'pipe', 'பைப்', 'pyro'],
     'one-sound-crackers': ['one sound', 'ஒன் சவுண்ட்', 'sound & bombs', 'sound cracker', 'thunder', 'bomb', 'பாம்', 'வெடி'],
     'multi-sound-walas': ['wala', 'வாலா', 'garland', 'சரவெடி', 'multi sound', 'மல்டி சவுண்ட்', 'sound cracker', 'சவுண்ட் வெடி'],
+    'kids': ['kid', 'கிட்ஸ்', 'novelty', 'நாவல்டி', 'gun', 'துப்பாக்கி', 'pencil', 'பென்சில்'],
     'kids-special': ['kid', 'கிட்ஸ்', 'novelty', 'நாவல்டி', 'gun', 'துப்பாக்கி', 'pencil', 'பென்சில்'],
-    'gift-boxes': ['gift', 'கிப்ட்', 'box', 'பாக்ஸ்', 'family', 'காம்போ', 'hamper']
+    'gift-boxes': ['gift', 'கிப்ட்', 'box', 'பாக்ஸ்', 'பரிசு'],
+    'gift-box': ['gift', 'கிப்ட்', 'box', 'பாக்ஸ்', 'பரிசு'],
+    'family-combo': ['combo', 'காம்போ', 'family', 'பேக்', 'pack', 'hamper'],
+    'family-combos': ['combo', 'காம்போ', 'family', 'பேக்', 'pack', 'hamper'],
+    'combos': ['combo', 'காம்போ', 'family', 'பேக்', 'pack', 'hamper']
   };
 
   const kws = slugKeywords[slug] || [slug.replace(/-/g, ' ')];
@@ -713,6 +725,22 @@ function resolveCategorySlug(slug) {
   }
 
   return 'all';
+}
+
+// Interactive 80% Offer Popup Badge Toggle
+function toggleOfferBadgePopup(open) {
+  const popup = document.getElementById('festiveOfferPopup');
+  const badge = document.getElementById('festiveFloatingBadge');
+  if (!popup) return;
+  const isCurrentlyOpen = popup.classList.contains('is-active');
+  const shouldOpen = (typeof open === 'boolean') ? open : !isCurrentlyOpen;
+  if (shouldOpen) {
+    popup.classList.add('is-active');
+    if (badge) badge.classList.add('badge-hidden');
+  } else {
+    popup.classList.remove('is-active');
+    if (badge) badge.classList.remove('badge-hidden');
+  }
 }
 
 function filterCategoryBySlug(slug) {
