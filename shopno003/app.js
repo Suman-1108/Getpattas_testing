@@ -772,15 +772,24 @@ const categoryDisplayNames = {
 
 function updateCategoryIndicator(catSlug) {
   const catNameEl = document.getElementById('activeCategoryName');
+  const crumbEl = document.getElementById('crumbActiveCat');
   const resetBtn = document.getElementById('tacResetBtn');
-  if (!catNameEl) return;
-  if (!catSlug || catSlug === 'all') {
-    catNameEl.innerText = 'All Sivakasi Crackers (180+ Items)';
-    if (resetBtn) resetBtn.style.display = 'none';
-  } else {
-    catNameEl.innerText = categoryDisplayNames[catSlug] || `${catSlug.toUpperCase()} Crackers`;
-    if (resetBtn) resetBtn.style.display = 'inline-flex';
-  }
+
+  // Update sidebar active highlights
+  document.querySelectorAll('.filter-cat-item').forEach(item => {
+    item.classList.remove('active');
+  });
+  const targetId = (!catSlug || catSlug === 'all') ? 'fcat-all' : `fcat-${catSlug}`;
+  const targetSidebarItem = document.getElementById(targetId);
+  if (targetSidebarItem) targetSidebarItem.classList.add('active');
+
+  const displayName = (!catSlug || catSlug === 'all') 
+    ? 'All Sivakasi Crackers (180+ Items)' 
+    : (categoryDisplayNames[catSlug] || `${catSlug.toUpperCase()} Crackers`);
+
+  if (catNameEl) catNameEl.innerText = displayName;
+  if (crumbEl) crumbEl.innerText = displayName;
+  if (resetBtn) resetBtn.style.display = (!catSlug || catSlug === 'all') ? 'none' : 'inline-flex';
 }
 
 function filterCategoryBySlug(slug) {

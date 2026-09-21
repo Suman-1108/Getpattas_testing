@@ -151,291 +151,128 @@
     </div>
   </header>
 
-  <!-- Category Bar Below Navbar (User-Friendly & Unique Design) -->
-  <nav class="category-strip-nav" aria-label="Cracker Categories">
-    <div class="category-strip-container">
-      <button type="button" class="cat-pill cat-pill-sparkles" onclick="filterCategoryBySlug('sparkles');" title="Sparklers / மத்தாப்பு">
-        <span class="cat-icon"><i class="fa-solid fa-wand-magic-sparkles"></i></span>
-        <div class="cat-text-group">
-          <span class="cat-name">Sparkles</span>
-          <span class="cat-tamil">மத்தாப்பு</span>
-        </div>
-      </button>
-      <button type="button" class="cat-pill cat-pill-foundation" onclick="filterCategoryBySlug('foundation');" title="Fountains & Pots / பவுண்டன் & பூச்சட்டி">
-        <span class="cat-icon"><i class="fa-solid fa-mountain-sun"></i></span>
-        <div class="cat-text-group">
-          <span class="cat-name">Foundation</span>
-          <span class="cat-tamil">பவுண்டன் & சட்டி</span>
-        </div>
-      </button>
-      <button type="button" class="cat-pill cat-pill-sound" onclick="filterCategoryBySlug('sound');" title="Sound Crackers & Bombs / சவுண்ட் வெடி">
-        <span class="cat-icon"><i class="fa-solid fa-volume-high"></i></span>
-        <div class="cat-text-group">
-          <span class="cat-name">Sound</span>
-          <span class="cat-tamil">சவுண்ட் வெடி</span>
-        </div>
-      </button>
-      <button type="button" class="cat-pill cat-pill-rockets" onclick="filterCategoryBySlug('rockets');" title="Rockets / ராக்கெட்">
-        <span class="cat-icon"><i class="fa-solid fa-rocket"></i></span>
-        <div class="cat-text-group">
-          <span class="cat-name">Rockets</span>
-          <span class="cat-tamil">ராக்கெட்</span>
-        </div>
-      </button>
-      <button type="button" class="cat-pill cat-pill-fancy" onclick="filterCategoryBySlug('fancy');" title="Fancy Mega Pipes & Shots / பேன்சி வெடி">
-        <span class="cat-icon"><i class="fa-solid fa-meteor"></i></span>
-        <div class="cat-text-group">
-          <span class="cat-name">Fancy</span>
-          <span class="cat-tamil">பேன்சி பைப்</span>
-        </div>
-      </button>
-      <button type="button" class="cat-pill cat-pill-kids" onclick="filterCategoryBySlug('kids');" title="Kids Special Novelty / கிட்ஸ் ஸ்பெஷல்">
-        <span class="cat-icon"><i class="fa-solid fa-face-smile"></i></span>
-        <div class="cat-text-group">
-          <span class="cat-name">Kids</span>
-          <span class="cat-tamil">கிட்ஸ் ஸ்பெஷல்</span>
-        </div>
-      </button>
-      <button type="button" class="cat-pill cat-pill-gifts" onclick="filterCategoryBySlug('gift-box');" title="Gift Boxes / பரிசு பெட்டகம்">
-        <span class="cat-icon"><i class="fa-solid fa-gift"></i></span>
-        <div class="cat-text-group">
-          <span class="cat-name">Gift Box</span>
-          <span class="cat-tamil">பரிசு பெட்டகம்</span>
-        </div>
-      </button>
-      <button type="button" class="cat-pill cat-pill-combos" onclick="filterCategoryBySlug('family-combo');" title="Family Combo Packs / காம்போ பேக்">
-        <span class="cat-icon"><i class="fa-solid fa-boxes-stacked"></i></span>
-        <div class="cat-text-group">
-          <span class="cat-name">Family Combo</span>
-          <span class="cat-tamil">காம்போ பேக்</span>
-        </div>
-      </button>
-    </div>
-  </nav>
-
   <!-- Mobile Menu Backdrop -->
   <div class="mobile-menu-backdrop" id="menuBackdrop" onclick="toggleMobileMenu()"></div>
 
-  <!-- Hero Section: Full-Width Image Only -->
-  <section class="cinematic-hero-section hero-image-only hero-desktop" id="hero">
-    <picture>
-      <source media="(max-width: 768px)" srcset="assets/mobile.jpg">
-      <img src="assets/get_pattas_hero_orange.jpeg" alt="Get Pattas Kadai - Sivakasi Premium Fireworks"
-        class="hero-full-img">
-    </picture>
-  </section>
-
-  <!-- Categories Card Section with Active Brand Banner (User-Friendly Navigation) -->
-  <section class="categories-showcase-section" id="categories">
+  <!-- Flipkart-Style Dedicated Products Catalog Section -->
+  <div class="flipkart-catalog-wrapper" id="products">
     <div class="container">
-      <!-- Active Brand Header Strip (Moved into Categories Card Section) -->
-      <div class="active-brand-banner" id="activeBrandBanner">
-        <div class="brand-banner-info">
-          <span class="current-brand-badge" id="currentBrandBadge" style="background: #d97706;"><i
-              class="fa-solid fa-wand-magic-sparkles"></i> GET PATTAS (SHOP 004)</span>
-          <h2 class="current-brand-title" id="currentBrandTitle">Get Pattas - Crackers Wholesale Price
-            List 004</h2>
-          <p class="current-brand-tagline" id="currentBrandTagline">Direct Sivakasi Factory Rate • Flat 80% Discount •
-            Touch '+' to increase quantity</p>
+      <!-- Flipkart Breadcrumbs Bar -->
+      <div class="flipkart-breadcrumbs-bar">
+        <div class="crumb-links">
+          <a href="index.html"><i class="fa-solid fa-house"></i> Home</a>
+          <span>›</span>
+          <a href="products.html">Sivakasi Wholesale Fireworks</a>
+          <span>›</span>
+          <span class="active-crumb" id="crumbActiveCat">All Sivakasi Crackers (180+ Items)</span>
         </div>
-        <div class="brand-banner-meta">
-          <div class="meta-pill"><span><i class="fa-solid fa-phone"></i> Booking:</span> <strong
-              id="currentBrandPhone">+91 86104 51118</strong></div>
-          <div class="meta-pill"><span><i class="fa-solid fa-truck-fast"></i> Min Order:</span> <strong>₹3,000</strong>
-          </div>
+        <div class="crumb-phone">
+          <i class="fa-solid fa-phone"></i> Booking: <strong>+91 86104 51118</strong>
         </div>
       </div>
 
-      <!-- Categories Section Header -->
-      <div class="cat-showcase-header">
-        <span class="cat-showcase-tag">SIVAKASI FESTIVE COLLECTION</span>
-        <h3 class="cat-showcase-title">Shop by Categories</h3>
-        <p class="cat-showcase-desc">Select any category below to instantly browse and order wholesale crackers</p>
-      </div>
+      <!-- Flipkart Catalog Layout (Sidebar + Products Main) -->
+      <div class="flipkart-catalog-layout">
+        <!-- Left Sidebar: Filters & Categories -->
+        <aside class="flipkart-sidebar">
+          <div class="sidebar-header">
+            <h3><i class="fa-solid fa-sliders"></i> Filters</h3>
+            <button type="button" class="sidebar-clear-all" onclick="showAllCrackers()">CLEAR ALL</button>
+          </div>
 
-      <!-- 8 Categories Cards Grid -->
-      <div class="categories-cards-grid">
-        <!-- 1. Sparkles -->
-        <div class="cat-showcase-card" onclick="filterCategoryBySlug('sparkles');" title="View Sparklers">
-          <div class="csc-img-box">
-            <img src="assets/product_sparklers_color.jpg" alt="Sparkles - மத்தாப்பு" class="csc-img" />
-            <span class="csc-badge">80% OFF</span>
+          <div class="filter-group">
+            <h4 class="filter-group-title">Categories</h4>
+            <ul class="filter-cat-list">
+              <li class="filter-cat-item active" id="fcat-all" onclick="filterCategoryBySlug('all')">
+                <span class="cat-label-with-icon"><i class="fa-solid fa-layer-group"></i> All Fireworks</span>
+                <span class="cat-badge-count">180+</span>
+              </li>
+              <li class="filter-cat-item" id="fcat-sparkles" onclick="filterCategoryBySlug('sparkles')">
+                <span class="cat-label-with-icon"><i class="fa-solid fa-wand-magic-sparkles"></i> Sparklers (மத்தாப்பு)</span>
+                <span class="cat-badge-count">24</span>
+              </li>
+              <li class="filter-cat-item" id="fcat-foundation" onclick="filterCategoryBySlug('foundation')">
+                <span class="cat-label-with-icon"><i class="fa-solid fa-mountain-sun"></i> Flower Pots (பூச்சட்டி)</span>
+                <span class="cat-badge-count">18</span>
+              </li>
+              <li class="filter-cat-item" id="fcat-sound" onclick="filterCategoryBySlug('sound')">
+                <span class="cat-label-with-icon"><i class="fa-solid fa-volume-high"></i> Sound Crackers (சவுண்ட்)</span>
+                <span class="cat-badge-count">20</span>
+              </li>
+              <li class="filter-cat-item" id="fcat-rockets" onclick="filterCategoryBySlug('rockets')">
+                <span class="cat-label-with-icon"><i class="fa-solid fa-rocket"></i> Rockets (ராக்கெட்)</span>
+                <span class="cat-badge-count">16</span>
+              </li>
+              <li class="filter-cat-item" id="fcat-fancy" onclick="filterCategoryBySlug('fancy')">
+                <span class="cat-label-with-icon"><i class="fa-solid fa-meteor"></i> Fancy & Shots (பேன்சி)</span>
+                <span class="cat-badge-count">28</span>
+              </li>
+              <li class="filter-cat-item" id="fcat-kids" onclick="filterCategoryBySlug('kids')">
+                <span class="cat-label-with-icon"><i class="fa-solid fa-face-smile"></i> Kids Novelty (கிட்ஸ்)</span>
+                <span class="cat-badge-count">22</span>
+              </li>
+              <li class="filter-cat-item" id="fcat-gift-box" onclick="filterCategoryBySlug('gift-box')">
+                <span class="cat-label-with-icon"><i class="fa-solid fa-gift"></i> Gift Boxes (பரிசு)</span>
+                <span class="cat-badge-count">14</span>
+              </li>
+              <li class="filter-cat-item" id="fcat-family-combo" onclick="filterCategoryBySlug('family-combo')">
+                <span class="cat-label-with-icon"><i class="fa-solid fa-boxes-stacked"></i> Family Combos (காம்போ)</span>
+                <span class="cat-badge-count">10</span>
+              </li>
+            </ul>
           </div>
-          <div class="csc-body">
-            <div class="csc-icon-row">
-              <span class="csc-icon cat-icon-sparkles"><i class="fa-solid fa-wand-magic-sparkles"></i></span>
-              <h4 class="csc-title">Sparkles</h4>
-            </div>
-            <p class="csc-tamil">மத்தாப்பு வகைகள்</p>
-            <span class="csc-cta">Explore Products <i class="fa-solid fa-arrow-right"></i></span>
-          </div>
-        </div>
 
-        <!-- 2. Foundation -->
-        <div class="cat-showcase-card" onclick="filterCategoryBySlug('foundation');" title="View Fountains & Pots">
-          <div class="csc-img-box">
-            <img src="assets/product_flowerpots.jpg" alt="Foundation - பவுண்டன் & சட்டி" class="csc-img" />
-            <span class="csc-badge">80% OFF</span>
+          <div class="filter-features-box">
+            <div class="ffb-item"><i class="fa-solid fa-circle-check"></i> Direct Sivakasi Factory Rates</div>
+            <div class="ffb-item"><i class="fa-solid fa-circle-check"></i> Flat 80% Off Direct Pricing</div>
+            <div class="ffb-item"><i class="fa-solid fa-circle-check"></i> Min Order Value: ₹3,000</div>
+            <div class="ffb-item"><i class="fa-solid fa-circle-check"></i> 100% Green Lab Tested</div>
           </div>
-          <div class="csc-body">
-            <div class="csc-icon-row">
-              <span class="csc-icon cat-icon-foundation"><i class="fa-solid fa-mountain-sun"></i></span>
-              <h4 class="csc-title">Foundation</h4>
-            </div>
-            <p class="csc-tamil">பவுண்டன் & பூச்சட்டி</p>
-            <span class="csc-cta">Explore Products <i class="fa-solid fa-arrow-right"></i></span>
-          </div>
-        </div>
+        </aside>
 
-        <!-- 3. Sound -->
-        <div class="cat-showcase-card" onclick="filterCategoryBySlug('sound');" title="View Sound Crackers & Bombs">
-          <div class="csc-img-box">
-            <img src="assets/product_bombs.jpg" alt="Sound - சவுண்ட் வெடி" class="csc-img" />
-            <span class="csc-badge">80% OFF</span>
-          </div>
-          <div class="csc-body">
-            <div class="csc-icon-row">
-              <span class="csc-icon cat-icon-sound"><i class="fa-solid fa-volume-high"></i></span>
-              <h4 class="csc-title">Sound</h4>
+        <!-- Right Main: Search, Controls & Price List Table -->
+        <main class="flipkart-main-content">
+          <!-- Active Category Header & Reset -->
+          <div class="flipkart-header-indicator">
+            <div class="fhi-title-wrap">
+              <h1 class="fhi-title" id="activeCategoryName">All Sivakasi Crackers (180+ Items)</h1>
+              <span class="fhi-count">Direct Sivakasi wholesale price list • Flat 80% Discount • Touch '+' to add quantity</span>
             </div>
-            <p class="csc-tamil">சவுண்ட் வெடி & பாம்</p>
-            <span class="csc-cta">Explore Products <i class="fa-solid fa-arrow-right"></i></span>
+            <button type="button" class="tac-reset-btn" id="tacResetBtn" onclick="showAllCrackers()" style="display: none;">
+              <i class="fa-solid fa-rotate-left"></i> Show All Products
+            </button>
           </div>
-        </div>
 
-        <!-- 4. Rockets -->
-        <div class="cat-showcase-card" onclick="filterCategoryBySlug('rockets');" title="View Rockets">
-          <div class="csc-img-box">
-            <img src="assets/product_rockets.jpg" alt="Rockets - ராக்கெட்" class="csc-img" />
-            <span class="csc-badge">80% OFF</span>
-          </div>
-          <div class="csc-body">
-            <div class="csc-icon-row">
-              <span class="csc-icon cat-icon-rockets"><i class="fa-solid fa-rocket"></i></span>
-              <h4 class="csc-title">Rockets</h4>
+          <!-- Flipkart Search Bar & Category Jump -->
+          <div class="flipkart-search-row">
+            <div class="flipkart-search-input-wrap">
+              <i class="fa-solid fa-magnifying-glass fs-icon"></i>
+              <input type="text" id="catalogSearch" placeholder="Search crackers by English or தமிழ் பெயர் (e.g. Sparklers, பூச்சட்டி, 120 Shot)..." oninput="handleTableSearch(this.value)">
+              <button type="button" class="search-clear-btn" id="searchClearBtn" onclick="clearTableSearch()" style="display: none;" aria-label="Clear Search"><i class="fa-solid fa-xmark"></i></button>
             </div>
-            <p class="csc-tamil">ராக்கெட் வகைகள்</p>
-            <span class="csc-cta">Explore Products <i class="fa-solid fa-arrow-right"></i></span>
+            <select id="categoryJumpSelect" onchange="handleCategoryJump(this.value)" class="category-jump-select" aria-label="Jump to Category">
+              <option value="all">⚡ Jump to All Categories</option>
+            </select>
+            <button type="button" class="btn-clear-cart-table" onclick="clearAllCartItems()" title="Reset all selected quantities">
+              <i class="fa-solid fa-rotate-right"></i> Reset Quantities
+            </button>
           </div>
-        </div>
 
-        <!-- 5. Fancy -->
-        <div class="cat-showcase-card" onclick="filterCategoryBySlug('fancy');" title="View Fancy & Sky Shots">
-          <div class="csc-img-box">
-            <img src="assets/product_skyshots.jpg" alt="Fancy - பேன்சி வெடி" class="csc-img" />
-            <span class="csc-badge">80% OFF</span>
+          <!-- Category Quick Navigation Pills Scroll -->
+          <div class="category-pills-scroll" id="categoryPillsScroll">
+            <!-- Dynamically rendered pills -->
           </div>
-          <div class="csc-body">
-            <div class="csc-icon-row">
-              <span class="csc-icon cat-icon-fancy"><i class="fa-solid fa-meteor"></i></span>
-              <h4 class="csc-title">Fancy</h4>
-            </div>
-            <p class="csc-tamil">பேன்சி பைப் & ஸ்கை ஷாட்ஸ்</p>
-            <span class="csc-cta">Explore Products <i class="fa-solid fa-arrow-right"></i></span>
-          </div>
-        </div>
 
-        <!-- 6. Kids -->
-        <div class="cat-showcase-card" onclick="filterCategoryBySlug('kids');" title="View Kids Special">
-          <div class="csc-img-box">
-            <img src="assets/product_peacock.jpg" alt="Kids - கிட்ஸ் ஸ்பெஷல்" class="csc-img" />
-            <span class="csc-badge">80% OFF</span>
-          </div>
-          <div class="csc-body">
-            <div class="csc-icon-row">
-              <span class="csc-icon cat-icon-kids"><i class="fa-solid fa-face-smile"></i></span>
-              <h4 class="csc-title">Kids</h4>
+          <!-- Full-Width Responsive Cracker Price List Table -->
+          <div class="table-responsive-wrapper">
+            <div id="priceListContainer" class="pricelist-container">
+              <!-- Injected dynamically via JavaScript -->
             </div>
-            <p class="csc-tamil">கிட்ஸ் ஸ்பெஷல் வெடிகள்</p>
-            <span class="csc-cta">Explore Products <i class="fa-solid fa-arrow-right"></i></span>
           </div>
-        </div>
-
-        <!-- 7. Gift Box -->
-        <div class="cat-showcase-card" onclick="filterCategoryBySlug('gift-box');" title="View Gift Boxes">
-          <div class="csc-img-box">
-            <img src="assets/product_skyshots_box.jpg" alt="Gift Box - பரிசு பெட்டகம்" class="csc-img" />
-            <span class="csc-badge">80% OFF</span>
-          </div>
-          <div class="csc-body">
-            <div class="csc-icon-row">
-              <span class="csc-icon cat-icon-gifts"><i class="fa-solid fa-gift"></i></span>
-              <h4 class="csc-title">Gift Box</h4>
-            </div>
-            <p class="csc-tamil">தீபாவளி பரிசு பெட்டகம்</p>
-            <span class="csc-cta">Explore Products <i class="fa-solid fa-arrow-right"></i></span>
-          </div>
-        </div>
-
-        <!-- 8. Family Combo -->
-        <div class="cat-showcase-card" onclick="filterCategoryBySlug('family-combo');" title="View Family Combos">
-          <div class="csc-img-box">
-            <img src="assets/product_combopack.jpg" alt="Family Combo - காம்போ பேக்" class="csc-img" />
-            <span class="csc-badge">80% OFF</span>
-          </div>
-          <div class="csc-body">
-            <div class="csc-icon-row">
-              <span class="csc-icon cat-icon-combos"><i class="fa-solid fa-boxes-stacked"></i></span>
-              <h4 class="csc-title">Family Combo</h4>
-            </div>
-            <p class="csc-tamil">குடும்ப காம்போ பேக்</p>
-            <span class="csc-cta">Explore Products <i class="fa-solid fa-arrow-right"></i></span>
-          </div>
-        </div>
+        </main>
       </div>
     </div>
-  </section>
-
-  <!-- Full-Width Wholesale Price List Section (No Filter Sidebar, No Photo Grid) -->
-  <section class="products-section wholesale-table-section" id="products">
-    <div class="container">
-      <!-- Active Category Dynamic Indicator Bar -->
-      <div class="table-active-category-strip" id="tableCategoryIndicator">
-        <div class="tac-left">
-          <span class="tac-badge"><i class="fa-solid fa-filter"></i> Category Filter:</span>
-          <strong class="tac-name" id="activeCategoryName">All Sivakasi Crackers (180+ Items)</strong>
-        </div>
-        <button type="button" class="tac-reset-btn" id="tacResetBtn" onclick="showAllCrackers()" style="display: none;">
-          <i class="fa-solid fa-rotate-left"></i> Show All Products
-        </button>
-      </div>
-
-      <!-- Controls & Search Bar -->
-      <div class="table-controls-bar">
-        <!-- Search Input -->
-        <div class="table-search-box">
-          <span class="search-icon"><i class="fa-solid fa-magnifying-glass"></i></span>
-          <input type="text" id="catalogSearch"
-            placeholder="Search crackers by English or தமிழ் பெயர் (e.g. Sparklers, பூச்சட்டி, 120 Shot)..."
-            oninput="handleTableSearch(this.value)">
-          <button type="button" class="search-clear-btn" id="searchClearBtn" onclick="clearTableSearch()"
-            style="display: none;"><i class="fa-solid fa-xmark"></i></button>
-        </div>
-
-        <!-- Quick Category Jump Dropdown & Filter Pills -->
-        <div class="category-jump-wrapper">
-          <select id="categoryJumpSelect" onchange="handleCategoryJump(this.value)" class="category-jump-select"
-            aria-label="Jump to Category">
-            <option value="all">Jump to All Categories</option>
-          </select>
-          <button type="button" class="btn-clear-cart-table" onclick="clearAllCartItems()"
-            title="Reset all selected quantities"><i class="fa-solid fa-rotate-right"></i> Reset Quantities</button>
-        </div>
-      </div>
-
-      <!-- Category Quick Navigation Pills Scroll -->
-      <div class="category-pills-scroll" id="categoryPillsScroll">
-        <!-- Dynamically rendered pills -->
-      </div>
-
-      <!-- Full-Width Responsive Cracker Price List Table -->
-      <div class="table-responsive-wrapper">
-        <div id="priceListContainer" class="pricelist-container">
-          <!-- Injected dynamically via JavaScript -->
-        </div>
-      </div>
-    </div>
-  </section>
+  </div>
 
   <!-- Sticky Bottom Order Estimate Bar (Matches kannancrackers & jallikattucrackers) -->
   <div class="sticky-order-bar" id="stickyOrderBar">
@@ -467,432 +304,7 @@
     </div>
   </div>
 
-  <!-- Special Offers & Combo Section -->
-  <section class="offers-section" id="offers">
-    <div class="container">
-      <div class="section-header">
-        <span class="section-tag">Direct Sivakasi Stock</span>
-        <h2 class="section-title">Diwali Bumper Wholesale Offers</h2>
-        <p class="section-sub">Direct factory pricing with flat 80% discount on grand festival combo hampers.</p>
-      </div>
 
-      <div class="combo-banner-card" id="mainComboBanner">
-        <div class="banner-img-holder">
-          <img src="assets/product_grand_combo.jpg" alt="Get Pattas Grand Family Diwali Combo Box" id="comboBannerImg">
-          <span class="banner-badge" id="comboBannerBadge">FLAT 80% OFF</span>
-        </div>
-        <div class="banner-info-holder">
-          <span class="banner-sub-tag"><i class="fa-solid fa-fire"></i> BESTSELLING DIWALI HAMPER</span>
-          <h3 class="banner-title" id="comboBannerTitle">Get Pattas Grand Family Festival Dhamaka Pack</h3>
-          <p class="banner-desc" id="comboBannerDesc">Comprehensive 45-piece Sivakasi factory Diwali box containing
-            Electric Sparklers, Flowerpots, Ground Chakkars, Sky Rockets, 12-Shot Aerials, and Kids Crackers.</p>
-          <div class="banner-meta-list">
-            <span><i class="fa-solid fa-check"></i> 45 Assorted Items</span>
-            <span><i class="fa-solid fa-check"></i> 100% Green Certified</span>
-            <span><i class="fa-solid fa-check"></i> Doorstep Delivery</span>
-          </div>
-          <div class="banner-price-action">
-            <div class="prices">
-              <span class="original-mrp" id="comboBannerMrp">MRP ₹31,250</span>
-              <span class="offer-price" id="comboBannerPrice">₹6,250</span>
-            </div>
-            <button class="btn btn-primary" onclick="addComboToCart('combo-1')" id="comboBannerBtn"><i
-                class="fa-solid fa-cart-shopping"></i> Add Grand Combo Pack</button>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Safety Guidelines Section -->
-  <section class="safety-section" id="safety">
-    <div class="container">
-      <div class="section-header">
-        <span class="section-tag">Safety First</span>
-        <h2 class="section-title">Get Pattas Kadai - Safe Celebration Guide</h2>
-        <p class="section-sub">Follow these essential safety precautions for a joyful & safe Diwali celebration.</p>
-      </div>
-
-      <div class="safety-grid">
-        <div class="safety-card do">
-          <div class="safety-header">
-            <span class="safety-icon"><i class="fa-solid fa-circle-check" style="color: #16a34a;"></i></span>
-            <h3>DO's</h3>
-          </div>
-          <ul>
-            <li>Always burst crackers in an open space clear of combustible materials.</li>
-            <li>Keep a bucket of water and sand nearby for quick safety measures.</li>
-            <li>Store crackers in a cool, dry place inside sealed wooden or cardboard boxes.</li>
-            <li>Supervise children at all times while lighting fireworks.</li>
-            <li>Wear long cotton clothing and proper footwear while bursting crackers.</li>
-          </ul>
-        </div>
-
-        <div class="safety-card dont">
-          <div class="safety-header">
-            <span class="safety-icon"><i class="fa-solid fa-circle-xmark" style="color: #dc2626;"></i></span>
-            <h3>DON'Ts</h3>
-          </div>
-          <ul>
-            <li>Never attempt to reignite a cracker that failed to burst.</li>
-            <li>Never light crackers while holding them in your hands.</li>
-            <li>Do not light fireworks near electrical transformers or gas cylinders.</li>
-            <li>Avoid wearing synthetic or loose flowing clothes near flames.</li>
-            <li>Never throw crackers towards people, animals, or vehicles.</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  <!-- About Get Pattas Kadai Section -->
-  <section class="about-kadai-section" id="about">
-    <div class="container">
-      <div class="about-kadai-grid">
-        <div class="about-kadai-image-wrap">
-          <img src="assets/about_getpattas.jpeg" alt="About Get Pattas Kadai Sivakasi" class="about-kadai-img" />
-          <div class="about-image-badge">
-            <span class="aib-pct">80%</span>
-            <span class="aib-text">Wholesale Savings</span>
-          </div>
-        </div>
-        <div class="about-kadai-text-wrap">
-          <span class="section-tag">Direct Sivakasi Factory</span>
-          <h2 class="about-kadai-heading">About Get Pattas Kadai</h2>
-          <p class="about-kadai-lead">
-            <strong>Get Pattas Kadai</strong> is Sivakasi’s premier direct-to-customer fireworks wholesale platform, delivering genuine Sivakasi crackers directly to homes and businesses across India.
-          </p>
-          <p class="about-kadai-desc">
-            By connecting you directly with our Sivakasi manufacturing hub, we eliminate retail markups and agent commissions—giving you honest factory wholesale pricing with flat 80% discount on all 180+ certified green fireworks.
-          </p>
-          <div class="about-features-grid">
-            <div class="af-item">
-              <i class="fa-solid fa-certificate"></i>
-              <div>
-                <strong>100% Genuine Sivakasi</strong>
-                <span>Certified green crackers with high quality testing</span>
-              </div>
-            </div>
-            <div class="af-item">
-              <i class="fa-solid fa-truck-fast"></i>
-              <div>
-                <strong>Safe Express Logistics</strong>
-                <span>Direct delivery booking across Tamil Nadu & All India</span>
-              </div>
-            </div>
-            <div class="af-item">
-              <i class="fa-solid fa-headset"></i>
-              <div>
-                <strong>Dedicated Kadai Support</strong>
-                <span>WhatsApp and phone assistance for order packing</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Google Reviews Section (Ultra-Attractive & Verified) -->
-  <section class="reviews-section" id="reviews">
-    <div class="container">
-      <div class="reviews-header">
-        <div class="google-badge-pill">
-          <i class="fa-brands fa-google" style="color: #4285F4; font-size: 1.25rem;"></i>
-          <span>Google Customer Reviews</span>
-          <span class="verified-tick-badge"><i class="fa-solid fa-circle-check"></i> Verified</span>
-        </div>
-
-        <h2 class="reviews-main-heading">Loved by Over 10,000+ Happy Families</h2>
-        <p class="reviews-sub-heading">Genuine 5-Star feedback from customers enjoying authentic Sivakasi direct
-          crackers with safe doorstep delivery.</p>
-
-        <div class="reviews-rating-bar">
-          <div class="rating-score-box">
-            <span class="rating-big-num">4.9</span>
-            <div class="rating-stars-col">
-              <div class="stars-gold">★★★★★</div>
-              <span class="rating-text">Excellent • 1,480+ Reviews</span>
-            </div>
-          </div>
-          <div class="rating-features-pills">
-            <span class="rf-pill"><i class="fa-solid fa-leaf" style="color: #16a34a;"></i> 100% Green Certified</span>
-            <span class="rf-pill"><i class="fa-solid fa-box-archive" style="color: #d97706;"></i> Factory Sealed
-              Packaging</span>
-            <span class="rf-pill"><i class="fa-solid fa-truck-fast" style="color: #2563eb;"></i> Express Delivery</span>
-          </div>
-        </div>
-      </div>
-
-      <div class="reviews-carousel-wrapper">
-        <button class="review-nav-btn prev-btn" onclick="slideReviewPrev()" aria-label="Previous Review">‹</button>
-        <button class="review-nav-btn next-btn" onclick="slideReviewNext()" aria-label="Next Review">›</button>
-
-        <div class="reviews-slider-container">
-          <div class="reviews-track" id="reviewsTrack">
-            <!-- Card 1 -->
-            <div class="review-card">
-              <div class="review-card-top">
-                <div class="review-user">
-                  <div class="user-avatar" style="background: linear-gradient(135deg, #ef4444, #b91c1c);">SK</div>
-                  <div class="user-info">
-                    <h4>Suresh Kumar S.</h4>
-                    <span class="user-meta"><i class="fa-solid fa-location-dot"></i> Chennai • <span
-                        class="verified-buyer"><i class="fa-solid fa-check"></i> Verified Order</span></span>
-                  </div>
-                </div>
-                <div class="google-source-tag">
-                  <i class="fa-brands fa-google" style="color: #ea4335; font-size: 1rem;"></i>
-                  <span>Google</span>
-                </div>
-              </div>
-              <div class="card-stars-row">
-                <span class="stars-gold">★★★★★</span>
-                <span class="review-date">3 days ago</span>
-              </div>
-              <h5 class="review-headline">"Direct Factory Price & Superb Packing!"</h5>
-              <p class="review-text">"Ordered the Grand Family Festival Dhamaka pack. Delivered safely to
-                Chennai within
-                48 hours. Excellent cracker quality, especially the 30-shot sky shells and electric sparklers. Highly
-                trustworthy store!"</p>
-            </div>
-
-            <!-- Card 2 -->
-            <div class="review-card">
-              <div class="review-card-top">
-                <div class="review-user">
-                  <div class="user-avatar" style="background: linear-gradient(135deg, #3b82f6, #1d4ed8);">PS</div>
-                  <div class="user-info">
-                    <h4>Priya Soundararajan</h4>
-                    <span class="user-meta"><i class="fa-solid fa-location-dot"></i> Coimbatore • <span
-                        class="verified-buyer"><i class="fa-solid fa-check"></i> Verified Order</span></span>
-                  </div>
-                </div>
-                <div class="google-source-tag">
-                  <i class="fa-brands fa-google" style="color: #ea4335; font-size: 1rem;"></i>
-                  <span>Google</span>
-                </div>
-              </div>
-              <div class="card-stars-row">
-                <span class="stars-gold">★★★★★</span>
-                <span class="review-date">1 week ago</span>
-              </div>
-              <h5 class="review-headline">"Kids Hamper is 100% Safe & Smoke-Fast"</h5>
-              <p class="review-text">"Bought the Kids Special Hamper. Beautiful bright colors with very low smoke. The
-                WhatsApp order support made everything effortless. Thank you Get Pattas Kadai team!"</p>
-            </div>
-
-            <!-- Card 3 -->
-            <div class="review-card">
-              <div class="review-card-top">
-                <div class="review-user">
-                  <div class="user-avatar" style="background: linear-gradient(135deg, #10b981, #047857);">RB</div>
-                  <div class="user-info">
-                    <h4>Ramesh Babu V.</h4>
-                    <span class="user-meta"><i class="fa-solid fa-location-dot"></i> Madurai • <span
-                        class="verified-buyer"><i class="fa-solid fa-check"></i> Verified Order</span></span>
-                  </div>
-                </div>
-                <div class="google-source-tag">
-                  <i class="fa-brands fa-google" style="color: #ea4335; font-size: 1rem;"></i>
-                  <span>Google</span>
-                </div>
-              </div>
-              <div class="card-stars-row">
-                <span class="stars-gold">★★★★★</span>
-                <span class="review-date">2 weeks ago</span>
-              </div>
-              <h5 class="review-headline">"Real Sivakasi Wholesale - Flat 80% Off"</h5>
-              <p class="review-text">"Compared local retail prices with Get Pattas Kadai, saved over ₹4,000 for
-                my
-                family Diwali purchase. Direct from Sivakasi factory is the best decision!"</p>
-            </div>
-
-            <!-- Card 4 -->
-            <div class="review-card">
-              <div class="review-card-top">
-                <div class="review-user">
-                  <div class="user-avatar" style="background: linear-gradient(135deg, #f59e0b, #b45309);">DK</div>
-                  <div class="user-info">
-                    <h4>Dr. Karthikeyan M.</h4>
-                    <span class="user-meta"><i class="fa-solid fa-location-dot"></i> Bangalore • <span
-                        class="verified-buyer"><i class="fa-solid fa-check"></i> Verified Order</span></span>
-                  </div>
-                </div>
-                <div class="google-source-tag">
-                  <i class="fa-brands fa-google" style="color: #ea4335; font-size: 1rem;"></i>
-                  <span>Google</span>
-                </div>
-              </div>
-              <div class="card-stars-row">
-                <span class="stars-gold">★★★★★</span>
-                <span class="review-date">3 weeks ago</span>
-              </div>
-              <h5 class="review-headline">"Sky Shots Were Spectacular!"</h5>
-              <p class="review-text">"The 30 Multi-Color Crackling Sky Shells were breathtaking! Every single shot burst
-                high in the night sky with vibrant patterns. Everyone in our colony was asking where we bought them."
-              </p>
-            </div>
-
-            <!-- Card 5 -->
-            <div class="review-card">
-              <div class="review-card-top">
-                <div class="review-user">
-                  <div class="user-avatar" style="background: linear-gradient(135deg, #8b5cf6, #6d28d9);">AR</div>
-                  <div class="user-info">
-                    <h4>Anitha Rajendran</h4>
-                    <span class="user-meta"><i class="fa-solid fa-location-dot"></i> Trichy • <span
-                        class="verified-buyer"><i class="fa-solid fa-check"></i> Verified Order</span></span>
-                  </div>
-                </div>
-                <div class="google-source-tag">
-                  <i class="fa-brands fa-google" style="color: #ea4335; font-size: 1rem;"></i>
-                  <span>Google</span>
-                </div>
-              </div>
-              <div class="card-stars-row">
-                <span class="stars-gold">★★★★★</span>
-                <span class="review-date">1 month ago</span>
-              </div>
-              <h5 class="review-headline">"Flawless Delivery & Prompt WhatsApp Updates"</h5>
-              <p class="review-text">"Right after ordering, got tracking details immediately. Parcel arrived in a sturdy
-                sealed box with clear safety instructions. Will definitely be a returning customer every Diwali!"</p>
-            </div>
-
-            <!-- Card 6 -->
-            <div class="review-card">
-              <div class="review-card-top">
-                <div class="review-user">
-                  <div class="user-avatar" style="background: linear-gradient(135deg, #ec4899, #be185d);">VR</div>
-                  <div class="user-info">
-                    <h4>Venkatesh R.</h4>
-                    <span class="user-meta"><i class="fa-solid fa-location-dot"></i> Salem • <span
-                        class="verified-buyer"><i class="fa-solid fa-check"></i> Verified Order</span></span>
-                  </div>
-                </div>
-                <div class="google-source-tag">
-                  <i class="fa-brands fa-google" style="color: #ea4335; font-size: 1rem;"></i>
-                  <span>Google</span>
-                </div>
-              </div>
-              <div class="card-stars-row">
-                <span class="stars-gold">★★★★★</span>
-                <span class="review-date">1 month ago</span>
-              </div>
-              <h5 class="review-headline">"Original Sivakasi Fireworks Quality"</h5>
-              <p class="review-text">"The Flower Pots and Ground Chakkars lasted so long and were so bright! No duds at
-                all. Top quality genuine manufacturing. 5 Stars without a doubt!"</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="reviews-pagination" id="reviewsPagination">
-          <!-- Dots generated dynamically by JS -->
-        </div>
-      </div>
-
-      <div class="reviews-cta-block">
-        <a href="https://maps.google.com" target="_blank" class="btn-write-review" onclick="openReviewModal(event)">
-          <i class="fa-brands fa-google" style="color: #4285F4; font-size: 1.1rem;"></i>
-          <span>✍️ Write a Review on Google</span>
-        </a>
-      </div>
-    </div>
-  </section>
-
-  <!-- Contact Us Section -->
-  <section class="contact-section" id="contact">
-    <div class="container">
-      <div class="contact-wrapper">
-        <div class="contact-info-col">
-          <span class="section-tag">Direct Store Support</span>
-          <h2 class="contact-heading">Contact Get Pattas Kadai</h2>
-          <p class="contact-text">
-            Our Sivakasi store team is available 7 days a week to help you choose the best cracker packs, check order
-            dispatch, or handle bulk gift bookings.
-          </p>
-
-          <div class="info-cards">
-            <div class="info-card">
-              <div class="info-icon"><i class="fa-solid fa-location-dot"></i></div>
-              <div class="info-content">
-                <h4>Get Pattas Kadai & Factory Store</h4>
-                <p class="store-address-text">12/4B Sivakasi Main Road, Near Factory Zone, Sivakasi, Tamil Nadu - 626123
-                </p>
-              </div>
-            </div>
-
-            <div class="info-card">
-              <div class="info-icon"><i class="fa-solid fa-phone"></i></div>
-              <div class="info-content">
-                <h4>Phone & WhatsApp Direct Booking</h4>
-                <p><strong class="store-phone-text">+91 86104 51118</strong> (Available 8 AM - 10 PM)</p>
-              </div>
-            </div>
-
-            <div class="info-card">
-              <div class="info-icon"><i class="fa-solid fa-envelope"></i></div>
-              <div class="info-content">
-                <h4>Wholesale & Support Email</h4>
-                <p class="store-email-text">sales@getpattas.com</p>
-              </div>
-            </div>
-          </div>
-
-          <div class="whatsapp-direct-box">
-            <div class="wa-box-header">
-              <span class="wa-icon"><i class="fa-brands fa-whatsapp"></i></span>
-              <div>
-                <h4>Direct WhatsApp Kadai Order</h4>
-                <p>Send your item list directly to our Sivakasi store manager</p>
-              </div>
-            </div>
-            <a href="https://wa.me/918610451118?text=Hi%20Get%20Pattas%20Kadai,%20I%20would%20like%20to%20enquire%20about%20crackers%20booking."
-              target="_blank" class="btn btn-whatsapp full-width">
-              <span>Chat on WhatsApp (+91 86104 51118)</span>
-            </a>
-          </div>
-        </div>
-
-        <div class="contact-form-col">
-          <form class="contact-form" id="contactForm" onsubmit="handleFormSubmit(event)">
-            <h3 class="form-title">Send Us a Message</h3>
-            <p class="form-sub">Have a question or custom cracker list? Send us your requirement.</p>
-
-            <div class="form-row">
-              <div class="form-group">
-                <label for="formName">Full Name *</label>
-                <input type="text" id="formName" required placeholder="e.g. Ramesh Kumar">
-              </div>
-              <div class="form-group">
-                <label for="formPhone">WhatsApp / Mobile Number *</label>
-                <input type="tel" id="formPhone" required placeholder="e.g. 8610451118">
-              </div>
-            </div>
-
-            <div class="form-row">
-              <div class="form-group">
-                <label for="formEmail">Email Address</label>
-                <input type="email" id="formEmail" placeholder="e.g. ramesh@gmail.com">
-              </div>
-              <div class="form-group">
-                <label for="formCity">City / Delivery Location *</label>
-                <input type="text" id="formCity" required placeholder="e.g. Chennai, Madurai, Coimbatore">
-              </div>
-            </div>
-
-            <div class="form-group">
-              <label for="formMessage">Your Order Requirement / Message</label>
-              <textarea id="formMessage" rows="4"
-                placeholder="Tell us which items or combo boxes you need from Get Pattas Kadai..."></textarea>
-            </div>
-
-            <button type="submit" class="btn btn-primary full-width">
-              <span><i class="fa-solid fa-paper-plane"></i> Submit Enquiry to Kadai</span>
-            </button>
-          </form>
-        </div>
-      </div>
-    </div>
-  </section>
 
   <!-- Footer Section -->
   <footer class="main-footer">
