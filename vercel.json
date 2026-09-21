@@ -6,6 +6,8 @@
     { "source": "/", "destination": "/index.html" },
     { "source": "/shopno003", "destination": "/shopno003/index.html" },
     { "source": "/shopno004", "destination": "/shopno004/index.html" },
+    { "source": "/shopno003/products", "destination": "/shopno003/products.html" },
+    { "source": "/shopno004/products", "destination": "/shopno004/products.html" },
     { "source": "/shopno003/(.*)", "destination": "/shopno003/$1" },
     { "source": "/shopno004/(.*)", "destination": "/shopno004/$1" }
   ],

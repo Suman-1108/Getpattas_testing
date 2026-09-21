@@ -90,6 +90,15 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     }
   });
+
+  // 7. Auto-filter category if URL has ?cat= parameter on products page
+  const urlParams = new URLSearchParams(window.location.search);
+  const catParam = urlParams.get('cat');
+  if (catParam) {
+    setTimeout(() => {
+      filterCategoryBySlug(catParam);
+    }, 200);
+  }
 });
 
 // ==========================================
@@ -776,6 +785,10 @@ function updateCategoryIndicator(catSlug) {
 
 function filterCategoryBySlug(slug) {
   closeMobileMenu();
+  if (!window.location.pathname.toLowerCase().includes('products.html')) {
+    window.location.href = 'products.html?cat=' + encodeURIComponent(slug);
+    return;
+  }
   const resolvedSlug = resolveCategorySlug(slug);
   updateCategoryIndicator(resolvedSlug);
   if (resolvedSlug !== 'all') {
@@ -797,6 +810,10 @@ function filterCategoryBySlug(slug) {
 
 function showAllCrackers() {
   closeMobileMenu();
+  if (!window.location.pathname.toLowerCase().includes('products.html')) {
+    window.location.href = 'products.html';
+    return;
+  }
   updateCategoryIndicator('all');
   filterByCategory('all');
   const selectEl = document.getElementById('categoryJumpSelect');
@@ -807,6 +824,22 @@ function showAllCrackers() {
     const y = productsEl.getBoundingClientRect().top + window.pageYOffset + yOffset;
     window.scrollTo({ top: y, behavior: 'smooth' });
   }
+}
+
+function openCartDrawer() {
+  const drawer = document.getElementById('cartDrawer');
+  const backdrop = document.getElementById('cartBackdrop') || document.getElementById('cartOverlay');
+  if (!drawer) return;
+  drawer.classList.add('active');
+  if (backdrop) backdrop.classList.add('active');
+  updateCartDrawerUI();
+}
+
+function addToCart(productId, qty = 1) {
+  const current = qtyMap[productId] || 0;
+  setQtyDirect(productId, current + qty);
+  showToast('Added to Cart! 🛒');
+  openCartDrawer();
 }
 
 function handleCategoryJump(catSlug) {
