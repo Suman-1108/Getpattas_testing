@@ -39,13 +39,15 @@ const storage = multer.diskStorage({
 });
 const upload = multer({ storage });
 
+const rootDir = process.cwd();
+
 // Middleware
 app.use(cors({
   origin: true,
   credentials: true
 }));
 app.use(express.json({ limit: '10mb' }));
-app.use(express.static(path.join(__dirname), {
+app.use(express.static(rootDir, {
   setHeaders: (res, filePath) => {
     if (/\.(js|css|html)$/i.test(filePath)) {
       res.setHeader('Cache-Control', 'no-cache, must-revalidate');
@@ -55,18 +57,18 @@ app.use(express.static(path.join(__dirname), {
 app.use('/uploads', express.static(uploadsDir));
 
 // Route Handlers for Main Site and Storefronts
-const serveIndex = (req, res) => res.sendFile(path.join(__dirname, 'index.html'));
-const serveShop1 = (req, res) => res.sendFile(path.join(__dirname, 'shopno001', 'index.html'));
-const serveShop2 = (req, res) => res.sendFile(path.join(__dirname, 'shopno002', 'index.html'));
-const serveShop3 = (req, res) => res.sendFile(path.join(__dirname, 'shopno003', 'index.html'));
-const serveShop4 = (req, res) => res.sendFile(path.join(__dirname, 'shopno004', 'index.html'));
-const serveShop3Products = (req, res) => res.sendFile(path.join(__dirname, 'shopno003', 'products.html'));
-const serveShop4Products = (req, res) => res.sendFile(path.join(__dirname, 'shopno004', 'products.html'));
+const serveIndex = (req, res) => res.sendFile(path.join(rootDir, 'index.html'));
+const serveShop1 = (req, res) => res.sendFile(path.join(rootDir, 'shopno001', 'index.html'));
+const serveShop2 = (req, res) => res.sendFile(path.join(rootDir, 'shopno002', 'index.html'));
+const serveShop3 = (req, res) => res.sendFile(path.join(rootDir, 'shopno003', 'index.html'));
+const serveShop4 = (req, res) => res.sendFile(path.join(rootDir, 'shopno004', 'index.html'));
+const serveShop3Products = (req, res) => res.sendFile(path.join(rootDir, 'shopno003', 'products.html'));
+const serveShop4Products = (req, res) => res.sendFile(path.join(rootDir, 'shopno004', 'products.html'));
 
 // Clean URL Routes
 app.get('/', serveIndex);
-app.get(['/admin', '/admin.html'], (req, res) => res.sendFile(path.join(__dirname, 'admin.html')));
-app.get(['/invoice', '/invoice.html', '/invoice/:bookingNo'], (req, res) => res.sendFile(path.join(__dirname, 'invoice.html')));
+app.get(['/admin', '/admin.html'], (req, res) => res.sendFile(path.join(rootDir, 'admin.html')));
+app.get(['/invoice', '/invoice.html', '/invoice/:bookingNo'], (req, res) => res.sendFile(path.join(rootDir, 'invoice.html')));
 app.get(['/shopno001', '/shopno001/'], serveShop1);
 app.get(['/shopno002', '/shopno002/'], serveShop2);
 app.get(['/shopno003', '/shopno003/'], serveShop3);
