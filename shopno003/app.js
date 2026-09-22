@@ -279,6 +279,23 @@ function toggleCategoryAccordion(catSlug) {
   }
 }
 
+function getCategoryIcon(catName) {
+  const c = (catName || '').toLowerCase();
+  if (c.includes('sparkler') || c.includes('மத்தாப்பு')) return 'fa-wand-magic-sparkles';
+  if (c.includes('flower') || c.includes('பூச்சட்டி') || c.includes('pot') || c.includes('மண்சட்டி')) return 'fa-mountain-sun';
+  if (c.includes('fountain') || c.includes('பவுண்டன்') || c.includes('peacock')) return 'fa-volcano';
+  if (c.includes('chakkar') || c.includes('சக்கரம்') || c.includes('wheel') || c.includes('வீல்')) return 'fa-arrows-spin';
+  if (c.includes('sound') || c.includes('சவுண்ட்') || c.includes('வெடி') || c.includes('bomb') || c.includes('பாம்') || c.includes('thunder')) return 'fa-volume-high';
+  if (c.includes('rocket') || c.includes('ராக்கெட்') || c.includes('bijili') || c.includes('பிஜிலி')) return 'fa-rocket';
+  if (c.includes('shot') || c.includes('சாட்ஸ்') || c.includes('aerial') || c.includes('pipe') || c.includes('பைப்') || c.includes('fancy') || c.includes('பேன்சி')) return 'fa-meteor';
+  if (c.includes('gift') || c.includes('பரிசு') || c.includes('box') || c.includes('பாக்ஸ்')) return 'fa-gift';
+  if (c.includes('combo') || c.includes('காம்போ') || c.includes('pack')) return 'fa-boxes-stacked';
+  if (c.includes('kid') || c.includes('கிட்ஸ்') || c.includes('pencil') || c.includes('novelty')) return 'fa-face-smile';
+  if (c.includes('match') || c.includes('தீப்பெட்டி') || c.includes('குச்சி')) return 'fa-fire';
+  if (c.includes('star') || c.includes('சாட்டை')) return 'fa-star';
+  return 'fa-fire-flame-curved';
+}
+
 function renderPriceListTable() {
   const container = document.getElementById('priceListContainer');
   const pillsContainer = document.getElementById('categoryPillsScroll');
@@ -297,6 +314,42 @@ function renderPriceListTable() {
     return;
   }
 
+  // Group ALL products for accurate sidebar filter counts
+  const allCategoriesMap = {};
+  products.forEach(p => {
+    if (!allCategoriesMap[p.category]) {
+      allCategoriesMap[p.category] = [];
+    }
+    allCategoriesMap[p.category].push(p);
+  });
+  const allCategoryNames = Object.keys(allCategoriesMap);
+
+  // Dynamically update Sidebar Category Filters with Real Counts
+  const sidebarCatList = document.getElementById('sidebarCategoryList') || document.querySelector('.filter-cat-list');
+  if (sidebarCatList) {
+    let sidebarHTML = `
+      <li class="filter-cat-item ${currentCategoryFilter === 'all' ? 'active' : ''}" id="fcat-all" onclick="filterCategoryBySlug('all')">
+        <span class="cat-label-with-icon"><i class="fa-solid fa-layer-group"></i> All Fireworks</span>
+        <span class="cat-badge-count">${products.length}</span>
+      </li>
+    `;
+
+    allCategoryNames.forEach((catName, idx) => {
+      const catSlug = `cat-${currentBrand}-${idx}`;
+      const icon = getCategoryIcon(catName);
+      const count = allCategoriesMap[catName].length;
+      const isActive = currentCategoryFilter === catSlug;
+      sidebarHTML += `
+        <li class="filter-cat-item ${isActive ? 'active' : ''}" id="fcat-${catSlug}" onclick="filterCategoryBySlug('${catSlug}')" title="${catName}">
+          <span class="cat-label-with-icon"><i class="fa-solid ${icon}"></i> ${catName}</span>
+          <span class="cat-badge-count">${count}</span>
+        </li>
+      `;
+    });
+
+    sidebarCatList.innerHTML = sidebarHTML;
+  }
+
   // Filter products by search query if any
   let filteredProducts = products;
   if (currentSearchQuery.trim()) {
@@ -308,7 +361,6 @@ function renderPriceListTable() {
       (p.category && p.category.toLowerCase().includes(q))
     );
   }
-
 
   // Group products by category
   const categoriesMap = {};
@@ -786,9 +838,21 @@ function updateCategoryIndicator(catSlug) {
   const targetSidebarItem = document.getElementById(targetId);
   if (targetSidebarItem) targetSidebarItem.classList.add('active');
 
-  const displayName = (!catSlug || catSlug === 'all') 
-    ? 'All Sivakasi Crackers (180+ Items)' 
-    : (categoryDisplayNames[catSlug] || `${catSlug.toUpperCase()} Crackers`);
+  const products = getBrandProducts(currentBrand) || [];
+  let displayName = `All Sivakasi Crackers (${products.length} Items)`;
+
+  if (catSlug && catSlug !== 'all') {
+    const idxMatch = catSlug.match(/cat-[a-zA-Z0-9]+-(\d+)/);
+    if (idxMatch) {
+      const idx = parseInt(idxMatch[1], 10);
+      const categoryNames = [...new Set(products.map(p => p.category))];
+      if (categoryNames[idx]) {
+        displayName = categoryNames[idx];
+      }
+    } else {
+      displayName = categoryDisplayNames[catSlug] || `${catSlug.toUpperCase()} Crackers`;
+    }
+  }
 
   if (catNameEl) catNameEl.innerText = displayName;
   if (crumbEl) crumbEl.innerText = displayName;
