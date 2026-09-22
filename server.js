@@ -1083,13 +1083,26 @@ app.get('/api/orders', async (req, res) => {
   try {
     await cleanupExpiredDraftOrders();
 
+    let allOrders = [];
     if (isDbConnected) {
-      const orders = await Order.find().sort({ createdAt: -1 });
-      return res.json(orders);
+      allOrders = await Order.find().sort({ createdAt: -1 });
+    } else {
+      allOrders = memoryOrders;
     }
-    return res.json(memoryOrders);
+
+    const filtered = allOrders.filter(o => 
+      !permanentlyDeletedOrderIds.has(String(o.orderId)) && 
+      !permanentlyDeletedOrderIds.has(String(o.bookingNumber)) &&
+      !permanentlyDeletedOrderIds.has(String(o._id))
+    );
+    return res.json(filtered);
   } catch (error) {
-    return res.json(memoryOrders);
+    const filtered = memoryOrders.filter(o => 
+      !permanentlyDeletedOrderIds.has(String(o.orderId)) && 
+      !permanentlyDeletedOrderIds.has(String(o.bookingNumber)) &&
+      !permanentlyDeletedOrderIds.has(String(o._id))
+    );
+    return res.json(filtered);
   }
 });
 
@@ -1097,6 +1110,9 @@ app.get('/api/orders', async (req, res) => {
 app.get(['/api/orders/:id', '/api/orders/booking/:id'], async (req, res) => {
   try {
     const { id } = req.params;
+    if (permanentlyDeletedOrderIds.has(String(id))) {
+      return res.status(404).json({ success: false, message: `Order #${id} was permanently deleted` });
+    }
     let order = null;
     if (isDbConnected) {
       order = await Order.findOne({ $or: [{ orderId: id }, { bookingNumber: id }] });
@@ -1137,6 +1153,11 @@ app.post('/api/orders', async (req, res) => {
       status,
       createdAt
     } = req.body;
+
+    const checkId = clientOrderId || bookingNumber;
+    if (checkId && (permanentlyDeletedOrderIds.has(String(checkId)) || (clientOrderId && permanentlyDeletedOrderIds.has(String(clientOrderId))) || (bookingNumber && permanentlyDeletedOrderIds.has(String(bookingNumber))))) {
+      return res.json({ success: true, message: 'Order was permanently deleted and not resurrected.' });
+    }
 
     const orderId = clientOrderId || bookingNumber || ('ORD-' + Math.floor(100000 + Math.random() * 900000));
 
@@ -1414,15 +1435,25 @@ app.post('/api/orders/:id/restore', async (req, res) => {
   }
 });
 
+// Set of permanently deleted order IDs to prevent resurrection
+const permanentlyDeletedOrderIds = new Set();
+
 // DELETE Permanently Delete Order (Admin)
 app.delete('/api/orders/:id', async (req, res) => {
   try {
     const { id } = req.params;
+    if (!id) return res.status(400).json({ success: false, message: 'Order ID is required' });
+
+    permanentlyDeletedOrderIds.add(String(id));
 
     if (isDbConnected) {
-      await Order.findOneAndDelete({ $or: [{ orderId: id }, { bookingNumber: id }] });
+      const conditions = [{ orderId: id }, { bookingNumber: id }];
+      if (mongoose.isValidObjectId(id)) {
+        conditions.push({ _id: id });
+      }
+      await Order.deleteMany({ $or: conditions });
     }
-    memoryOrders = memoryOrders.filter(o => o.orderId !== id && o.bookingNumber !== id);
+    memoryOrders = memoryOrders.filter(o => o.orderId !== id && o.bookingNumber !== id && String(o._id) !== id);
 
     return res.json({ success: true, message: `Order #${id} permanently deleted` });
   } catch (err) {

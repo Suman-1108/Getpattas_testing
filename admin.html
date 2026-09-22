@@ -551,12 +551,8 @@
               <p class="pane-subtitle">Live customer orders, automated SMTP status updates & 30-day draft retention.</p>
             </div>
             <div style="display: flex; gap: 0.75rem; flex-wrap: wrap;">
-              <button class="btn btn-dark-outline" onclick="openSmtpSettingsModal()" title="Configure SMTP for automated customer status emails">
-                <i class="fa-solid fa-envelope-circle-check" style="color: #2563eb;"></i>
-                <span>SMTP Email Settings</span>
-              </button>
-              <button class="btn btn-dark-outline" onclick="loadAdminOrders()">
-                <i class="fa-solid fa-arrows-rotate"></i>
+              <button class="btn btn-dark-outline" id="btnRefreshOrders" onclick="handleManualOrderRefresh()" title="Fetch latest customer orders">
+                <i class="fa-solid fa-arrows-rotate" id="refreshOrdersIcon"></i>
                 <span>Refresh Orders</span>
               </button>
             </div>

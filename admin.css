@@ -2908,3 +2908,15 @@ body.dark-theme .notif-empty-state h4 {
 .admin-toast .toast-close:hover {
   color: #334155;
 }
+
+/* Specific Notification Target Row Highlight */
+@keyframes rowPulseAnim {
+  0% { background-color: rgba(99, 102, 241, 0.35); outline: 2px solid #6366f1; }
+  50% { background-color: rgba(99, 102, 241, 0.2); outline: 2px solid #818cf8; }
+  100% { background-color: transparent; outline: none; }
+}
+
+.row-pulse-highlight {
+  animation: rowPulseAnim 3s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: background-color 0.5s ease;
+}

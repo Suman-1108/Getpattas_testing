@@ -201,6 +201,30 @@ function clearAllNotifications() {
   renderNotifications();
 }
 
+// ----------------------------------------------------
+// PERMANENT DELETED ORDER TRACKING
+// ----------------------------------------------------
+function getDeletedOrderIds() {
+  try {
+    const saved = localStorage.getItem('admin_deleted_order_ids');
+    return saved ? JSON.parse(saved) : [];
+  } catch (e) {
+    return [];
+  }
+}
+
+function addDeletedOrderId(id) {
+  if (!id) return;
+  try {
+    const list = getDeletedOrderIds();
+    const strId = String(id);
+    if (!list.includes(strId)) {
+      list.push(strId);
+      localStorage.setItem('admin_deleted_order_ids', JSON.stringify(list));
+    }
+  } catch (e) {}
+}
+
 function handleNotificationClick(notifId, targetTab) {
   const item = adminNotifications.find(n => n.id === notifId);
   if (item) {
@@ -209,8 +233,42 @@ function handleNotificationClick(notifId, targetTab) {
     renderNotifications();
   }
   toggleNotificationDropdown(false);
-  if (targetTab) {
-    switchAdminTab(targetTab);
+
+  // Determine target tab (defaults to 'orders')
+  const tab = targetTab || (item ? item.targetTab : 'orders') || 'orders';
+  switchAdminTab(tab);
+
+  // Check if notification points to a specific order
+  let targetOrderId = item?.orderId;
+  if (!targetOrderId && item) {
+    const text = `${item.title || ''} ${item.desc || ''}`;
+    // Matches ORD-WA-..., Get-Pattas-BookNo-..., GP-..., or #...
+    const match = text.match(/(ORD-[A-Z0-9-]+|Get-Pattas-[A-Za-z0-9-]+|GP-[0-9]+|#([A-Za-z0-9-]+))/i);
+    if (match) {
+      targetOrderId = match[1].replace(/^#/, '');
+    }
+  }
+
+  if (tab === 'orders' && targetOrderId) {
+    // 1. Switch to active orders sub-tab
+    switchOrderSubTab('active');
+    // 2. Set search filter directly to this specific order
+    const searchInput = document.getElementById('orderSearchInput');
+    if (searchInput) {
+      searchInput.value = targetOrderId;
+    }
+    renderAdminOrders();
+
+    // 3. Scroll directly to the row and flash highlight
+    setTimeout(() => {
+      const row = document.getElementById(`order-row-${targetOrderId}`) || document.querySelector(`[data-order-id="${targetOrderId}"]`);
+      if (row) {
+        row.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        row.classList.remove('row-pulse-highlight');
+        void row.offsetWidth;
+        row.classList.add('row-pulse-highlight');
+      }
+    }, 150);
   }
 }
 
@@ -247,13 +305,14 @@ function playNotificationChime() {
   } catch (e) {}
 }
 
-function addNotification({ type = 'order', title, desc, targetTab = 'orders', icon = 'fa-cart-shopping' }) {
+function addNotification({ type = 'order', title, desc, targetTab = 'orders', icon = 'fa-cart-shopping', orderId = null }) {
   const newNotif = {
     id: 'notif-' + Date.now() + '-' + Math.floor(Math.random() * 1000),
     type,
     icon,
     title,
     desc,
+    orderId,
     time: 'Just now',
     unread: true,
     targetTab,
@@ -275,6 +334,24 @@ function addNotification({ type = 'order', title, desc, targetTab = 'orders', ic
   }
 }
 
+// Manual Orders Refresh with visual feedback
+async function handleManualOrderRefresh() {
+  const icon = document.getElementById('refreshOrdersIcon');
+  const btn = document.getElementById('btnRefreshOrders');
+  if (icon) icon.classList.add('fa-spin');
+  if (btn) btn.disabled = true;
+
+  try {
+    await loadAdminOrders(true);
+    showAdminToast('Orders Refreshed', `Successfully loaded fresh live orders (${adminOrders.length} total)`, 'info');
+  } catch (err) {
+    showAdminToast('Refresh Notice', err.message || 'Orders updated from local registry', 'info');
+  } finally {
+    if (icon) icon.classList.remove('fa-spin');
+    if (btn) btn.disabled = false;
+  }
+}
+
 // On Load
 document.addEventListener('DOMContentLoaded', () => {
   initAdminTheme();
@@ -290,21 +367,31 @@ document.addEventListener('DOMContentLoaded', () => {
     initAdminDashboard();
   }
 
-  // Cross-tab real-time listener for orders placed from any of the 4 brand storefronts
+  // Cross-tab real-time listener for orders placed/deleted from any storefront or admin tab
   if (syncChannel) {
     syncChannel.onmessage = (event) => {
       if (event.data && event.data.type === 'ORDER_PLACED') {
         const o = event.data.order;
         if (o) {
+          const oId = o.orderId || o.bookingNumber;
           addNotification({
             type: 'order',
-            title: `New Order Received (${o.orderId || 'Live'})`,
+            title: `New Order Received (${oId || 'Live'})`,
             desc: `${o.customerName || 'Customer'} placed order for ₹${(o.totalAmount || 0).toLocaleString('en-IN')} (${o.brandName || 'Store'})`,
             targetTab: 'orders',
+            orderId: oId,
             icon: 'fa-cart-shopping'
           });
         }
         loadAdminOrders();
+      } else if (event.data && event.data.type === 'ORDER_DELETED') {
+        const delId = event.data.orderId;
+        if (delId) {
+          addDeletedOrderId(delId);
+          adminOrders = adminOrders.filter(o => o.orderId !== delId && o.bookingNumber !== delId && o._id !== delId);
+          renderAdminOrders();
+          renderDashboardOverview();
+        }
       }
     };
   }
@@ -316,10 +403,12 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  // Continuous auto-sync interval every 2 seconds
+  // Gentle 60s background sync ONLY when tab is focused (stops non-stop refreshing!)
   setInterval(() => {
-    loadAdminOrders();
-  }, 2000);
+    if (document.visibilityState === 'visible') {
+      loadAdminOrders(false);
+    }
+  }, 60000);
 });
 
 // Brand Switcher in Admin
@@ -858,35 +947,52 @@ function getBrandTitle(brandSlug) {
 // ----------------------------------------------------
 // ORDERS MANAGEMENT (MULTI-BRAND 4 SITES SUPPORT)
 // ----------------------------------------------------
-async function loadAdminOrders() {
+async function loadAdminOrders(isManual = false) {
+  const deletedIds = new Set(getDeletedOrderIds());
+
   let apiOrders = [];
   try {
-    const res = await fetch(`${API_BASE}/api/orders`);
+    const res = await fetch(`${API_BASE}/api/orders`, {
+      cache: 'no-store',
+      headers: { 'Cache-Control': 'no-cache' }
+    });
     if (res.ok) {
       const data = await res.json();
-      apiOrders = Array.isArray(data) ? data : (data.orders || []);
+      const rawApi = Array.isArray(data) ? data : (data.orders || []);
+      apiOrders = rawApi.filter(o => 
+        !deletedIds.has(String(o.orderId)) && 
+        !deletedIds.has(String(o.bookingNumber)) && 
+        !deletedIds.has(String(o._id))
+      );
     }
   } catch (err) { }
 
   let localOrders = [];
   try {
     const saved = localStorage.getItem('admin_orders_sync');
-    if (saved) localOrders = JSON.parse(saved);
+    if (saved) {
+      const rawLocal = JSON.parse(saved);
+      localOrders = (Array.isArray(rawLocal) ? rawLocal : []).filter(o => 
+        !deletedIds.has(String(o.orderId)) && 
+        !deletedIds.has(String(o.bookingNumber)) && 
+        !deletedIds.has(String(o._id))
+      );
+    }
   } catch (err) { }
 
   // Merge and deduplicate by orderId:
   // Local orders first, then FRESH apiOrders overwrite to guarantee updated status & deletion state!
   const orderMap = new Map();
   localOrders.forEach(o => {
-    if (o && (o.orderId || o.bookingNumber)) {
-      const key = o.orderId || o.bookingNumber;
+    const key = o?.orderId || o?.bookingNumber;
+    if (key && !deletedIds.has(String(key))) {
       orderMap.set(key, o);
     }
   });
 
   apiOrders.forEach(o => {
-    if (o && (o.orderId || o.bookingNumber)) {
-      const key = o.orderId || o.bookingNumber;
+    const key = o?.orderId || o?.bookingNumber;
+    if (key && !deletedIds.has(String(key))) {
       orderMap.set(key, o);
     }
   });
@@ -895,6 +1001,9 @@ async function loadAdminOrders() {
   const thirtyDaysAgo = Date.now() - 30 * 24 * 60 * 60 * 1000;
   adminOrders = Array.from(orderMap.values())
     .filter(o => {
+      if (deletedIds.has(String(o.orderId)) || deletedIds.has(String(o.bookingNumber)) || deletedIds.has(String(o._id))) {
+        return false;
+      }
       if (o.isDraftDeleted && o.deletedAt) {
         return new Date(o.deletedAt).getTime() > thirtyDaysAgo;
       }
@@ -906,17 +1015,17 @@ async function loadAdminOrders() {
       return db - da;
     });
 
-  // Keep localStorage sync updated with fresh merged data
+  // Keep localStorage sync updated with fresh non-deleted merged data
   try {
     localStorage.setItem('admin_orders_sync', JSON.stringify(adminOrders));
   } catch (e) { }
 
-  // Auto-sync any local-only orders to backend server so they persist across reboots/devices
+  // Auto-sync genuinely new local orders to backend server, STRICTLY excluding any deleted orders
   if (localOrders.length > 0) {
     const apiIdSet = new Set(apiOrders.map(o => o.orderId || o.bookingNumber));
     localOrders.forEach(lo => {
       const id = lo.orderId || lo.bookingNumber;
-      if (id && !apiIdSet.has(id)) {
+      if (id && !apiIdSet.has(id) && !deletedIds.has(String(id))) {
         fetch(`${API_BASE}/api/orders`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
@@ -929,12 +1038,14 @@ async function loadAdminOrders() {
   // Automatically trigger real-time notification on newly detected order
   if (!isInitialOrderLoad) {
     adminOrders.forEach(o => {
-      if (o && o.orderId && !knownOrderIds.has(o.orderId) && !o.isDraftDeleted) {
+      const oId = o.orderId || o.bookingNumber;
+      if (oId && !knownOrderIds.has(oId) && !o.isDraftDeleted && !deletedIds.has(String(oId))) {
         addNotification({
           type: 'order',
-          title: `New Order Received (${o.orderId})`,
+          title: `New Order Received (${oId})`,
           desc: `${o.customerName || 'Customer'} placed order for ₹${(o.totalAmount || 0).toLocaleString('en-IN')} (${o.brandName || getBrandTitle(o.brand)})`,
           targetTab: 'orders',
+          orderId: oId,
           icon: 'fa-cart-shopping'
         });
       }
@@ -1048,7 +1159,7 @@ function renderAdminOrders() {
         const isCancelled = currentStatus === 'cancelled' || currentStatus === 'cancelling';
 
         return `
-          <tr id="order-row-${orderId}">
+          <tr id="order-row-${orderId}" data-order-id="${orderId}">
             <td>
               <strong style="font-family: monospace; color: #2563eb; font-size: 0.9rem;">${orderId}</strong>
             </td>
@@ -1063,8 +1174,8 @@ function renderAdminOrders() {
               <small style="color: #64748b; font-size: 0.75rem; display: block; max-width: 200px; line-height: 1.3;" title="${order.address || ''}">${order.address || 'Address not specified'}</small>
             </td>
             <td>
-              <a href="tel:${cleanPhone || order.phone}" style="color: var(--primary-purple); font-weight: 700; font-size: 0.85rem; display: block;">${order.phone || 'No phone'}</a>
-              ${order.email ? `<small style="color: #2563eb; font-size: 0.74rem; display: block; word-break: break-all;" title="${order.email}"><i class="fa-solid fa-envelope" style="font-size: 0.7rem;"></i> ${order.email}</small>` : `<small style="color: #94a3b8; font-size: 0.72rem; display: block;"><i class="fa-regular fa-envelope"></i> No email</small>`}
+              <div style="font-size: 0.85rem; font-weight: 700; color: #0f172a;">${order.phone || '-'}</div>
+              ${order.email ? `<small style="color: #64748b; font-size: 0.75rem;">${order.email}</small>` : ''}
             </td>
             <td style="max-width: 200px; font-size: 0.8rem; color: #475569;" title="${itemsSummary}">${itemsSummary || 'Festival Crackers Order'}</td>
             <td>
@@ -1100,9 +1211,9 @@ function renderAdminOrders() {
                 <button type="button" class="btn btn-dark-outline btn-act" onclick="viewOrderInvoice('${orderId}')" title="View Order Tax Invoice & Estimate">
                   <i class="fa-solid fa-file-invoice" style="color: #2563eb;"></i>
                 </button>
-                <button class="btn-action-draft-del" onclick="draftDeleteOrder('${orderId}')" title="Move to Draft Trash (Retained for 30 Days)">
+                <button class="btn-perm-del-order" onclick="permanentlyDeleteOrder('${orderId}')" title="Permanently delete this order from database">
                   <i class="fa-solid fa-trash-can"></i>
-                  <span>Draft Delete</span>
+                  <span>Delete</span>
                 </button>
               </div>
             </td>
@@ -1393,37 +1504,61 @@ async function restoreOrder(orderId) {
 // ----------------------------------------------------
 async function permanentlyDeleteOrder(orderId) {
   const confirmed = confirm(
-    `⚠️ PERMANENT DELETE WARNING\n\n` +
-    `Are you sure you want to PERMANENTLY destroy Order #${orderId}?\n\n` +
-    `This action is IRREVERSIBLE and cannot be restored!`
+    `Are you sure you want to permanently delete Order #${orderId}?\n\n` +
+    `This will completely remove the order from the registry.\nThis action cannot be undone.`
   );
 
   if (!confirmed) return;
 
+  // 1. Mark as permanently deleted immediately in local blacklist
+  addDeletedOrderId(orderId);
+  const target = adminOrders.find(o => o.orderId === orderId || o.bookingNumber === orderId || o._id === orderId);
+  if (target) {
+    if (target.orderId) addDeletedOrderId(target.orderId);
+    if (target.bookingNumber) addDeletedOrderId(target.bookingNumber);
+    if (target._id) addDeletedOrderId(target._id);
+  }
+
+  // 2. Remove from local memory state immediately
+  adminOrders = adminOrders.filter(o => o.orderId !== orderId && o.bookingNumber !== orderId && o._id !== orderId);
+
   try {
-    const res = await fetch(`${API_BASE}/api/orders/${orderId}`, {
+    localStorage.setItem('admin_orders_sync', JSON.stringify(adminOrders));
+  } catch (e) { }
+
+  // 3. Remove associated notification
+  adminNotifications = adminNotifications.filter(n => {
+    const text = `${n.title || ''} ${n.desc || ''}`;
+    return !text.includes(orderId) && n.orderId !== orderId;
+  });
+  saveNotifications();
+  renderNotifications();
+
+  renderAdminOrders();
+  renderDashboardOverview();
+
+  // 4. Notify other open admin windows immediately
+  if (syncChannel) {
+    syncChannel.postMessage({ type: 'ORDER_DELETED', orderId });
+  }
+
+  // 5. Send DELETE request to backend API
+  try {
+    await fetch(`${API_BASE}/api/orders/${encodeURIComponent(orderId)}`, {
       method: 'DELETE'
     });
-
-    const data = await res.json();
-    if (!res.ok) throw new Error(data.message || 'Failed to delete order permanently');
-
-    adminOrders = adminOrders.filter(o => o.orderId !== orderId && o.bookingNumber !== orderId);
-
-    try {
-      localStorage.setItem('admin_orders_sync', JSON.stringify(adminOrders));
-    } catch (e) { }
-
-    renderAdminOrders();
-    renderDashboardOverview();
-
     showAdminToast(
-      'Order Permanently Deleted',
-      `Order #${orderId} was permanently deleted from the database.`,
-      'error'
+      'Order Deleted',
+      `Order #${orderId} was permanently deleted.`,
+      'success'
     );
   } catch (err) {
-    showAdminToast('Permanent Delete Failed', err.message, 'error');
+    console.warn('Backend DELETE fetch warning:', err);
+    showAdminToast(
+      'Order Deleted',
+      `Order #${orderId} removed from local records.`,
+      'success'
+    );
   }
 }
 

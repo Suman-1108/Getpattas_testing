@@ -55,7 +55,8 @@
         </div>
 
         <a href="/shopno003/" class="nav-link" onclick="closeMobileMenu();">Home</a>
-        <a href="/shopno003/products" class="nav-link active" onclick="closeMobileMenu(); showAllCrackers();">Product</a>
+        <a href="/shopno003/products" class="nav-link active"
+          onclick="closeMobileMenu(); showAllCrackers();">Product</a>
         <a href="/shopno003/#about" class="nav-link" onclick="closeMobileMenu();">About</a>
         <a href="/shopno003/#contact" class="nav-link" onclick="closeMobileMenu();">Contact</a>
 
@@ -148,7 +149,7 @@
           <span>›</span>
           <a href="products.html">Sivakasi Wholesale Fireworks</a>
           <span>›</span>
-          <span class="active-crumb" id="crumbActiveCat">All Sivakasi Crackers (180+ Items)</span>
+          <span class="active-crumb" id="crumbActiveCat">All Sivakasi Crackers (125+ Items)</span>
         </div>
         <div class="crumb-phone">
           <i class="fa-solid fa-phone"></i> Booking: <strong>+91 95661 59113</strong>
@@ -172,15 +173,18 @@
                 <span class="cat-badge-count">180+</span>
               </li>
               <li class="filter-cat-item" id="fcat-sparkles" onclick="filterCategoryBySlug('sparkles')">
-                <span class="cat-label-with-icon"><i class="fa-solid fa-wand-magic-sparkles"></i> Sparklers (மத்தாப்பு)</span>
+                <span class="cat-label-with-icon"><i class="fa-solid fa-wand-magic-sparkles"></i> Sparklers
+                  (மத்தாப்பு)</span>
                 <span class="cat-badge-count">24</span>
               </li>
               <li class="filter-cat-item" id="fcat-foundation" onclick="filterCategoryBySlug('foundation')">
-                <span class="cat-label-with-icon"><i class="fa-solid fa-mountain-sun"></i> Flower Pots (பூச்சட்டி)</span>
+                <span class="cat-label-with-icon"><i class="fa-solid fa-mountain-sun"></i> Flower Pots
+                  (பூச்சட்டி)</span>
                 <span class="cat-badge-count">18</span>
               </li>
               <li class="filter-cat-item" id="fcat-sound" onclick="filterCategoryBySlug('sound')">
-                <span class="cat-label-with-icon"><i class="fa-solid fa-volume-high"></i> Sound Crackers (சவுண்ட்)</span>
+                <span class="cat-label-with-icon"><i class="fa-solid fa-volume-high"></i> Sound Crackers
+                  (சவுண்ட்)</span>
                 <span class="cat-badge-count">20</span>
               </li>
               <li class="filter-cat-item" id="fcat-rockets" onclick="filterCategoryBySlug('rockets')">
@@ -200,7 +204,8 @@
                 <span class="cat-badge-count">14</span>
               </li>
               <li class="filter-cat-item" id="fcat-family-combo" onclick="filterCategoryBySlug('family-combo')">
-                <span class="cat-label-with-icon"><i class="fa-solid fa-boxes-stacked"></i> Family Combos (காம்போ)</span>
+                <span class="cat-label-with-icon"><i class="fa-solid fa-boxes-stacked"></i> Family Combos
+                  (காம்போ)</span>
                 <span class="cat-badge-count">10</span>
               </li>
             </ul>
@@ -219,10 +224,12 @@
           <!-- Active Category Header & Reset -->
           <div class="flipkart-header-indicator">
             <div class="fhi-title-wrap">
-              <h1 class="fhi-title" id="activeCategoryName">All Sivakasi Crackers (180+ Items)</h1>
-              <span class="fhi-count">Direct Sivakasi wholesale price list • Flat 80% Discount • Touch '+' to add quantity</span>
+              <h1 class="fhi-title" id="activeCategoryName">All Sivakasi Crackers (125+ Items)</h1>
+              <span class="fhi-count">Direct Sivakasi wholesale price list • Flat 80% Discount • Touch '+' to add
+                quantity</span>
             </div>
-            <button type="button" class="tac-reset-btn" id="tacResetBtn" onclick="showAllCrackers()" style="display: none;">
+            <button type="button" class="tac-reset-btn" id="tacResetBtn" onclick="showAllCrackers()"
+              style="display: none;">
               <i class="fa-solid fa-rotate-left"></i> Show All Products
             </button>
           </div>
@@ -231,13 +238,18 @@
           <div class="flipkart-search-row">
             <div class="flipkart-search-input-wrap">
               <i class="fa-solid fa-magnifying-glass fs-icon"></i>
-              <input type="text" id="catalogSearch" placeholder="Search crackers by English or தமிழ் பெயர் (e.g. Sparklers, பூச்சட்டி, 120 Shot)..." oninput="handleTableSearch(this.value)">
-              <button type="button" class="search-clear-btn" id="searchClearBtn" onclick="clearTableSearch()" style="display: none;" aria-label="Clear Search"><i class="fa-solid fa-xmark"></i></button>
+              <input type="text" id="catalogSearch"
+                placeholder="Search crackers by English or தமிழ் பெயர் (e.g. Sparklers, பூச்சட்டி, 120 Shot)..."
+                oninput="handleTableSearch(this.value)">
+              <button type="button" class="search-clear-btn" id="searchClearBtn" onclick="clearTableSearch()"
+                style="display: none;" aria-label="Clear Search"><i class="fa-solid fa-xmark"></i></button>
             </div>
-            <select id="categoryJumpSelect" onchange="handleCategoryJump(this.value)" class="category-jump-select" aria-label="Jump to Category">
+            <select id="categoryJumpSelect" onchange="handleCategoryJump(this.value)" class="category-jump-select"
+              aria-label="Jump to Category">
               <option value="all">⚡ Jump to All Categories</option>
             </select>
-            <button type="button" class="btn-clear-cart-table" onclick="clearAllCartItems()" title="Reset all selected quantities">
+            <button type="button" class="btn-clear-cart-table" onclick="clearAllCartItems()"
+              title="Reset all selected quantities">
               <i class="fa-solid fa-rotate-right"></i> Reset Quantities
             </button>
           </div>
@@ -289,738 +301,736 @@
   </div>
 
 
-    <!-- Footer Section -->
-    <footer class="main-footer">
-      <div class="container">
-        <div class="footer-grid">
-          <!-- Col 1: Brand & Certification -->
-          <div class="footer-col brand-col">
-            <a href="#hero" class="brand-logo footer-logo">
-              <img src="assets/logo.jpg" alt="Get Pattas Kadai Logo" class="brand-logo-img">
-              <div class="logo-text">
-                <span class="brand-name"><span class="brand-get">GET</span> <span class="highlight">PATTAS</span> <span
-                    class="kadai-tag">KADAI</span></span>
-                <span class="brand-sub">Sivakasi Factory Wholesale</span>
-              </div>
-            </a>
-            <p class="footer-desc">
-              <strong>Get Pattas Kadai</strong> is Sivakasi's premier direct online crackers store. We
-              manufacture and supply 100% certified green fireworks directly from Sivakasi to homes across
-              India at direct factory rates with flat 80% discount.
-            </p>
-            <div class="footer-badges-strip">
-              <span class="f-badge"><i class="fa-solid fa-leaf"></i> CSIR-NEERI Certified</span>
-              <span class="f-badge"><i class="fa-solid fa-shield-halved"></i> 100% Genuine Sivakasi</span>
-              <span class="f-badge"><i class="fa-solid fa-truck-fast"></i> Safe Transport Logistics</span>
+  <!-- Footer Section -->
+  <footer class="main-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <!-- Col 1: Brand & Certification -->
+        <div class="footer-col brand-col">
+          <a href="#hero" class="brand-logo footer-logo">
+            <img src="assets/logo.jpg" alt="Get Pattas Kadai Logo" class="brand-logo-img">
+            <div class="logo-text">
+              <span class="brand-name"><span class="brand-get">GET</span> <span class="highlight">PATTAS</span> <span
+                  class="kadai-tag">KADAI</span></span>
+              <span class="brand-sub">Sivakasi Factory Wholesale</span>
             </div>
-          </div>
-
-          <!-- Col 2: Quick Links -->
-          <div class="footer-col links-col">
-            <h4 class="footer-heading">Quick Links</h4>
-            <ul class="footer-links">
-              <li><a href="#hero">Home</a></li>
-              <li><a href="#about">About Get Pattas</a></li>
-              <li><a href="#safety">Safety Guidelines</a></li>
-              <li><a href="#reviews">Google Reviews</a></li>
-              <li><a href="#contact">Contact Store</a></li>
-              <li><a href="#"
-                  onclick="document.getElementById('privacyModalOverlay').classList.add('active'); return false;">Privacy
-                  Policy</a></li>
-              <li><a href="#"
-                  onclick="document.getElementById('termsModalOverlay').classList.add('active'); return false;">Terms
-                  & Conditions</a></li>
-            </ul>
-          </div>
-
-          <!-- Col 3: Direct Kadai Helpline -->
-          <div class="footer-col helpline-col">
-            <h4 class="footer-heading">Sivakasi Store Desk</h4>
-            <div class="footer-contact-card">
-              <div class="f-contact-item">
-                <span class="f-icon"><i class="fa-solid fa-location-dot"></i></span>
-                <span>12/4B Sivakasi Main Road, Factory Zone, Sivakasi - 626123</span>
-              </div>
-              <div class="f-contact-item">
-                <span class="f-icon"><i class="fa-solid fa-phone"></i></span>
-                <span><strong>+91 86104 51118</strong> (8 AM - 10 PM)</span>
-              </div>
-              <div class="f-contact-item">
-                <span class="f-icon"><i class="fa-solid fa-envelope"></i></span>
-                <span>sales@getpattas.com</span>
-              </div>
-            </div>
-            <a href="https://wa.me/918610451118?text=Hi%20Get%20Pattas%20Kadai,%20I%20want%20to%20order%20crackers"
-              target="_blank" class="footer-wa-btn">
-              <span><i class="fa-brands fa-whatsapp"></i> Chat on WhatsApp</span>
-            </a>
+          </a>
+          <p class="footer-desc">
+            <strong>Get Pattas Kadai</strong> is Sivakasi's premier direct online crackers store. We
+            manufacture and supply 100% certified green fireworks directly from Sivakasi to homes across
+            India at direct factory rates with flat 80% discount.
+          </p>
+          <div class="footer-badges-strip">
+            <span class="f-badge"><i class="fa-solid fa-leaf"></i> CSIR-NEERI Certified</span>
+            <span class="f-badge"><i class="fa-solid fa-shield-halved"></i> 100% Genuine Sivakasi</span>
+            <span class="f-badge"><i class="fa-solid fa-truck-fast"></i> Safe Transport Logistics</span>
           </div>
         </div>
 
-        <!-- Bottom Credits: Get Pattas Kadai & Made by Kaira Technologies -->
-        <div class="footer-bottom footer-bottom-centered">
-          <p class="footer-copy-text">© 2026 <strong>Get Pattas Kadai</strong>. All Rights Reserved.</p>
-          <a href="https://www.kairatechnologies.in/" target="_blank" rel="noopener noreferrer"
-            class="kaira-credit-link">
-            <span>Made by</span>
-            <strong class="kaira-brand-highlight">Kaira Technologies</strong>
+        <!-- Col 2: Quick Links -->
+        <div class="footer-col links-col">
+          <h4 class="footer-heading">Quick Links</h4>
+          <ul class="footer-links">
+            <li><a href="#hero">Home</a></li>
+            <li><a href="#about">About Get Pattas</a></li>
+            <li><a href="#safety">Safety Guidelines</a></li>
+            <li><a href="#reviews">Google Reviews</a></li>
+            <li><a href="#contact">Contact Store</a></li>
+            <li><a href="#"
+                onclick="document.getElementById('privacyModalOverlay').classList.add('active'); return false;">Privacy
+                Policy</a></li>
+            <li><a href="#"
+                onclick="document.getElementById('termsModalOverlay').classList.add('active'); return false;">Terms
+                & Conditions</a></li>
+          </ul>
+        </div>
+
+        <!-- Col 3: Direct Kadai Helpline -->
+        <div class="footer-col helpline-col">
+          <h4 class="footer-heading">Sivakasi Store Desk</h4>
+          <div class="footer-contact-card">
+            <div class="f-contact-item">
+              <span class="f-icon"><i class="fa-solid fa-location-dot"></i></span>
+              <span>12/4B Sivakasi Main Road, Factory Zone, Sivakasi - 626123</span>
+            </div>
+            <div class="f-contact-item">
+              <span class="f-icon"><i class="fa-solid fa-phone"></i></span>
+              <span><strong>+91 86104 51118</strong> (8 AM - 10 PM)</span>
+            </div>
+            <div class="f-contact-item">
+              <span class="f-icon"><i class="fa-solid fa-envelope"></i></span>
+              <span>sales@getpattas.com</span>
+            </div>
+          </div>
+          <a href="https://wa.me/918610451118?text=Hi%20Get%20Pattas%20Kadai,%20I%20want%20to%20order%20crackers"
+            target="_blank" class="footer-wa-btn">
+            <span><i class="fa-brands fa-whatsapp"></i> Chat on WhatsApp</span>
           </a>
         </div>
       </div>
-    </footer>
 
-
-    <!-- Slide-out Cart Drawer Overlay & Sidebar -->
-    <div class="cart-overlay" id="cartOverlay" onclick="toggleCartDrawer()"></div>
-    <div class="cart-drawer" id="cartDrawer">
-      <div class="cart-drawer-header">
-        <div class="cart-title">
-          <span>My Cart</span>
-          <span class="cart-item-count" id="cartDrawerCount">0 items</span>
-        </div>
-        <button class="close-cart-btn" onclick="toggleCartDrawer()" aria-label="Close Cart"><i
-            class="fa-solid fa-xmark"></i></button>
-      </div>
-
-      <div class="cart-drawer-body" id="cartDrawerBody"></div>
-
-      <div class="cart-drawer-footer">
-        <div class="cart-summary-box">
-          <div class="summary-line">
-            <span>Subtotal</span>
-            <span id="summaryMRP">₹0</span>
-          </div>
-          <div class="summary-line">
-            <span>Shipping</span>
-            <span id="summaryDelivery" class="green-text">Fast</span>
-          </div>
-          <div class="summary-line total-line">
-            <span>Grand Total</span>
-            <span id="summaryTotal">₹0</span>
-          </div>
-        </div>
-
-        <div class="cart-actions">
-          <button class="btn btn-checkout-proceed full-width" onclick="proceedToCheckoutModal()"
-            style="background: #dc2626;">
-            <span>➔ ➔ PROCEED TO CHECKOUT</span>
-          </button>
-        </div>
+      <!-- Bottom Credits: Get Pattas Kadai & Made by Kaira Technologies -->
+      <div class="footer-bottom footer-bottom-centered">
+        <p class="footer-copy-text">© 2026 <strong>Get Pattas Kadai</strong>. All Rights Reserved.</p>
+        <a href="https://www.kairatechnologies.in/" target="_blank" rel="noopener noreferrer" class="kaira-credit-link">
+          <span>Made by</span>
+          <strong class="kaira-brand-highlight">Kaira Technologies</strong>
+        </a>
       </div>
     </div>
+  </footer>
 
-    <!-- Multi-Step Checkout Modal with UPI QR Scan Code Option -->
-    <div class="checkout-modal-overlay" id="checkoutModalOverlay" onclick="closeCheckoutModal(event)">
-      <div class="checkout-modal-card" onclick="event.stopPropagation()">
-        <div class="checkout-modal-header">
-          <div class="checkout-brand-title">
-            <img src="assets/logo.jpg" alt="Get Pattas"
-              style="height: 32px; width: auto; vertical-align: middle; margin-right: 8px; border-radius: 4px;">
-            <h3>Get Pattas (Shop 003) Checkout</h3>
-          </div>
-          <div class="checkout-header-right">
-            <span class="need-help-tag">Need help? Call <strong>+91 86104 51118</strong></span>
-            <button class="modal-close-btn" onclick="closeCheckoutModal(true)" aria-label="Close Checkout"><i
-                class="fa-solid fa-xmark"></i></button>
-          </div>
-        </div>
 
-        <form id="checkoutMainForm" class="checkout-grid-container" onsubmit="handleCheckoutFormSubmit(event)">
-          <!-- Left Column: Delivery, Shipping, Payment -->
-          <div class="checkout-left-col">
-            <div class="checkout-section">
-              <label class="checkout-label">EMAIL ADDRESS</label>
-              <input type="email" id="coEmail" class="checkout-input" placeholder="Enter email address" required>
-            </div>
-
-            <div class="checkout-section">
-              <div class="section-label-row">
-                <label class="checkout-label">DELIVERY ADDRESS</label>
-                <button type="button" class="link-btn" onclick="saveAddressFromCheckout()"><i
-                    class="fa-solid fa-floppy-disk"></i> Save Address</button>
-              </div>
-
-              <div class="co-form-row">
-                <div class="co-form-group">
-                  <input type="text" id="coFirstName" class="checkout-input" placeholder="First name">
-                </div>
-                <div class="co-form-group">
-                  <input type="text" id="coLastName" class="checkout-input" placeholder="Last name *" required>
-                </div>
-              </div>
-
-              <div class="co-form-group">
-                <input type="text" id="coStreet" class="checkout-input" placeholder="Street Address *" required>
-              </div>
-
-              <div class="co-form-row-3">
-                <div class="co-form-group">
-                  <input type="text" id="coCity" class="checkout-input" placeholder="City *" required>
-                </div>
-                <div class="co-form-group">
-                  <select id="coState" class="checkout-select" required>
-                    <option value="Tamil Nadu" selected>Tamil Nadu</option>
-                    <option value="Kerala">Kerala</option>
-                    <option value="Karnataka">Karnataka</option>
-                    <option value="Andhra Pradesh">Andhra Pradesh</option>
-                    <option value="Other">Other State</option>
-                  </select>
-                </div>
-                <div class="co-form-group">
-                  <input type="text" id="coPincode" class="checkout-input" placeholder="PIN code *" required>
-                </div>
-              </div>
-
-              <div class="co-form-group">
-                <input type="tel" id="coPhone" class="checkout-input" placeholder="WhatsApp / Phone number *" required>
-              </div>
-            </div>
-
-            <!-- Order Placement Section (Replaced Payment Options) -->
-            <div class="checkout-section order-placement-section">
-              <div class="order-placement-card">
-                <div class="op-header">
-                  <span class="op-badge"><i class="fa-solid fa-truck-fast"></i> DIRECT SIVAKASI FACTORY DISPATCH</span>
-                  <h4>Zero Advance Payment Needed</h4>
-                  <p>Click <strong>Order to be placed</strong> below. Your official wholesale <strong>Booking
-                      Number</strong> will be generated instantly and confirmed directly with our Sivakasi dispatch desk
-                    via WhatsApp.</p>
-                </div>
-
-                <button type="submit" class="btn btn-order-placed full-width" id="btnPlaceOrder"
-                  style="background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%);">
-                  <span class="btn-op-icon"><i class="fa-solid fa-circle-check"></i></span>
-                  <span class="btn-op-text">Order to be placed</span>
-                  <span class="btn-op-badge">Instant Booking</span>
-                </button>
-              </div>
-            </div>
-          </div>
-
-          <!-- Right Column: Order Summary Sidebar -->
-          <div class="checkout-right-col">
-            <div class="checkout-summary-card">
-              <div class="co-summary-header">
-                <h4>Order Summary</h4>
-                <button type="button" class="co-clear-all-btn" onclick="clearAllCheckoutItems()"
-                  title="Clear entire order">
-                  <i class="fa-solid fa-trash-can"></i> Clear All
-                </button>
-              </div>
-              <div class="co-items-preview-list" id="coItemsPreviewList"></div>
-
-              <div class="co-financials-table">
-                <div class="co-financial-row">
-                  <span>Subtotal</span>
-                  <span id="coSubtotal">₹0</span>
-                </div>
-                <div class="co-financial-row">
-                  <span>Shipping</span>
-                  <span class="green-text">Fast</span>
-                </div>
-                <div class="co-financial-row grand-total-row">
-                  <span>Total</span>
-                  <span class="co-total-val">INR <strong id="coGrandTotal">₹0</strong></span>
-                </div>
-              </div>
-
-              <div class="co-trust-badge">
-                <span class="trust-icon"><i class="fa-solid fa-shield-halved"></i></span>
-                <span>100% Genuine Sivakasi The Get pattas Green Fireworks • Direct Factory Delivery</span>
-              </div>
-            </div>
-          </div>
-        </form>
+  <!-- Slide-out Cart Drawer Overlay & Sidebar -->
+  <div class="cart-overlay" id="cartOverlay" onclick="toggleCartDrawer()"></div>
+  <div class="cart-drawer" id="cartDrawer">
+    <div class="cart-drawer-header">
+      <div class="cart-title">
+        <span>My Cart</span>
+        <span class="cart-item-count" id="cartDrawerCount">0 items</span>
       </div>
+      <button class="close-cart-btn" onclick="toggleCartDrawer()" aria-label="Close Cart"><i
+          class="fa-solid fa-xmark"></i></button>
     </div>
 
-    <!-- Direct WhatsApp Order Modal -->
-    <div class="checkout-modal-overlay" id="whatsAppOrderModalOverlay" onclick="closeWhatsAppOrderModal(event)"
-      style="display: none; z-index: 999999;">
-      <div class="checkout-modal-card" onclick="event.stopPropagation()"
-        style="max-width: 680px; width: 95%; max-height: calc(100vh - 30px); max-height: calc(100dvh - 30px); display: flex; flex-direction: column; overflow: hidden; border-radius: 16px; margin: auto;">
-        <div class="checkout-modal-header"
-          style="flex-shrink: 0; background: linear-gradient(135deg, #15803d 0%, #16a34a 100%); color: #ffffff; padding: 14px 20px;">
-          <div class="checkout-brand-title" style="display: flex; align-items: center; gap: 10px;">
-            <span style="font-size: 1.8rem; line-height: 1;"><i class="fa-brands fa-whatsapp"></i></span>
-            <div>
-              <h3 style="margin: 0; color: #ffffff; font-size: 1.2rem; font-weight: 800;">Direct WhatsApp Order</h3>
-              <span style="font-size: 0.8rem; opacity: 0.9; display: block;">நேரடி வாட்ஸ்அப் ஆர்டர் & உடனடி
-                உறுதிப்படுத்தல்</span>
-            </div>
-          </div>
-          <div class="checkout-header-right">
-            <button class="modal-close-btn" type="button" onclick="closeWhatsAppOrderModal(true)" aria-label="Close"
-              style="color: #ffffff; background: rgba(255,255,255,0.2); border: none; border-radius: 50%; width: 34px; height: 34px; display: flex; align-items: center; justify-content: center; cursor: pointer;">
-              <i class="fa-solid fa-xmark"></i>
-            </button>
-          </div>
+    <div class="cart-drawer-body" id="cartDrawerBody"></div>
+
+    <div class="cart-drawer-footer">
+      <div class="cart-summary-box">
+        <div class="summary-line">
+          <span>Subtotal</span>
+          <span id="summaryMRP">₹0</span>
         </div>
-
-        <!-- Quick Order Summary Banner inside modal -->
-        <div
-          style="flex-shrink: 0; background: #f0fdf4; border-bottom: 1px solid #bbf7d0; padding: 10px 20px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px;">
-          <div style="font-size: 0.88rem; color: #166534;">
-            <strong id="waModalItemCount">0</strong> Varieties (<strong id="waModalBoxCount">0</strong> Boxes)
-            <span style="display: block; font-size: 0.76rem; color: #15803d;">Original MRP: <del
-                id="waModalMrp">₹0</del> • <span style="font-weight: 700; color: #dc2626;">Saved <span
-                  id="waModalSavings">₹0</span> (80% Off)</span></span>
-          </div>
-          <div style="text-align: right;">
-            <span style="font-size: 0.75rem; color: #64748b; display: block;">Wholesale Net Total</span>
-            <strong id="waModalNetTotal" style="font-size: 1.3rem; color: #15803d; font-weight: 800;">₹0</strong>
-          </div>
+        <div class="summary-line">
+          <span>Shipping</span>
+          <span id="summaryDelivery" class="green-text">Fast</span>
         </div>
+        <div class="summary-line total-line">
+          <span>Grand Total</span>
+          <span id="summaryTotal">₹0</span>
+        </div>
+      </div>
 
-        <form id="whatsAppOrderForm"
-          style="display: flex; flex-direction: column; flex: 1; min-height: 0; overflow: hidden; margin: 0; padding: 0;"
-          onsubmit="handleWhatsAppOrderSubmit(event)">
-          <!-- Scrollable Form Fields -->
-          <div style="flex: 1; overflow-y: auto; padding: 18px 20px 10px 20px; -webkit-overflow-scrolling: touch;">
-            <div style="margin-bottom: 14px;">
-              <label
-                style="display: block; font-size: 0.8rem; font-weight: 700; color: #334155; margin-bottom: 5px; text-transform: uppercase; letter-spacing: 0.5px;">Customer
-                Name / வாடிக்கையாளர் பெயர் <span style="color: #dc2626;">*</span></label>
-              <input type="text" id="waCustName" class="checkout-input" placeholder="Enter your full name" required
-                style="width: 100%; padding: 10px 14px; border: 1.5px solid #cbd5e1; border-radius: 8px; font-size: 0.95rem;">
+      <div class="cart-actions">
+        <button class="btn btn-checkout-proceed full-width" onclick="proceedToCheckoutModal()"
+          style="background: #dc2626;">
+          <span>➔ ➔ PROCEED TO CHECKOUT</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Multi-Step Checkout Modal with UPI QR Scan Code Option -->
+  <div class="checkout-modal-overlay" id="checkoutModalOverlay" onclick="closeCheckoutModal(event)">
+    <div class="checkout-modal-card" onclick="event.stopPropagation()">
+      <div class="checkout-modal-header">
+        <div class="checkout-brand-title">
+          <img src="assets/logo.jpg" alt="Get Pattas"
+            style="height: 32px; width: auto; vertical-align: middle; margin-right: 8px; border-radius: 4px;">
+          <h3>Get Pattas (Shop 003) Checkout</h3>
+        </div>
+        <div class="checkout-header-right">
+          <span class="need-help-tag">Need help? Call <strong>+91 86104 51118</strong></span>
+          <button class="modal-close-btn" onclick="closeCheckoutModal(true)" aria-label="Close Checkout"><i
+              class="fa-solid fa-xmark"></i></button>
+        </div>
+      </div>
+
+      <form id="checkoutMainForm" class="checkout-grid-container" onsubmit="handleCheckoutFormSubmit(event)">
+        <!-- Left Column: Delivery, Shipping, Payment -->
+        <div class="checkout-left-col">
+          <div class="checkout-section">
+            <label class="checkout-label">EMAIL ADDRESS</label>
+            <input type="email" id="coEmail" class="checkout-input" placeholder="Enter email address" required>
+          </div>
+
+          <div class="checkout-section">
+            <div class="section-label-row">
+              <label class="checkout-label">DELIVERY ADDRESS</label>
+              <button type="button" class="link-btn" onclick="saveAddressFromCheckout()"><i
+                  class="fa-solid fa-floppy-disk"></i> Save Address</button>
             </div>
 
-            <div style="margin-bottom: 14px;">
-              <label
-                style="display: block; font-size: 0.8rem; font-weight: 700; color: #334155; margin-bottom: 5px; text-transform: uppercase; letter-spacing: 0.5px;">WhatsApp
-                / Mobile Number <span style="color: #dc2626;">*</span></label>
-              <div style="display: flex; align-items: center; gap: 8px;">
-                <span
-                  style="padding: 10px 12px; background: #f1f5f9; border: 1.5px solid #cbd5e1; border-radius: 8px; font-weight: 700; color: #475569; font-size: 0.9rem;">+91</span>
-                <input type="tel" id="waCustPhone" class="checkout-input" placeholder="10-digit WhatsApp phone number"
-                  pattern="[0-9]{10}" maxlength="10" required
-                  style="flex: 1; padding: 10px 14px; border: 1.5px solid #cbd5e1; border-radius: 8px; font-size: 0.95rem;">
+            <div class="co-form-row">
+              <div class="co-form-group">
+                <input type="text" id="coFirstName" class="checkout-input" placeholder="First name">
               </div>
-              <small style="color: #64748b; font-size: 0.75rem; margin-top: 3px; display: block;">We will send order
-                confirmation & lorry booking dispatch LR copy to this number.</small>
-            </div>
-
-            <div style="margin-bottom: 14px;">
-              <label
-                style="display: block; font-size: 0.8rem; font-weight: 700; color: #334155; margin-bottom: 5px; text-transform: uppercase; letter-spacing: 0.5px;">Delivery
-                Address / வீட்டு முகவரி <span style="color: #dc2626;">*</span></label>
-              <input type="text" id="waCustStreet" class="checkout-input"
-                placeholder="Door No, Street Name, Area / Landmark" required
-                style="width: 100%; padding: 10px 14px; border: 1.5px solid #cbd5e1; border-radius: 8px; font-size: 0.95rem;">
-            </div>
-
-            <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; margin-bottom: 14px;">
-              <div>
-                <label
-                  style="display: block; font-size: 0.8rem; font-weight: 700; color: #334155; margin-bottom: 5px; text-transform: uppercase; letter-spacing: 0.5px;">City
-                  / ஊர் <span style="color: #dc2626;">*</span></label>
-                <input type="text" id="waCustCity" class="checkout-input" placeholder="City / Town" required
-                  style="width: 100%; padding: 10px 14px; border: 1.5px solid #cbd5e1; border-radius: 8px; font-size: 0.92rem;">
+              <div class="co-form-group">
+                <input type="text" id="coLastName" class="checkout-input" placeholder="Last name *" required>
               </div>
-              <div>
-                <label
-                  style="display: block; font-size: 0.8rem; font-weight: 700; color: #334155; margin-bottom: 5px; text-transform: uppercase; letter-spacing: 0.5px;">State
-                  <span style="color: #dc2626;">*</span></label>
-                <select id="waCustState" class="checkout-select" required
-                  style="width: 100%; padding: 10px 14px; border: 1.5px solid #cbd5e1; border-radius: 8px; font-size: 0.92rem; background: #fff;">
+            </div>
+
+            <div class="co-form-group">
+              <input type="text" id="coStreet" class="checkout-input" placeholder="Street Address *" required>
+            </div>
+
+            <div class="co-form-row-3">
+              <div class="co-form-group">
+                <input type="text" id="coCity" class="checkout-input" placeholder="City *" required>
+              </div>
+              <div class="co-form-group">
+                <select id="coState" class="checkout-select" required>
                   <option value="Tamil Nadu" selected>Tamil Nadu</option>
                   <option value="Kerala">Kerala</option>
                   <option value="Karnataka">Karnataka</option>
                   <option value="Andhra Pradesh">Andhra Pradesh</option>
-                  <option value="Telangana">Telangana</option>
-                  <option value="Maharashtra">Maharashtra</option>
-                  <option value="Pondicherry">Pondicherry</option>
                   <option value="Other">Other State</option>
                 </select>
               </div>
-              <div>
-                <label
-                  style="display: block; font-size: 0.8rem; font-weight: 700; color: #334155; margin-bottom: 5px; text-transform: uppercase; letter-spacing: 0.5px;">PIN
-                  Code <span style="color: #dc2626;">*</span></label>
-                <input type="text" id="waCustPincode" class="checkout-input" placeholder="6-digit PIN"
-                  pattern="[0-9]{6}" maxlength="6" required
-                  style="width: 100%; padding: 10px 14px; border: 1.5px solid #cbd5e1; border-radius: 8px; font-size: 0.92rem;">
+              <div class="co-form-group">
+                <input type="text" id="coPincode" class="checkout-input" placeholder="PIN code *" required>
               </div>
             </div>
 
-            <div style="margin-bottom: 14px;">
+            <div class="co-form-group">
+              <input type="tel" id="coPhone" class="checkout-input" placeholder="WhatsApp / Phone number *" required>
+            </div>
+          </div>
+
+          <!-- Order Placement Section (Replaced Payment Options) -->
+          <div class="checkout-section order-placement-section">
+            <div class="order-placement-card">
+              <div class="op-header">
+                <span class="op-badge"><i class="fa-solid fa-truck-fast"></i> DIRECT SIVAKASI FACTORY DISPATCH</span>
+                <h4>Zero Advance Payment Needed</h4>
+                <p>Click <strong>Order to be placed</strong> below. Your official wholesale <strong>Booking
+                    Number</strong> will be generated instantly and confirmed directly with our Sivakasi dispatch desk
+                  via WhatsApp.</p>
+              </div>
+
+              <button type="submit" class="btn btn-order-placed full-width" id="btnPlaceOrder"
+                style="background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%);">
+                <span class="btn-op-icon"><i class="fa-solid fa-circle-check"></i></span>
+                <span class="btn-op-text">Order to be placed</span>
+                <span class="btn-op-badge">Instant Booking</span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right Column: Order Summary Sidebar -->
+        <div class="checkout-right-col">
+          <div class="checkout-summary-card">
+            <div class="co-summary-header">
+              <h4>Order Summary</h4>
+              <button type="button" class="co-clear-all-btn" onclick="clearAllCheckoutItems()"
+                title="Clear entire order">
+                <i class="fa-solid fa-trash-can"></i> Clear All
+              </button>
+            </div>
+            <div class="co-items-preview-list" id="coItemsPreviewList"></div>
+
+            <div class="co-financials-table">
+              <div class="co-financial-row">
+                <span>Subtotal</span>
+                <span id="coSubtotal">₹0</span>
+              </div>
+              <div class="co-financial-row">
+                <span>Shipping</span>
+                <span class="green-text">Fast</span>
+              </div>
+              <div class="co-financial-row grand-total-row">
+                <span>Total</span>
+                <span class="co-total-val">INR <strong id="coGrandTotal">₹0</strong></span>
+              </div>
+            </div>
+
+            <div class="co-trust-badge">
+              <span class="trust-icon"><i class="fa-solid fa-shield-halved"></i></span>
+              <span>100% Genuine Sivakasi The Get pattas Green Fireworks • Direct Factory Delivery</span>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Direct WhatsApp Order Modal -->
+  <div class="checkout-modal-overlay" id="whatsAppOrderModalOverlay" onclick="closeWhatsAppOrderModal(event)"
+    style="display: none; z-index: 999999;">
+    <div class="checkout-modal-card" onclick="event.stopPropagation()"
+      style="max-width: 680px; width: 95%; max-height: calc(100vh - 30px); max-height: calc(100dvh - 30px); display: flex; flex-direction: column; overflow: hidden; border-radius: 16px; margin: auto;">
+      <div class="checkout-modal-header"
+        style="flex-shrink: 0; background: linear-gradient(135deg, #15803d 0%, #16a34a 100%); color: #ffffff; padding: 14px 20px;">
+        <div class="checkout-brand-title" style="display: flex; align-items: center; gap: 10px;">
+          <span style="font-size: 1.8rem; line-height: 1;"><i class="fa-brands fa-whatsapp"></i></span>
+          <div>
+            <h3 style="margin: 0; color: #ffffff; font-size: 1.2rem; font-weight: 800;">Direct WhatsApp Order</h3>
+            <span style="font-size: 0.8rem; opacity: 0.9; display: block;">நேரடி வாட்ஸ்அப் ஆர்டர் & உடனடி
+              உறுதிப்படுத்தல்</span>
+          </div>
+        </div>
+        <div class="checkout-header-right">
+          <button class="modal-close-btn" type="button" onclick="closeWhatsAppOrderModal(true)" aria-label="Close"
+            style="color: #ffffff; background: rgba(255,255,255,0.2); border: none; border-radius: 50%; width: 34px; height: 34px; display: flex; align-items: center; justify-content: center; cursor: pointer;">
+            <i class="fa-solid fa-xmark"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- Quick Order Summary Banner inside modal -->
+      <div
+        style="flex-shrink: 0; background: #f0fdf4; border-bottom: 1px solid #bbf7d0; padding: 10px 20px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px;">
+        <div style="font-size: 0.88rem; color: #166534;">
+          <strong id="waModalItemCount">0</strong> Varieties (<strong id="waModalBoxCount">0</strong> Boxes)
+          <span style="display: block; font-size: 0.76rem; color: #15803d;">Original MRP: <del id="waModalMrp">₹0</del>
+            • <span style="font-weight: 700; color: #dc2626;">Saved <span id="waModalSavings">₹0</span> (80%
+              Off)</span></span>
+        </div>
+        <div style="text-align: right;">
+          <span style="font-size: 0.75rem; color: #64748b; display: block;">Wholesale Net Total</span>
+          <strong id="waModalNetTotal" style="font-size: 1.3rem; color: #15803d; font-weight: 800;">₹0</strong>
+        </div>
+      </div>
+
+      <form id="whatsAppOrderForm"
+        style="display: flex; flex-direction: column; flex: 1; min-height: 0; overflow: hidden; margin: 0; padding: 0;"
+        onsubmit="handleWhatsAppOrderSubmit(event)">
+        <!-- Scrollable Form Fields -->
+        <div style="flex: 1; overflow-y: auto; padding: 18px 20px 10px 20px; -webkit-overflow-scrolling: touch;">
+          <div style="margin-bottom: 14px;">
+            <label
+              style="display: block; font-size: 0.8rem; font-weight: 700; color: #334155; margin-bottom: 5px; text-transform: uppercase; letter-spacing: 0.5px;">Customer
+              Name / வாடிக்கையாளர் பெயர் <span style="color: #dc2626;">*</span></label>
+            <input type="text" id="waCustName" class="checkout-input" placeholder="Enter your full name" required
+              style="width: 100%; padding: 10px 14px; border: 1.5px solid #cbd5e1; border-radius: 8px; font-size: 0.95rem;">
+          </div>
+
+          <div style="margin-bottom: 14px;">
+            <label
+              style="display: block; font-size: 0.8rem; font-weight: 700; color: #334155; margin-bottom: 5px; text-transform: uppercase; letter-spacing: 0.5px;">WhatsApp
+              / Mobile Number <span style="color: #dc2626;">*</span></label>
+            <div style="display: flex; align-items: center; gap: 8px;">
+              <span
+                style="padding: 10px 12px; background: #f1f5f9; border: 1.5px solid #cbd5e1; border-radius: 8px; font-weight: 700; color: #475569; font-size: 0.9rem;">+91</span>
+              <input type="tel" id="waCustPhone" class="checkout-input" placeholder="10-digit WhatsApp phone number"
+                pattern="[0-9]{10}" maxlength="10" required
+                style="flex: 1; padding: 10px 14px; border: 1.5px solid #cbd5e1; border-radius: 8px; font-size: 0.95rem;">
+            </div>
+            <small style="color: #64748b; font-size: 0.75rem; margin-top: 3px; display: block;">We will send order
+              confirmation & lorry booking dispatch LR copy to this number.</small>
+          </div>
+
+          <div style="margin-bottom: 14px;">
+            <label
+              style="display: block; font-size: 0.8rem; font-weight: 700; color: #334155; margin-bottom: 5px; text-transform: uppercase; letter-spacing: 0.5px;">Delivery
+              Address / வீட்டு முகவரி <span style="color: #dc2626;">*</span></label>
+            <input type="text" id="waCustStreet" class="checkout-input"
+              placeholder="Door No, Street Name, Area / Landmark" required
+              style="width: 100%; padding: 10px 14px; border: 1.5px solid #cbd5e1; border-radius: 8px; font-size: 0.95rem;">
+          </div>
+
+          <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; margin-bottom: 14px;">
+            <div>
               <label
-                style="display: block; font-size: 0.8rem; font-weight: 700; color: #334155; margin-bottom: 5px; text-transform: uppercase; letter-spacing: 0.5px;">Email
-                Address (Optional / மின்னஞ்சல்)</label>
-              <input type="email" id="waCustEmail" class="checkout-input" placeholder="For digital tax invoice copy"
+                style="display: block; font-size: 0.8rem; font-weight: 700; color: #334155; margin-bottom: 5px; text-transform: uppercase; letter-spacing: 0.5px;">City
+                / ஊர் <span style="color: #dc2626;">*</span></label>
+              <input type="text" id="waCustCity" class="checkout-input" placeholder="City / Town" required
                 style="width: 100%; padding: 10px 14px; border: 1.5px solid #cbd5e1; border-radius: 8px; font-size: 0.92rem;">
             </div>
-
-            <div
-              style="background: #f8fafc; border: 1px dashed #cbd5e1; border-radius: 8px; padding: 10px 14px; margin-bottom: 6px; display: flex; align-items: center; gap: 10px; font-size: 0.8rem; color: #475569;">
-              <span style="color: #16a34a; font-size: 1.2rem;"><i class="fa-solid fa-truck-fast"></i></span>
-              <span><strong>Direct Sivakasi Factory Transport:</strong> Your order details are saved to our dispatch
-                admin and sent to our WhatsApp desk. Pay on delivery / transport office.</span>
+            <div>
+              <label
+                style="display: block; font-size: 0.8rem; font-weight: 700; color: #334155; margin-bottom: 5px; text-transform: uppercase; letter-spacing: 0.5px;">State
+                <span style="color: #dc2626;">*</span></label>
+              <select id="waCustState" class="checkout-select" required
+                style="width: 100%; padding: 10px 14px; border: 1.5px solid #cbd5e1; border-radius: 8px; font-size: 0.92rem; background: #fff;">
+                <option value="Tamil Nadu" selected>Tamil Nadu</option>
+                <option value="Kerala">Kerala</option>
+                <option value="Karnataka">Karnataka</option>
+                <option value="Andhra Pradesh">Andhra Pradesh</option>
+                <option value="Telangana">Telangana</option>
+                <option value="Maharashtra">Maharashtra</option>
+                <option value="Pondicherry">Pondicherry</option>
+                <option value="Other">Other State</option>
+              </select>
+            </div>
+            <div>
+              <label
+                style="display: block; font-size: 0.8rem; font-weight: 700; color: #334155; margin-bottom: 5px; text-transform: uppercase; letter-spacing: 0.5px;">PIN
+                Code <span style="color: #dc2626;">*</span></label>
+              <input type="text" id="waCustPincode" class="checkout-input" placeholder="6-digit PIN" pattern="[0-9]{6}"
+                maxlength="6" required
+                style="width: 100%; padding: 10px 14px; border: 1.5px solid #cbd5e1; border-radius: 8px; font-size: 0.92rem;">
             </div>
           </div>
 
-          <!-- Always-Visible Sticky Action Buttons Footer -->
+          <div style="margin-bottom: 14px;">
+            <label
+              style="display: block; font-size: 0.8rem; font-weight: 700; color: #334155; margin-bottom: 5px; text-transform: uppercase; letter-spacing: 0.5px;">Email
+              Address (Optional / மின்னஞ்சல்)</label>
+            <input type="email" id="waCustEmail" class="checkout-input" placeholder="For digital tax invoice copy"
+              style="width: 100%; padding: 10px 14px; border: 1.5px solid #cbd5e1; border-radius: 8px; font-size: 0.92rem;">
+          </div>
+
           <div
-            style="flex-shrink: 0; background: #ffffff; border-top: 1px solid #e2e8f0; padding: 14px 20px; display: flex; gap: 12px; box-shadow: 0 -4px 12px rgba(0,0,0,0.06);">
-            <button type="button" class="btn btn-secondary" onclick="closeWhatsAppOrderModal(true)"
-              style="flex: 1; padding: 12px; border: 1.5px solid #cbd5e1; background: #f8fafc; color: #475569; font-weight: 700; border-radius: 8px; cursor: pointer; font-size: 0.95rem;">
-              Cancel
-            </button>
-            <button type="submit" id="btnSubmitWhatsAppOrder" class="btn btn-whatsapp"
-              style="flex: 2; padding: 12px 18px; background: linear-gradient(135deg, #16a34a 0%, #15803d 100%); color: #ffffff; font-weight: 800; border: none; border-radius: 8px; font-size: 1rem; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; box-shadow: 0 4px 14px rgba(22, 163, 74, 0.4);">
-              <i class="fa-brands fa-whatsapp" style="font-size: 1.3rem;"></i>
-              <span>Confirm & Send Order on WhatsApp</span>
-            </button>
+            style="background: #f8fafc; border: 1px dashed #cbd5e1; border-radius: 8px; padding: 10px 14px; margin-bottom: 6px; display: flex; align-items: center; gap: 10px; font-size: 0.8rem; color: #475569;">
+            <span style="color: #16a34a; font-size: 1.2rem;"><i class="fa-solid fa-truck-fast"></i></span>
+            <span><strong>Direct Sivakasi Factory Transport:</strong> Your order details are saved to our dispatch
+              admin and sent to our WhatsApp desk. Pay on delivery / transport office.</span>
           </div>
-        </form>
-      </div>
+        </div>
+
+        <!-- Always-Visible Sticky Action Buttons Footer -->
+        <div
+          style="flex-shrink: 0; background: #ffffff; border-top: 1px solid #e2e8f0; padding: 14px 20px; display: flex; gap: 12px; box-shadow: 0 -4px 12px rgba(0,0,0,0.06);">
+          <button type="button" class="btn btn-secondary" onclick="closeWhatsAppOrderModal(true)"
+            style="flex: 1; padding: 12px; border: 1.5px solid #cbd5e1; background: #f8fafc; color: #475569; font-weight: 700; border-radius: 8px; cursor: pointer; font-size: 0.95rem;">
+            Cancel
+          </button>
+          <button type="submit" id="btnSubmitWhatsAppOrder" class="btn btn-whatsapp"
+            style="flex: 2; padding: 12px 18px; background: linear-gradient(135deg, #16a34a 0%, #15803d 100%); color: #ffffff; font-weight: 800; border: none; border-radius: 8px; font-size: 1rem; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; box-shadow: 0 4px 14px rgba(22, 163, 74, 0.4);">
+            <i class="fa-brands fa-whatsapp" style="font-size: 1.3rem;"></i>
+            <span>Confirm & Send Order on WhatsApp</span>
+          </button>
+        </div>
+      </form>
     </div>
+  </div>
 
-    <!-- Customer Account & Authentication Modal -->
-    <div class="customer-modal-overlay" id="customerModalOverlay" onclick="closeCustomerModal(event)">
-      <div class="customer-modal-card" onclick="event.stopPropagation()">
-        <button class="modal-close-btn" onclick="closeCustomerModal(true)" aria-label="Close Modal"><i
-            class="fa-solid fa-xmark"></i></button>
+  <!-- Customer Account & Authentication Modal -->
+  <div class="customer-modal-overlay" id="customerModalOverlay" onclick="closeCustomerModal(event)">
+    <div class="customer-modal-card" onclick="event.stopPropagation()">
+      <button class="modal-close-btn" onclick="closeCustomerModal(true)" aria-label="Close Modal"><i
+          class="fa-solid fa-xmark"></i></button>
 
-        <!-- Tab Buttons for Unauthenticated State -->
-        <div id="customerAuthViews">
-          <div class="customer-auth-tabs">
-            <button class="c-tab-btn active" id="cTabLogin" onclick="switchCustomerAuthTab('login')"><i
-                class="fa-solid fa-key"></i> Log In</button>
-            <button class="c-tab-btn" id="cTabSignup" onclick="switchCustomerAuthTab('signup')"><i
-                class="fa-solid fa-user-plus"></i> Sign Up</button>
+      <!-- Tab Buttons for Unauthenticated State -->
+      <div id="customerAuthViews">
+        <div class="customer-auth-tabs">
+          <button class="c-tab-btn active" id="cTabLogin" onclick="switchCustomerAuthTab('login')"><i
+              class="fa-solid fa-key"></i> Log In</button>
+          <button class="c-tab-btn" id="cTabSignup" onclick="switchCustomerAuthTab('signup')"><i
+              class="fa-solid fa-user-plus"></i> Sign Up</button>
+        </div>
+
+        <!-- Customer Login Form -->
+        <form id="customerLoginForm" class="c-auth-form" onsubmit="handleCustomerLogin(event)">
+          <h3>Welcome Back!</h3>
+          <p>Log in to your <strong>Get Pattas (Shop 003)</strong> account.</p>
+          <div class="form-group">
+            <label>Username</label>
+            <input type="text" id="custLoginUser" placeholder="Enter username" required>
           </div>
+          <div class="form-group">
+            <label>Password</label>
+            <input type="password" id="custLoginPass" placeholder="Enter password" required
+              autocomplete="current-password">
+          </div>
+          <div class="auth-err-msg" id="custLoginErr"></div>
+          <button type="submit" class="btn btn-primary full-width"><i class="fa-solid fa-right-to-bracket"></i> Log In
+            Now</button>
+        </form>
 
-          <!-- Customer Login Form -->
-          <form id="customerLoginForm" class="c-auth-form" onsubmit="handleCustomerLogin(event)">
-            <h3>Welcome Back!</h3>
-            <p>Log in to your <strong>Get Pattas (Shop 003)</strong> account.</p>
+        <!-- Customer Registration Form -->
+        <form id="customerSignupForm" class="c-auth-form" style="display: none;" onsubmit="handleCustomerSignup(event)">
+          <h3>Create Shop 003 Account</h3>
+          <p>Register your account for direct factory order tracking and checkout.</p>
+          <div class="form-row">
             <div class="form-group">
               <label>Username</label>
-              <input type="text" id="custLoginUser" placeholder="Enter username" required>
+              <input type="text" id="custRegUser" placeholder="Choose username" required>
             </div>
             <div class="form-group">
               <label>Password</label>
-              <input type="password" id="custLoginPass" placeholder="Enter password" required
-                autocomplete="current-password">
+              <input type="password" id="custRegPass" placeholder="Create password" required
+                autocomplete="new-password">
             </div>
-            <div class="auth-err-msg" id="custLoginErr"></div>
-            <button type="submit" class="btn btn-primary full-width"><i class="fa-solid fa-right-to-bracket"></i> Log In
-              Now</button>
-          </form>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label>Full Name</label>
+              <input type="text" id="custRegName" placeholder="e.g. Ramesh Kumar" required>
+            </div>
+            <div class="form-group">
+              <label>WhatsApp / Phone Number</label>
+              <input type="tel" id="custRegPhone" placeholder="e.g. 9566159113" required>
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Default Shipping Address</label>
+            <textarea id="custRegAddress" rows="2" placeholder="House No, Street, City, Pincode" required></textarea>
+          </div>
+          <div class="auth-err-msg" id="custRegErr"></div>
+          <button type="submit" class="btn btn-primary full-width"><i class="fa-solid fa-user-check"></i> Register
+            Account</button>
+        </form>
+      </div>
 
-          <!-- Customer Registration Form -->
-          <form id="customerSignupForm" class="c-auth-form" style="display: none;"
-            onsubmit="handleCustomerSignup(event)">
-            <h3>Create Shop 003 Account</h3>
-            <p>Register your account for direct factory order tracking and checkout.</p>
+      <!-- Authenticated Customer Profile & Address Book View -->
+      <div id="customerProfileView" style="display: none;">
+        <div class="customer-profile-banner">
+          <div class="cust-avatar"><i class="fa-solid fa-user"
+              style="font-size: 1.8rem; color: var(--primary-red); margin-top: 5px;"></i></div>
+          <div class="cust-info">
+            <h3 id="custProfileName">Customer Name</h3>
+            <span class="cust-tag" id="custProfileUser">@username</span>
+            <div class="cust-phone-badge" id="custProfilePhone"><i class="fa-solid fa-mobile-screen"></i> +91 95661
+              59113</div>
+            <div style="margin-top: 4px;"><span class="meta-pill"
+                style="font-size: 0.72rem; padding: 2px 8px; background: rgba(220, 38, 38, 0.1); color: #dc2626; font-weight: 700;">SHOP
+                001 ACCOUNT</span></div>
+          </div>
+          <button class="btn btn-secondary btn-sm" onclick="handleCustomerLogout()"><i
+              class="fa-solid fa-right-from-bracket"></i> Logout</button>
+        </div>
+
+        <div class="address-book-wrapper">
+          <div class="address-book-title-row"
+            style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem;">
+            <h4 style="margin: 0; font-size: 0.95rem; color: #0f172a;"><i class="fa-solid fa-location-dot"></i> My
+              Saved
+              Delivery Addresses</h4>
+            <button type="button" class="btn btn-primary btn-sm" onclick="showAddressForm()"><i
+                class="fa-solid fa-plus"></i> Add Address</button>
+          </div>
+
+          <!-- Add / Edit Address Form Overlay Inline -->
+          <form id="addressCrudForm" class="address-crud-form"
+            style="display: none; padding: 12px; border: 1px solid #e2e8f0; border-radius: 8px; margin-bottom: 12px; background: #f8fafc;"
+            onsubmit="handleSaveAddress(event)">
+            <input type="hidden" id="addrEditId">
+            <h5 id="addrFormTitle" style="margin: 0 0 8px 0; font-size: 0.9rem;">Add New Delivery Address</h5>
             <div class="form-row">
               <div class="form-group">
-                <label>Username</label>
-                <input type="text" id="custRegUser" placeholder="Choose username" required>
+                <label>Address Label (e.g. Home, Office)</label>
+                <input type="text" id="addrLabelInput" placeholder="Home" required>
               </div>
               <div class="form-group">
-                <label>Password</label>
-                <input type="password" id="custRegPass" placeholder="Create password" required
-                  autocomplete="new-password">
-              </div>
-            </div>
-            <div class="form-row">
-              <div class="form-group">
-                <label>Full Name</label>
-                <input type="text" id="custRegName" placeholder="e.g. Ramesh Kumar" required>
-              </div>
-              <div class="form-group">
-                <label>WhatsApp / Phone Number</label>
-                <input type="tel" id="custRegPhone" placeholder="e.g. 9566159113" required>
+                <label>City / Town</label>
+                <input type="text" id="addrCityInput" placeholder="Chennai / Sivakasi" required>
               </div>
             </div>
             <div class="form-group">
-              <label>Default Shipping Address</label>
-              <textarea id="custRegAddress" rows="2" placeholder="House No, Street, City, Pincode" required></textarea>
+              <label>Street Address & Landmark</label>
+              <textarea id="addrTextInput" rows="2" placeholder="Door No, Street Name, Landmark" required></textarea>
             </div>
-            <div class="auth-err-msg" id="custRegErr"></div>
-            <button type="submit" class="btn btn-primary full-width"><i class="fa-solid fa-user-check"></i> Register
-              Account</button>
-          </form>
-        </div>
-
-        <!-- Authenticated Customer Profile & Address Book View -->
-        <div id="customerProfileView" style="display: none;">
-          <div class="customer-profile-banner">
-            <div class="cust-avatar"><i class="fa-solid fa-user"
-                style="font-size: 1.8rem; color: var(--primary-red); margin-top: 5px;"></i></div>
-            <div class="cust-info">
-              <h3 id="custProfileName">Customer Name</h3>
-              <span class="cust-tag" id="custProfileUser">@username</span>
-              <div class="cust-phone-badge" id="custProfilePhone"><i class="fa-solid fa-mobile-screen"></i> +91 95661
-                59113</div>
-              <div style="margin-top: 4px;"><span class="meta-pill"
-                  style="font-size: 0.72rem; padding: 2px 8px; background: rgba(220, 38, 38, 0.1); color: #dc2626; font-weight: 700;">SHOP
-                  001 ACCOUNT</span></div>
-            </div>
-            <button class="btn btn-secondary btn-sm" onclick="handleCustomerLogout()"><i
-                class="fa-solid fa-right-from-bracket"></i> Logout</button>
-          </div>
-
-          <div class="address-book-wrapper">
-            <div class="address-book-title-row"
-              style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem;">
-              <h4 style="margin: 0; font-size: 0.95rem; color: #0f172a;"><i class="fa-solid fa-location-dot"></i> My
-                Saved
-                Delivery Addresses</h4>
-              <button type="button" class="btn btn-primary btn-sm" onclick="showAddressForm()"><i
-                  class="fa-solid fa-plus"></i> Add Address</button>
-            </div>
-
-            <!-- Add / Edit Address Form Overlay Inline -->
-            <form id="addressCrudForm" class="address-crud-form"
-              style="display: none; padding: 12px; border: 1px solid #e2e8f0; border-radius: 8px; margin-bottom: 12px; background: #f8fafc;"
-              onsubmit="handleSaveAddress(event)">
-              <input type="hidden" id="addrEditId">
-              <h5 id="addrFormTitle" style="margin: 0 0 8px 0; font-size: 0.9rem;">Add New Delivery Address</h5>
-              <div class="form-row">
-                <div class="form-group">
-                  <label>Address Label (e.g. Home, Office)</label>
-                  <input type="text" id="addrLabelInput" placeholder="Home" required>
-                </div>
-                <div class="form-group">
-                  <label>City / Town</label>
-                  <input type="text" id="addrCityInput" placeholder="Chennai / Sivakasi" required>
-                </div>
-              </div>
+            <div class="form-row">
               <div class="form-group">
-                <label>Street Address & Landmark</label>
-                <textarea id="addrTextInput" rows="2" placeholder="Door No, Street Name, Landmark" required></textarea>
+                <label>Pincode</label>
+                <input type="text" id="addrPincodeInput" placeholder="626123" required>
               </div>
-              <div class="form-row">
-                <div class="form-group">
-                  <label>Pincode</label>
-                  <input type="text" id="addrPincodeInput" placeholder="626123" required>
-                </div>
-                <div class="form-group checkbox-align">
-                  <label><input type="checkbox" id="addrDefaultInput" checked> Set as Default Address</label>
-                </div>
+              <div class="form-group checkbox-align">
+                <label><input type="checkbox" id="addrDefaultInput" checked> Set as Default Address</label>
               </div>
-              <div class="form-actions-inline"
-                style="display: flex; gap: 8px; justify-content: flex-end; margin-top: 8px;">
-                <button type="button" class="btn btn-secondary btn-sm" onclick="hideAddressForm()">Cancel</button>
-                <button type="submit" class="btn btn-primary btn-sm"><i class="fa-solid fa-floppy-disk"></i> Save
-                  Address</button>
-              </div>
-            </form>
-
-            <div class="address-cards-list" id="addressListContainer">
-              <!-- Dynamic Address Cards -->
             </div>
+            <div class="form-actions-inline"
+              style="display: flex; gap: 8px; justify-content: flex-end; margin-top: 8px;">
+              <button type="button" class="btn btn-secondary btn-sm" onclick="hideAddressForm()">Cancel</button>
+              <button type="submit" class="btn btn-primary btn-sm"><i class="fa-solid fa-floppy-disk"></i> Save
+                Address</button>
+            </div>
+          </form>
+
+          <div class="address-cards-list" id="addressListContainer">
+            <!-- Dynamic Address Cards -->
           </div>
         </div>
       </div>
     </div>
+  </div>
 
-    <!-- Privacy Policy Modal -->
-    <div class="checkout-modal-overlay" id="privacyModalOverlay"
-      onclick="if(event.target===this) this.classList.remove('active')">
-      <div class="policy-modal-card">
-        <div class="policy-modal-header">
-          <h3><i class="fa-solid fa-lock"></i> Privacy Policy & Data Security</h3>
-          <button type="button" class="policy-modal-close-btn"
-            onclick="document.getElementById('privacyModalOverlay').classList.remove('active')"><i
-              class="fa-solid fa-xmark"></i></button>
-        </div>
-        <div class="policy-modal-body">
-          <p><strong>1. Information Collection:</strong> When you place an enquiry or order with <strong>The Get pattas
-            </strong>, we collect your name, phone number (WhatsApp/Calling), delivery address, and pincode
-            solely for safe logistics and order verification.</p>
-          <p><strong>2. 100% Data Confidentiality:</strong> We never sell or share customer details with third-party
-            telemarketers.</p>
-          <p><strong>3. Contact:</strong> Call <strong>+91 95661 59113</strong> or email
-            <strong>sales@getpattas.com</strong>.
-          </p>
-        </div>
-        <div class="policy-modal-footer">
-          <button type="button" class="btn-close-policy"
-            onclick="document.getElementById('privacyModalOverlay').classList.remove('active')">Close Policy</button>
-        </div>
-      </div>
-    </div>
-
-    <!-- Terms & Conditions Modal -->
-    <div class="checkout-modal-overlay" id="termsModalOverlay"
-      onclick="if(event.target===this) this.classList.remove('active')">
-      <div class="policy-modal-card">
-        <div class="policy-modal-header">
-          <h3><i class="fa-solid fa-file-lines"></i> Terms & Conditions</h3>
-          <button type="button" class="policy-modal-close-btn"
-            onclick="document.getElementById('termsModalOverlay').classList.remove('active')"><i
-              class="fa-solid fa-xmark"></i></button>
-        </div>
-        <div class="policy-modal-body">
-          <p><strong>1. CSIR-NEERI Green Certified:</strong> All products are 100% genuine green crackers manufactuGet
-            pattas in
-            Sivakasi.</p>
-          <p><strong>2. Age Restriction:</strong> Must be 18+ years of age to order fireworks.</p>
-          <p><strong>3. Dispatch:</strong> Dispatched via trusted regional transport from Sivakasi to your nearest
-            delivery hub.</p>
-        </div>
-        <div class="policy-modal-footer">
-          <button type="button" class="btn-close-policy"
-            onclick="document.getElementById('termsModalOverlay').classList.remove('active')">I Understand &
-            Accept</button>
-        </div>
-      </div>
-    </div>
-
-    <!-- Write Review Modal -->
-    <div class="checkout-modal-overlay" id="reviewModalOverlay"
-      onclick="if(event.target===this) this.classList.remove('active')">
-      <div class="policy-modal-card" style="max-width: 520px;">
-        <div class="policy-modal-header">
-          <h3 style="margin: 0; font-size: 1.15rem; color: #0f172a;">Rate The Get pattas </h3>
-          <button type="button" class="policy-modal-close-btn"
-            onclick="document.getElementById('reviewModalOverlay').classList.remove('active')"><i
-              class="fa-solid fa-xmark"></i></button>
-        </div>
-        <form class="policy-modal-body" style="padding: 20px 24px;" onsubmit="handleReviewSubmit(event)">
-          <p style="color: #64748b; font-size: 0.9rem; margin-bottom: 1.2rem;">Share your festival experience with The
-            Get
-            pattas !</p>
-          <div class="form-group" style="margin-bottom: 1rem;">
-            <label
-              style="display: block; font-weight: 600; font-size: 0.85rem; margin-bottom: 0.4rem; color: #0f172a;">Your
-              Name *</label>
-            <input type="text" id="revName" required placeholder="e.g. Suresh Kumar"
-              style="width: 100%; padding: 0.65rem 0.8rem; border: 1px solid #cbd5e1; border-radius: 8px;">
-          </div>
-          <div class="form-group" style="margin-bottom: 1rem;">
-            <label
-              style="display: block; font-weight: 600; font-size: 0.85rem; margin-bottom: 0.4rem; color: #0f172a;">City
-              /
-              Location</label>
-            <input type="text" id="revCity" placeholder="e.g. Chennai, Tamil Nadu"
-              style="width: 100%; padding: 0.65rem 0.8rem; border: 1px solid #cbd5e1; border-radius: 8px;">
-          </div>
-          <div class="form-group" style="margin-bottom: 1.5rem;">
-            <label
-              style="display: block; font-weight: 600; font-size: 0.85rem; margin-bottom: 0.4rem; color: #0f172a;">Review
-              *</label>
-            <textarea id="revMsg" rows="3" required placeholder="Tell us about the cracker quality and delivery..."
-              style="width: 100%; padding: 0.65rem 0.8rem; border: 1px solid #cbd5e1; border-radius: 8px;"></textarea>
-          </div>
-          <button type="submit" class="btn btn-primary full-width"
-            style="padding: 0.85rem; font-weight: 700; background: #dc2626;"><i class="fa-solid fa-star"></i> Submit
-            Review</button>
-        </form>
-      </div>
-    </div>
-
-    <!-- Order Confirmation Modal -->
-    <div class="order-confirm-overlay" id="orderConfirmModalOverlay" onclick="closeOrderConfirmModal(event)">
-      <div class="order-confirm-card" onclick="event.stopPropagation()">
-        <button class="modal-close-btn" onclick="closeOrderConfirmModal(true)" aria-label="Close Modal"><i
+  <!-- Privacy Policy Modal -->
+  <div class="checkout-modal-overlay" id="privacyModalOverlay"
+    onclick="if(event.target===this) this.classList.remove('active')">
+    <div class="policy-modal-card">
+      <div class="policy-modal-header">
+        <h3><i class="fa-solid fa-lock"></i> Privacy Policy & Data Security</h3>
+        <button type="button" class="policy-modal-close-btn"
+          onclick="document.getElementById('privacyModalOverlay').classList.remove('active')"><i
             class="fa-solid fa-xmark"></i></button>
+      </div>
+      <div class="policy-modal-body">
+        <p><strong>1. Information Collection:</strong> When you place an enquiry or order with <strong>The Get pattas
+          </strong>, we collect your name, phone number (WhatsApp/Calling), delivery address, and pincode
+          solely for safe logistics and order verification.</p>
+        <p><strong>2. 100% Data Confidentiality:</strong> We never sell or share customer details with third-party
+          telemarketers.</p>
+        <p><strong>3. Contact:</strong> Call <strong>+91 95661 59113</strong> or email
+          <strong>sales@getpattas.com</strong>.
+        </p>
+      </div>
+      <div class="policy-modal-footer">
+        <button type="button" class="btn-close-policy"
+          onclick="document.getElementById('privacyModalOverlay').classList.remove('active')">Close Policy</button>
+      </div>
+    </div>
+  </div>
 
-        <div class="order-confirm-header">
-          <div class="confirm-celebration-badge" style="background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%);">
-            <i class="fa-solid fa-circle-check"></i>
-          </div>
-          <span class="confirm-pill" style="background: rgba(220, 38, 38, 0.12); color: #dc2626;">WHOLESALE ORDER
-            CONFIRMED 🎉</span>
-          <h3 id="ocStoreTitle">The Get pattas </h3>
-          <p class="confirm-sub">Your Sivakasi fireworks wholesale booking has been registered successfully!</p>
+  <!-- Terms & Conditions Modal -->
+  <div class="checkout-modal-overlay" id="termsModalOverlay"
+    onclick="if(event.target===this) this.classList.remove('active')">
+    <div class="policy-modal-card">
+      <div class="policy-modal-header">
+        <h3><i class="fa-solid fa-file-lines"></i> Terms & Conditions</h3>
+        <button type="button" class="policy-modal-close-btn"
+          onclick="document.getElementById('termsModalOverlay').classList.remove('active')"><i
+            class="fa-solid fa-xmark"></i></button>
+      </div>
+      <div class="policy-modal-body">
+        <p><strong>1. CSIR-NEERI Green Certified:</strong> All products are 100% genuine green crackers manufactuGet
+          pattas in
+          Sivakasi.</p>
+        <p><strong>2. Age Restriction:</strong> Must be 18+ years of age to order fireworks.</p>
+        <p><strong>3. Dispatch:</strong> Dispatched via trusted regional transport from Sivakasi to your nearest
+          delivery hub.</p>
+      </div>
+      <div class="policy-modal-footer">
+        <button type="button" class="btn-close-policy"
+          onclick="document.getElementById('termsModalOverlay').classList.remove('active')">I Understand &
+          Accept</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Write Review Modal -->
+  <div class="checkout-modal-overlay" id="reviewModalOverlay"
+    onclick="if(event.target===this) this.classList.remove('active')">
+    <div class="policy-modal-card" style="max-width: 520px;">
+      <div class="policy-modal-header">
+        <h3 style="margin: 0; font-size: 1.15rem; color: #0f172a;">Rate The Get pattas </h3>
+        <button type="button" class="policy-modal-close-btn"
+          onclick="document.getElementById('reviewModalOverlay').classList.remove('active')"><i
+            class="fa-solid fa-xmark"></i></button>
+      </div>
+      <form class="policy-modal-body" style="padding: 20px 24px;" onsubmit="handleReviewSubmit(event)">
+        <p style="color: #64748b; font-size: 0.9rem; margin-bottom: 1.2rem;">Share your festival experience with The
+          Get
+          pattas !</p>
+        <div class="form-group" style="margin-bottom: 1rem;">
+          <label
+            style="display: block; font-weight: 600; font-size: 0.85rem; margin-bottom: 0.4rem; color: #0f172a;">Your
+            Name *</label>
+          <input type="text" id="revName" required placeholder="e.g. Suresh Kumar"
+            style="width: 100%; padding: 0.65rem 0.8rem; border: 1px solid #cbd5e1; border-radius: 8px;">
         </div>
-
-        <!-- Booking Number Box -->
-        <div class="booking-number-box">
-          <span class="bn-label">OFFICIAL BOOKING NUMBER</span>
-          <div class="bn-value-row">
-            <strong id="ocBookingNumber">GP-RED-12345</strong>
-            <button type="button" class="btn-copy-bn" onclick="copyBookingNumber()" title="Copy Booking Number">
-              <i class="fa-regular fa-copy"></i> <span id="copyBnText">Copy</span>
-            </button>
-          </div>
-          <span class="bn-hint">Quote this booking number for all order verification & parcel LR inquiries.</span>
+        <div class="form-group" style="margin-bottom: 1rem;">
+          <label
+            style="display: block; font-weight: 600; font-size: 0.85rem; margin-bottom: 0.4rem; color: #0f172a;">City
+            /
+            Location</label>
+          <input type="text" id="revCity" placeholder="e.g. Chennai, Tamil Nadu"
+            style="width: 100%; padding: 0.65rem 0.8rem; border: 1px solid #cbd5e1; border-radius: 8px;">
         </div>
-
-        <!-- Order Details Summary -->
-        <div class="order-confirm-details">
-          <div class="oc-detail-row">
-            <span>Customer:</span>
-            <strong id="ocCustomerName">Customer Name</strong>
-          </div>
-          <div class="oc-detail-row">
-            <span>Phone / WhatsApp:</span>
-            <strong id="ocCustomerPhone">+91 95661 59113</strong>
-          </div>
-          <div class="oc-detail-row">
-            <span>Delivery Address:</span>
-            <span id="ocCustomerAddress" class="oc-addr-val">Direct Sivakasi Transport</span>
-          </div>
-          <div class="oc-detail-row oc-total-highlight">
-            <span>Total Booking Amount:</span>
-            <strong id="ocTotalAmount">₹0</strong>
-          </div>
-          <div class="oc-detail-row">
-            <span>Total Quantity:</span>
-            <span id="ocTotalBoxes">0 Boxes</span>
-          </div>
+        <div class="form-group" style="margin-bottom: 1.5rem;">
+          <label
+            style="display: block; font-weight: 600; font-size: 0.85rem; margin-bottom: 0.4rem; color: #0f172a;">Review
+            *</label>
+          <textarea id="revMsg" rows="3" required placeholder="Tell us about the cracker quality and delivery..."
+            style="width: 100%; padding: 0.65rem 0.8rem; border: 1px solid #cbd5e1; border-radius: 8px;"></textarea>
         </div>
+        <button type="submit" class="btn btn-primary full-width"
+          style="padding: 0.85rem; font-weight: 700; background: #dc2626;"><i class="fa-solid fa-star"></i> Submit
+          Review</button>
+      </form>
+    </div>
+  </div>
 
-        <!-- Direct Actions: PDF Download & Customer WhatsApp Confirmation -->
-        <div class="oc-action-buttons-group">
-          <!-- 1. Download PDF Invoice Button -->
-          <button type="button" class="btn-oc-action btn-oc-pdf" onclick="downloadOrderInvoicePDF()"
-            id="btnDownloadInvoicePDF">
-            <i class="fa-solid fa-file-pdf"></i>
-            <div class="btn-oc-text">
-              <strong>Download Invoice (PDF)</strong>
-              <span>Official Wholesale Bill with Seal & Items</span>
-            </div>
+  <!-- Order Confirmation Modal -->
+  <div class="order-confirm-overlay" id="orderConfirmModalOverlay" onclick="closeOrderConfirmModal(event)">
+    <div class="order-confirm-card" onclick="event.stopPropagation()">
+      <button class="modal-close-btn" onclick="closeOrderConfirmModal(true)" aria-label="Close Modal"><i
+          class="fa-solid fa-xmark"></i></button>
+
+      <div class="order-confirm-header">
+        <div class="confirm-celebration-badge" style="background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%);">
+          <i class="fa-solid fa-circle-check"></i>
+        </div>
+        <span class="confirm-pill" style="background: rgba(220, 38, 38, 0.12); color: #dc2626;">WHOLESALE ORDER
+          CONFIRMED 🎉</span>
+        <h3 id="ocStoreTitle">The Get pattas </h3>
+        <p class="confirm-sub">Your Sivakasi fireworks wholesale booking has been registered successfully!</p>
+      </div>
+
+      <!-- Booking Number Box -->
+      <div class="booking-number-box">
+        <span class="bn-label">OFFICIAL BOOKING NUMBER</span>
+        <div class="bn-value-row">
+          <strong id="ocBookingNumber">GP-RED-12345</strong>
+          <button type="button" class="btn-copy-bn" onclick="copyBookingNumber()" title="Copy Booking Number">
+            <i class="fa-regular fa-copy"></i> <span id="copyBnText">Copy</span>
           </button>
-
-          <!-- 2. Send WhatsApp Booking to Kaira (+91 86104 51118) -->
-          <a id="ocCustomerWhatsAppBtn" href="#" target="_blank" class="btn-oc-action btn-oc-customer-wa">
-            <i class="fa-brands fa-whatsapp"></i>
-            <div class="btn-oc-text">
-              <strong>Send to Kaira WhatsApp </strong>
-              <span>Order breakdown & invoice link to WhatsApp</span>
-            </div>
-          </a>
-
-          <!-- Sub-actions: Store Desk WhatsApp & Print Invoice -->
-          <div class="oc-sub-actions-row">
-            <a id="ocWhatsAppBtn" href="#" target="_blank" class="btn-oc-sub btn-oc-store-wa"
-              title="Send booking to Store Desk WhatsApp">
-              <i class="fa-brands fa-whatsapp"></i> Store Desk WhatsApp
-            </a>
-            <button type="button" class="btn-oc-sub btn-oc-print" onclick="printOrderInvoice()"
-              title="Print Invoice directly">
-              <i class="fa-solid fa-print"></i> Print Invoice
-            </button>
-          </div>
         </div>
+        <span class="bn-hint">Quote this booking number for all order verification & parcel LR inquiries.</span>
+      </div>
 
-        <div class="oc-actions-footer">
-          <button type="button" class="btn btn-secondary full-width" onclick="closeOrderConfirmModal(true)"
-            style="padding: 0.75rem; font-weight: 700;">
-            <i class="fa-solid fa-arrow-left"></i> Continue Shopping
+      <!-- Order Details Summary -->
+      <div class="order-confirm-details">
+        <div class="oc-detail-row">
+          <span>Customer:</span>
+          <strong id="ocCustomerName">Customer Name</strong>
+        </div>
+        <div class="oc-detail-row">
+          <span>Phone / WhatsApp:</span>
+          <strong id="ocCustomerPhone">+91 95661 59113</strong>
+        </div>
+        <div class="oc-detail-row">
+          <span>Delivery Address:</span>
+          <span id="ocCustomerAddress" class="oc-addr-val">Direct Sivakasi Transport</span>
+        </div>
+        <div class="oc-detail-row oc-total-highlight">
+          <span>Total Booking Amount:</span>
+          <strong id="ocTotalAmount">₹0</strong>
+        </div>
+        <div class="oc-detail-row">
+          <span>Total Quantity:</span>
+          <span id="ocTotalBoxes">0 Boxes</span>
+        </div>
+      </div>
+
+      <!-- Direct Actions: PDF Download & Customer WhatsApp Confirmation -->
+      <div class="oc-action-buttons-group">
+        <!-- 1. Download PDF Invoice Button -->
+        <button type="button" class="btn-oc-action btn-oc-pdf" onclick="downloadOrderInvoicePDF()"
+          id="btnDownloadInvoicePDF">
+          <i class="fa-solid fa-file-pdf"></i>
+          <div class="btn-oc-text">
+            <strong>Download Invoice (PDF)</strong>
+            <span>Official Wholesale Bill with Seal & Items</span>
+          </div>
+        </button>
+
+        <!-- 2. Send WhatsApp Booking to Kaira (+91 86104 51118) -->
+        <a id="ocCustomerWhatsAppBtn" href="#" target="_blank" class="btn-oc-action btn-oc-customer-wa">
+          <i class="fa-brands fa-whatsapp"></i>
+          <div class="btn-oc-text">
+            <strong>Send to Kaira WhatsApp </strong>
+            <span>Order breakdown & invoice link to WhatsApp</span>
+          </div>
+        </a>
+
+        <!-- Sub-actions: Store Desk WhatsApp & Print Invoice -->
+        <div class="oc-sub-actions-row">
+          <a id="ocWhatsAppBtn" href="#" target="_blank" class="btn-oc-sub btn-oc-store-wa"
+            title="Send booking to Store Desk WhatsApp">
+            <i class="fa-brands fa-whatsapp"></i> Store Desk WhatsApp
+          </a>
+          <button type="button" class="btn-oc-sub btn-oc-print" onclick="printOrderInvoice()"
+            title="Print Invoice directly">
+            <i class="fa-solid fa-print"></i> Print Invoice
           </button>
         </div>
       </div>
+
+      <div class="oc-actions-footer">
+        <button type="button" class="btn btn-secondary full-width" onclick="closeOrderConfirmModal(true)"
+          style="padding: 0.75rem; font-weight: 700;">
+          <i class="fa-solid fa-arrow-left"></i> Continue Shopping
+        </button>
+      </div>
     </div>
+  </div>
 
 
 
-    <!-- Toast Notification Container -->
-    <div class="toast-container" id="toastContainer"></div>
+  <!-- Toast Notification Container -->
+  <div class="toast-container" id="toastContainer"></div>
 
-    <!-- Scripts -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
-    <script>window.html2pdf || document.write('<script src="html2pdf.bundle.min.js?v=101"><\/script>')</script>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script src="catalogData.js?v=4"></script>
-    <script src="app.js?v=26"></script>
-    <script async defer src="https://tools.luckyorange.com/core/lo.js?site-id=5d7ae2c9"></script>
+  <!-- Scripts -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+  <script>window.html2pdf || document.write('<script src="html2pdf.bundle.min.js?v=101"><\/script>')</script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script src="catalogData.js?v=4"></script>
+  <script src="app.js?v=26"></script>
+  <script async defer src="https://tools.luckyorange.com/core/lo.js?site-id=5d7ae2c9"></script>
 </body>
 
 </html>
