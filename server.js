@@ -90,10 +90,14 @@ const serveShop4Products = (req, res) => res.sendFile(path.join(__dirname, 'shop
 app.get('/', serveIndex);
 app.get(['/admin', '/admin.html'], (req, res) => res.sendFile(path.join(__dirname, 'admin.html')));
 app.get(['/invoice', '/invoice.html', '/invoice/:bookingNo'], (req, res) => res.sendFile(path.join(__dirname, 'invoice.html')));
-app.get(['/shopno001', '/shopno001/'], serveShop1);
-app.get(['/shopno002', '/shopno002/'], serveShop2);
-app.get(['/shopno003', '/shopno003/'], serveShop3);
-app.get(['/shopno004', '/shopno004/'], serveShop4);
+app.get('/shopno001', (req, res) => res.redirect(301, '/shopno001/'));
+app.get('/shopno001/', serveShop1);
+app.get('/shopno002', (req, res) => res.redirect(301, '/shopno002/'));
+app.get('/shopno002/', serveShop2);
+app.get('/shopno003', (req, res) => res.redirect(301, '/shopno003/'));
+app.get('/shopno003/', serveShop3);
+app.get('/shopno004', (req, res) => res.redirect(301, '/shopno004/'));
+app.get('/shopno004/', serveShop4);
 app.get(['/shopno003/products', '/shopno003/products.html'], serveShop3Products);
 app.get(['/shopno004/products', '/shopno004/products.html'], serveShop4Products);
 

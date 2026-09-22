@@ -8632,3 +8632,36 @@ body[data-brand="getpattasu"] .btn-primary {
     min-height: 0 !important;
     overflow: hidden !important;
 }
+
+/* Storefront Navbar Profile Dropdown & Mobile Menu Guards */
+.desktop-profile-dropdown {
+    position: absolute;
+    top: calc(100% + 10px);
+    right: 0;
+    width: 260px;
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 14px;
+    box-shadow: 0 16px 40px -8px rgba(0, 0, 0, 0.18);
+    padding: 0.6rem 0;
+    z-index: 25000;
+    display: none !important;
+}
+
+.desktop-profile-dropdown.active {
+    display: block !important;
+}
+
+.mobile-user-card,
+.mobile-menu-header,
+.mobile-menu-actions {
+    display: none !important;
+}
+
+@media (max-width: 991px) {
+    .mobile-user-card,
+    .mobile-menu-header,
+    .mobile-menu-actions {
+        display: block !important;
+    }
+}
