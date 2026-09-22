@@ -754,7 +754,7 @@ function toggleOfferBadgePopup(open) {
 
 // Automatically display 80% offer popup when page first opens (Homepage index.html only)
 window.addEventListener('DOMContentLoaded', () => {
-  const isProductsPage = window.location.pathname.toLowerCase().includes('products.html');
+  const isProductsPage = window.location.pathname.toLowerCase().includes('product');
   if (!isProductsPage) {
     setTimeout(() => {
       toggleOfferBadgePopup(true);
@@ -797,8 +797,8 @@ function updateCategoryIndicator(catSlug) {
 
 function filterCategoryBySlug(slug) {
   closeMobileMenu();
-  if (!window.location.pathname.toLowerCase().includes('products.html')) {
-    window.location.href = 'products.html?cat=' + encodeURIComponent(slug);
+  if (!window.location.pathname.toLowerCase().includes('product')) {
+    window.location.href = '/shopno003/products?cat=' + encodeURIComponent(slug);
     return;
   }
   const resolvedSlug = resolveCategorySlug(slug);
@@ -822,8 +822,8 @@ function filterCategoryBySlug(slug) {
 
 function showAllCrackers() {
   closeMobileMenu();
-  if (!window.location.pathname.toLowerCase().includes('products.html')) {
-    window.location.href = 'products.html';
+  if (!window.location.pathname.toLowerCase().includes('product')) {
+    window.location.href = '/shopno003/products';
     return;
   }
   updateCategoryIndicator('all');
