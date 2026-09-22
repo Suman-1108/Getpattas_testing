@@ -78,24 +78,60 @@ app.use((req, res, next) => {
 });
 
 // Route Handlers for Main Site and Storefronts
-const serveIndex = (req, res) => res.sendFile(path.join(rootDir, 'index.html'));
-const serveShop1 = (req, res) => res.sendFile(path.join(rootDir, 'shopno001', 'index.html'));
-const serveShop2 = (req, res) => res.sendFile(path.join(rootDir, 'shopno002', 'index.html'));
-const serveShop3 = (req, res) => res.sendFile(path.join(rootDir, 'shopno003', 'index.html'));
-const serveShop4 = (req, res) => res.sendFile(path.join(rootDir, 'shopno004', 'index.html'));
-const serveShop3Products = (req, res) => res.sendFile(path.join(rootDir, 'shopno003', 'products.html'));
-const serveShop4Products = (req, res) => res.sendFile(path.join(rootDir, 'shopno004', 'products.html'));
+const serveIndex = (req, res) => res.sendFile(path.join(__dirname, 'index.html'));
+const serveShop1 = (req, res) => res.sendFile(path.join(__dirname, 'shopno001', 'index.html'));
+const serveShop2 = (req, res) => res.sendFile(path.join(__dirname, 'shopno002', 'index.html'));
+const serveShop3 = (req, res) => res.sendFile(path.join(__dirname, 'shopno003', 'index.html'));
+const serveShop4 = (req, res) => res.sendFile(path.join(__dirname, 'shopno004', 'index.html'));
+const serveShop3Products = (req, res) => res.sendFile(path.join(__dirname, 'shopno003', 'products.html'));
+const serveShop4Products = (req, res) => res.sendFile(path.join(__dirname, 'shopno004', 'products.html'));
 
 // Clean URL Routes
 app.get('/', serveIndex);
-app.get(['/admin', '/admin.html'], (req, res) => res.sendFile(path.join(rootDir, 'admin.html')));
-app.get(['/invoice', '/invoice.html', '/invoice/:bookingNo'], (req, res) => res.sendFile(path.join(rootDir, 'invoice.html')));
+app.get(['/admin', '/admin.html'], (req, res) => res.sendFile(path.join(__dirname, 'admin.html')));
+app.get(['/invoice', '/invoice.html', '/invoice/:bookingNo'], (req, res) => res.sendFile(path.join(__dirname, 'invoice.html')));
 app.get(['/shopno001', '/shopno001/'], serveShop1);
 app.get(['/shopno002', '/shopno002/'], serveShop2);
 app.get(['/shopno003', '/shopno003/'], serveShop3);
 app.get(['/shopno004', '/shopno004/'], serveShop4);
 app.get(['/shopno003/products', '/shopno003/products.html'], serveShop3Products);
 app.get(['/shopno004/products', '/shopno004/products.html'], serveShop4Products);
+
+// Explicit Static Asset Routes (guarantees bundling by @vercel/node)
+app.get('/styles.css', (req, res) => res.sendFile(path.join(__dirname, 'styles.css')));
+app.get('/catalogData.js', (req, res) => res.sendFile(path.join(__dirname, 'catalogData.js')));
+app.get('/app.js', (req, res) => res.sendFile(path.join(__dirname, 'app.js')));
+app.get('/admin.css', (req, res) => res.sendFile(path.join(__dirname, 'admin.css')));
+app.get('/admin.js', (req, res) => res.sendFile(path.join(__dirname, 'admin.js')));
+app.get('/html2pdf.bundle.min.js', (req, res) => res.sendFile(path.join(__dirname, 'html2pdf.bundle.min.js')));
+
+app.get('/shopno003/styles.css', (req, res) => res.sendFile(path.join(__dirname, 'shopno003', 'styles.css')));
+app.get('/shopno003/catalogData.js', (req, res) => res.sendFile(path.join(__dirname, 'shopno003', 'catalogData.js')));
+app.get('/shopno003/app.js', (req, res) => res.sendFile(path.join(__dirname, 'shopno003', 'app.js')));
+app.get('/shopno003/gp-logo.jpg', (req, res) => res.sendFile(path.join(__dirname, 'shopno003', 'gp-logo.jpg')));
+app.get('/shopno003/html2pdf.bundle.min.js', (req, res) => res.sendFile(path.join(__dirname, 'shopno003', 'html2pdf.bundle.min.js')));
+
+app.get('/shopno004/styles.css', (req, res) => res.sendFile(path.join(__dirname, 'shopno004', 'styles.css')));
+app.get('/shopno004/catalogData.js', (req, res) => res.sendFile(path.join(__dirname, 'shopno004', 'catalogData.js')));
+app.get('/shopno004/app.js', (req, res) => res.sendFile(path.join(__dirname, 'shopno004', 'app.js')));
+app.get('/shopno004/gp-logo.jpg', (req, res) => res.sendFile(path.join(__dirname, 'shopno004', 'gp-logo.jpg')));
+app.get('/shopno004/html2pdf.bundle.min.js', (req, res) => res.sendFile(path.join(__dirname, 'shopno004', 'html2pdf.bundle.min.js')));
+
+app.get('/assets/:file', (req, res) => {
+  const filePath = path.join(__dirname, 'assets', req.params.file);
+  if (fs.existsSync(filePath)) return res.sendFile(filePath);
+  res.status(404).send('Asset not found');
+});
+app.get('/shopno003/assets/:file', (req, res) => {
+  const filePath = path.join(__dirname, 'shopno003', 'assets', req.params.file);
+  if (fs.existsSync(filePath)) return res.sendFile(filePath);
+  res.status(404).send('Asset not found');
+});
+app.get('/shopno004/assets/:file', (req, res) => {
+  const filePath = path.join(__dirname, 'shopno004', 'assets', req.params.file);
+  if (fs.existsSync(filePath)) return res.sendFile(filePath);
+  res.status(404).send('Asset not found');
+});
 
 // Initial Seed Data (Fallback & Seed with 80% Direct Wholesale Prices)
 const INITIAL_PRODUCTS = [
