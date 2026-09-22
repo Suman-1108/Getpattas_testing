@@ -60,6 +60,8 @@ const serveShop1 = (req, res) => res.sendFile(path.join(__dirname, 'shopno001', 
 const serveShop2 = (req, res) => res.sendFile(path.join(__dirname, 'shopno002', 'index.html'));
 const serveShop3 = (req, res) => res.sendFile(path.join(__dirname, 'shopno003', 'index.html'));
 const serveShop4 = (req, res) => res.sendFile(path.join(__dirname, 'shopno004', 'index.html'));
+const serveShop3Products = (req, res) => res.sendFile(path.join(__dirname, 'shopno003', 'products.html'));
+const serveShop4Products = (req, res) => res.sendFile(path.join(__dirname, 'shopno004', 'products.html'));
 
 // Clean URL Routes
 app.get('/', serveIndex);
@@ -69,6 +71,8 @@ app.get(['/shopno001', '/shopno001/'], serveShop1);
 app.get(['/shopno002', '/shopno002/'], serveShop2);
 app.get(['/shopno003', '/shopno003/'], serveShop3);
 app.get(['/shopno004', '/shopno004/'], serveShop4);
+app.get(['/shopno003/products', '/shopno003/products.html'], serveShop3Products);
+app.get(['/shopno004/products', '/shopno004/products.html'], serveShop4Products);
 
 // Initial Seed Data (Fallback & Seed with 80% Direct Wholesale Prices)
 const INITIAL_PRODUCTS = [

@@ -2,8 +2,9 @@
   "name": "get-pattasu",
   "version": "1.0.0",
   "description": "Get Pattas Kadai - Sivakasi Direct Online Crackers & Fireworks Store with Node.js Express MongoDB Backend & Admin Dashboard",
+  "main": "server.js",
+  "type": "commonjs",
   "scripts": {
-    "build": "echo 'Static storefront build ready'",
     "start": "node server.js",
     "dev": "node server.js"
   },

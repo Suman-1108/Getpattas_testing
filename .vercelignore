@@ -1,9 +1,0 @@
-# Vercel Deployment Exclusions
-# Ignore backend/server files so Vercel serves the website purely as high-speed static CDN
-server.js
-backend/
-models/
-uploads/
-.env*
-scratch/
-test_*.js
