@@ -81,9 +81,10 @@ document.addEventListener('DOMContentLoaded', () => {
     };
   }
 
-  // 6. Escape key to clear search inputs
+  // 6. Escape key to clear search inputs & close dropdown
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') {
+      closeHeaderSearchDropdown();
       const activeId = document.activeElement ? document.activeElement.id : '';
       if (activeId === 'headerGlobalSearch' || activeId === 'catalogSearch') {
         clearTableSearch();
@@ -91,14 +92,44 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  // 7. Auto-filter category if URL has ?cat= parameter on products page
+  // 7. Auto-filter category or search query if URL has ?cat= or ?search= / ?q= parameter
   const urlParams = new URLSearchParams(window.location.search);
   const catParam = urlParams.get('cat');
+  const searchParam = urlParams.get('search') || urlParams.get('q');
+
   if (catParam) {
     setTimeout(() => {
       filterCategoryBySlug(catParam);
     }, 200);
   }
+
+  if (searchParam) {
+    setTimeout(() => {
+      currentSearchQuery = searchParam;
+      const tableSearch = document.getElementById('catalogSearch');
+      if (tableSearch) tableSearch.value = searchParam;
+      const headerInput = document.getElementById('headerGlobalSearch');
+      if (headerInput) headerInput.value = searchParam;
+      const clearBtn = document.getElementById('searchClearBtn');
+      if (clearBtn) clearBtn.style.display = 'flex';
+      const headerClearBtn = document.getElementById('headerSearchClear');
+      if (headerClearBtn) headerClearBtn.style.display = 'flex';
+      renderPriceListTable();
+      const productsEl = document.getElementById('products') || document.getElementById('priceListContainer');
+      if (productsEl) {
+        const topOffset = productsEl.getBoundingClientRect().top + window.pageYOffset - 110;
+        window.scrollTo({ top: Math.max(0, topOffset), behavior: 'smooth' });
+      }
+    }, 250);
+  }
+
+  // 8. Global click listener to close search dropdown when clicking outside
+  document.addEventListener('click', (e) => {
+    const searchWrap = document.querySelector('.header-search-wrap');
+    if (searchWrap && !searchWrap.contains(e.target)) {
+      closeHeaderSearchDropdown();
+    }
+  });
 });
 
 // ==========================================
@@ -709,20 +740,268 @@ function handleTableSearch(val) {
   renderPriceListTable();
 }
 
-function handleHeaderSearch(val) {
-  const tableSearchInput = document.getElementById('catalogSearch');
-  if (tableSearchInput && tableSearchInput.value !== val) {
-    tableSearchInput.value = val;
+function isProductsPage() {
+  const p = window.location.pathname.toLowerCase();
+  return p.includes('products') || document.getElementById('priceListContainer') !== null;
+}
+
+function getProductsCatalogUrl(searchQuery, catSlug) {
+  const p = window.location.pathname;
+  let base = 'products.html';
+  if (p.includes('/shopno004')) {
+    base = p.includes('.html') ? 'products.html' : '/shopno004/products';
+  } else if (p.includes('/shopno003')) {
+    base = p.includes('.html') ? 'products.html' : '/shopno003/products';
+  } else if (typeof currentBrand !== 'undefined' && currentBrand === 'red') {
+    base = 'products.html';
+  } else {
+    base = 'products.html';
   }
-  handleTableSearch(val);
-  if (val && val.trim()) {
-    const productsEl = document.getElementById('products');
+
+  const params = [];
+  if (searchQuery && searchQuery.trim()) {
+    params.push(`search=${encodeURIComponent(searchQuery.trim())}`);
+  }
+  if (catSlug && catSlug !== 'all') {
+    params.push(`cat=${encodeURIComponent(catSlug)}`);
+  }
+  return params.length > 0 ? `${base}?${params.join('&')}` : base;
+}
+
+function triggerHeaderSearch() {
+  const headerInput = document.getElementById('headerGlobalSearch');
+  const query = headerInput ? headerInput.value.trim() : '';
+  closeHeaderSearchDropdown();
+
+  if (isProductsPage()) {
+    currentSearchQuery = query;
+    const tableSearch = document.getElementById('catalogSearch');
+    if (tableSearch) tableSearch.value = query;
+    const clearBtn = document.getElementById('searchClearBtn');
+    if (clearBtn) clearBtn.style.display = query ? 'flex' : 'none';
+    const headerClearBtn = document.getElementById('headerSearchClear');
+    if (headerClearBtn) headerClearBtn.style.display = query ? 'flex' : 'none';
+
+    renderPriceListTable();
+    const productsEl = document.getElementById('products') || document.getElementById('priceListContainer');
     if (productsEl) {
-      const topOffset = productsEl.getBoundingClientRect().top + window.pageYOffset - 120;
-      if (window.pageYOffset < topOffset - 250) {
-        window.scrollTo({ top: topOffset, behavior: 'smooth' });
-      }
+      const topOffset = productsEl.getBoundingClientRect().top + window.pageYOffset - 110;
+      window.scrollTo({ top: Math.max(0, topOffset), behavior: 'smooth' });
     }
+  } else {
+    // Navigate from Home to Products page with query
+    window.location.href = getProductsCatalogUrl(query);
+  }
+}
+
+function handleHeaderSearchKeyDown(e) {
+  if (e.key === 'Enter') {
+    e.preventDefault();
+    triggerHeaderSearch();
+  } else if (e.key === 'Escape') {
+    closeHeaderSearchDropdown();
+  }
+}
+
+function closeHeaderSearchDropdown() {
+  const dropdown = document.getElementById('headerSearchDropdown');
+  if (dropdown) dropdown.style.display = 'none';
+}
+
+function quickAddFromSearch(productId, event) {
+  if (event) event.stopPropagation();
+  const currentQty = qtyMap[productId] || 0;
+  updateQuantity(productId, currentQty + 1);
+  const products = getBrandProducts(currentBrand) || [];
+  const prod = products.find(p => p.id === productId);
+  if (typeof showToast === 'function') {
+    showToast(`Added 1x ${prod ? prod.name : 'item'} to cart! 🛒`);
+  }
+  const headerInput = document.getElementById('headerGlobalSearch');
+  if (headerInput && headerInput.value) {
+    renderHeaderSearchDropdown(headerInput.value);
+  }
+}
+
+function selectProductFromSearch(productId) {
+  closeHeaderSearchDropdown();
+  const products = getBrandProducts(currentBrand) || [];
+  const prod = products.find(p => p.id === productId);
+  if (!prod) return;
+
+  if (isProductsPage()) {
+    currentSearchQuery = prod.name;
+    const tableSearch = document.getElementById('catalogSearch');
+    if (tableSearch) tableSearch.value = prod.name;
+    const headerInput = document.getElementById('headerGlobalSearch');
+    if (headerInput) headerInput.value = prod.name;
+    renderPriceListTable();
+    const row = document.getElementById(`row-${prod.id}`);
+    if (row) {
+      row.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      row.style.transition = 'background 0.3s ease';
+      row.style.background = '#fef3c7';
+      setTimeout(() => { row.style.background = ''; }, 2000);
+    }
+  } else {
+    window.location.href = getProductsCatalogUrl(prod.name);
+  }
+}
+
+function selectCategoryFromSearch(catSlug) {
+  closeHeaderSearchDropdown();
+  if (isProductsPage()) {
+    filterCategoryBySlug(catSlug);
+    const productsEl = document.getElementById('products') || document.getElementById('priceListContainer');
+    if (productsEl) {
+      const topOffset = productsEl.getBoundingClientRect().top + window.pageYOffset - 110;
+      window.scrollTo({ top: Math.max(0, topOffset), behavior: 'smooth' });
+    }
+  } else {
+    window.location.href = getProductsCatalogUrl('', catSlug);
+  }
+}
+
+function highlightQuery(text, query) {
+  if (!text || !query) return escapeHtml(text || '');
+  const escapedText = escapeHtml(text);
+  const regex = new RegExp(`(${query.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')})`, 'gi');
+  return escapedText.replace(regex, '<mark style="background: #fef08a; color: #854d0e; padding: 0 2px; border-radius: 2px;">$1</mark>');
+}
+
+function renderHeaderSearchDropdown(val) {
+  const dropdown = document.getElementById('headerSearchDropdown');
+  if (!dropdown) return;
+
+  const query = (val || '').trim().toLowerCase();
+  if (!query) {
+    dropdown.style.display = 'none';
+    dropdown.innerHTML = '';
+    return;
+  }
+
+  const products = getBrandProducts(currentBrand) || [];
+  if (products.length === 0) {
+    dropdown.style.display = 'none';
+    return;
+  }
+
+  // Find matching categories
+  const categoriesMap = {};
+  products.forEach(p => {
+    if (!categoriesMap[p.category]) categoriesMap[p.category] = [];
+    categoriesMap[p.category].push(p);
+  });
+  const categoryNames = Object.keys(categoriesMap);
+  const matchedCategories = categoryNames.filter(c => c.toLowerCase().includes(query));
+
+  // Find matching products
+  const matchedProducts = products.filter(p => {
+    const nameMatch = p.name && p.name.toLowerCase().includes(query);
+    const tamilMatch = p.tamilName && p.tamilName.toLowerCase().includes(query);
+    const codeMatch = p.code && p.code.toLowerCase().includes(query);
+    const catMatch = p.category && p.category.toLowerCase().includes(query);
+    return nameMatch || tamilMatch || codeMatch || catMatch;
+  });
+
+  if (matchedCategories.length === 0 && matchedProducts.length === 0) {
+    dropdown.innerHTML = `
+      <div class="hsd-empty">
+        <i class="fa-solid fa-face-frown" style="font-size: 1.6rem; color: #cbd5e1; margin-bottom: 0.5rem; display: block;"></i>
+        <div>No crackers found matching "<strong>${escapeHtml(val)}</strong>"</div>
+        <div style="font-size: 0.76rem; color: #94a3b8; margin-top: 0.3rem;">Try searching Sparklers, Pots, Rockets, 120 Shot, or தமிழ் பெயர்...</div>
+      </div>
+    `;
+    dropdown.style.display = 'block';
+    return;
+  }
+
+  let html = '';
+
+  // Category suggestions if any
+  if (matchedCategories.length > 0) {
+    html += `<div class="hsd-section-title"><i class="fa-solid fa-layer-group"></i> Matching Categories</div>`;
+    html += `<div style="padding: 0.3rem 0.5rem; display: flex; flex-wrap: wrap;">`;
+    matchedCategories.slice(0, 3).forEach(catName => {
+      const idx = categoryNames.indexOf(catName);
+      const catSlug = `cat-${currentBrand}-${idx}`;
+      const count = categoriesMap[catName].length;
+      html += `
+        <div class="hsd-cat-chip" onclick="selectCategoryFromSearch('${catSlug}')">
+          <i class="fa-solid ${getCategoryIcon(catName)}"></i>
+          <span>${catName}</span>
+          <span style="opacity: 0.75; font-size: 0.7rem;">(${count})</span>
+        </div>
+      `;
+    });
+    html += `</div>`;
+  }
+
+  // Product suggestions (top 6)
+  if (matchedProducts.length > 0) {
+    html += `<div class="hsd-section-title"><i class="fa-solid fa-fire"></i> Crackers (${matchedProducts.length} Results)</div>`;
+    const topProducts = matchedProducts.slice(0, 6);
+
+    topProducts.forEach(p => {
+      const icon = getCategoryIcon(p.category);
+      const currentQty = qtyMap[p.id] || 0;
+      const highlightName = highlightQuery(p.name, query);
+      const highlightTamil = p.tamilName ? highlightQuery(p.tamilName, query) : '';
+
+      html += `
+        <div class="hsd-item" onclick="selectProductFromSearch('${p.id}')">
+          <div class="hsd-item-left">
+            <div class="hsd-item-icon"><i class="fa-solid ${icon}"></i></div>
+            <div class="hsd-item-details">
+              <span class="hsd-item-name">${highlightName}</span>
+              <div class="hsd-item-meta">
+                ${highlightTamil ? `<span>${highlightTamil}</span> • ` : ''}
+                <span class="hsd-item-tag">${p.packInfo || p.category}</span>
+              </div>
+            </div>
+          </div>
+          <div class="hsd-item-right">
+            <div class="hsd-item-pricing">
+              <span class="hsd-item-mrp">₹${p.mrp.toFixed(2)}</span>
+              <span class="hsd-item-price">₹${p.price.toFixed(2)}</span>
+            </div>
+            <button type="button" class="hsd-add-btn" onclick="quickAddFromSearch('${p.id}', event)" title="Quick Add">
+              ${currentQty > 0 ? `<i class="fa-solid fa-check"></i> ${currentQty}` : `<i class="fa-solid fa-plus"></i> Add`}
+            </button>
+          </div>
+        </div>
+      `;
+    });
+  }
+
+  // Footer
+  html += `
+    <div class="hsd-footer" onclick="triggerHeaderSearch()">
+      <span>View all <strong>${matchedProducts.length}</strong> matching crackers in catalog <i class="fa-solid fa-arrow-right"></i></span>
+    </div>
+  `;
+
+  dropdown.innerHTML = html;
+  dropdown.style.display = 'block';
+}
+
+function handleHeaderSearch(val) {
+  const isNotEmpty = Boolean(val && val.trim());
+  const headerClearBtn = document.getElementById('headerSearchClear');
+  if (headerClearBtn) {
+    headerClearBtn.style.display = isNotEmpty ? 'flex' : 'none';
+  }
+
+  // Render live dropdown autocomplete
+  renderHeaderSearchDropdown(val);
+
+  // If on products page, also synchronize catalog table
+  if (isProductsPage()) {
+    const tableSearchInput = document.getElementById('catalogSearch');
+    if (tableSearchInput && tableSearchInput.value !== val) {
+      tableSearchInput.value = val;
+    }
+    handleTableSearch(val);
   }
 }
 
@@ -736,7 +1015,10 @@ function clearTableSearch() {
   if (clearBtn) clearBtn.style.display = 'none';
   const headerClearBtn = document.getElementById('headerSearchClear');
   if (headerClearBtn) headerClearBtn.style.display = 'none';
-  renderPriceListTable();
+  closeHeaderSearchDropdown();
+  if (isProductsPage()) {
+    renderPriceListTable();
+  }
 }
 
 function clearHeaderSearch() {

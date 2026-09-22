@@ -79,14 +79,16 @@
       <!-- Large Rounded Search Bar in Center/Right -->
       <div class="header-search-wrap">
         <div class="header-search-bar">
-          <i class="fa-solid fa-magnifying-glass search-icon-lead"></i>
+          <i class="fa-solid fa-magnifying-glass search-icon-lead" id="headerSearchIconBtn" onclick="triggerHeaderSearch()" style="cursor: pointer;" title="Search crackers"></i>
           <input type="text" id="headerGlobalSearch" placeholder="Search crackers, combo packs & fireworks..."
-            oninput="handleHeaderSearch(this.value)" autocomplete="off">
+            oninput="handleHeaderSearch(this.value)" onkeydown="handleHeaderSearchKeyDown(event)" autocomplete="off">
           <button type="button" class="search-clear-btn" id="headerSearchClear" onclick="clearHeaderSearch()"
             style="display: none;" aria-label="Clear search">
             <i class="fa-solid fa-xmark"></i>
           </button>
         </div>
+        <!-- Live Instant Search Suggestions Dropdown -->
+        <div class="header-search-dropdown" id="headerSearchDropdown" style="display: none;"></div>
       </div>
 
       <!-- Action Icons: Cart, Account, Mobile Toggle -->
