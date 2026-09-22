@@ -412,13 +412,14 @@ function renderPriceListTable() {
       selectHTML += `<option value="${catSlug}">${catName} (${categoriesMap[catName].length})</option>`;
     });
     jumpSelect.innerHTML = selectHTML;
+    jumpSelect.value = currentCategoryFilter || 'all';
   }
 
   if (pillsContainer) {
     let pillsHTML = `
       <button type="button" class="category-pill-btn ${currentCategoryFilter === 'all' ? 'active' : ''}" onclick="filterByCategory('all')">
         <span>✨ All Categories</span>
-        <span class="pill-badge">${filteredProducts.length}</span>
+        <span class="pill-badge">${products.length}</span>
       </button>`;
 
     categoryNames.forEach((catName, idx) => {
@@ -1143,44 +1144,58 @@ function updateCategoryIndicator(catSlug) {
 
 function filterCategoryBySlug(slug) {
   closeMobileMenu();
-  if (!window.location.pathname.toLowerCase().includes('product')) {
-    window.location.href = '/shopno003/products?cat=' + encodeURIComponent(slug);
+  if (!isProductsPage()) {
+    window.location.href = getProductsCatalogUrl('', slug);
     return;
   }
-  const resolvedSlug = resolveCategorySlug(slug);
-  updateCategoryIndicator(resolvedSlug);
-  if (resolvedSlug !== 'all') {
-    handleCategoryJump(resolvedSlug);
-  } else {
-    const searchTerm = slug.replace(/-/g, ' ');
-    currentCategoryFilter = 'all';
-    handleTableSearch(searchTerm);
-    const tableSearchInput = document.getElementById('catalogSearch');
-    if (tableSearchInput) tableSearchInput.value = searchTerm;
-    const productsEl = document.getElementById('products');
-    if (productsEl) {
-      const yOffset = -85;
-      const y = productsEl.getBoundingClientRect().top + window.pageYOffset + yOffset;
-      window.scrollTo({ top: y, behavior: 'smooth' });
-    }
+
+  if (!slug || slug === 'all') {
+    showAllCrackers();
+    return;
   }
+
+  const resolvedSlug = resolveCategorySlug(slug);
+  if (!resolvedSlug || resolvedSlug === 'all') {
+    showAllCrackers();
+    return;
+  }
+
+  updateCategoryIndicator(resolvedSlug);
+  handleCategoryJump(resolvedSlug);
 }
 
 function showAllCrackers() {
   closeMobileMenu();
-  if (!window.location.pathname.toLowerCase().includes('product')) {
-    window.location.href = '/shopno003/products';
+  if (!isProductsPage()) {
+    window.location.href = getProductsCatalogUrl('');
     return;
   }
+
+  currentCategoryFilter = 'all';
+  currentSearchQuery = '';
+
+  const searchInput = document.getElementById('catalogSearch');
+  if (searchInput) searchInput.value = '';
+  const headerInput = document.getElementById('headerGlobalSearch');
+  if (headerInput) headerInput.value = '';
+  const clearBtn = document.getElementById('searchClearBtn');
+  if (clearBtn) clearBtn.style.display = 'none';
+  const headerClearBtn = document.getElementById('headerSearchClear');
+  if (headerClearBtn) headerClearBtn.style.display = 'none';
+  closeHeaderSearchDropdown();
+
   updateCategoryIndicator('all');
-  filterByCategory('all');
+
   const selectEl = document.getElementById('categoryJumpSelect');
   if (selectEl) selectEl.value = 'all';
-  const productsEl = document.getElementById('products');
+
+  renderPriceListTable();
+
+  const productsEl = document.getElementById('products') || document.getElementById('priceListContainer');
   if (productsEl) {
-    const yOffset = -85;
+    const yOffset = -90;
     const y = productsEl.getBoundingClientRect().top + window.pageYOffset + yOffset;
-    window.scrollTo({ top: y, behavior: 'smooth' });
+    window.scrollTo({ top: Math.max(0, y), behavior: 'smooth' });
   }
 }
 
@@ -1202,39 +1217,36 @@ function addToCart(productId, qty = 1) {
 
 function handleCategoryJump(catSlug) {
   const resolved = resolveCategorySlug(catSlug);
-  updateCategoryIndicator(resolved);
-  if (resolved === 'all') {
-    filterByCategory('all');
-    const selectEl = document.getElementById('categoryJumpSelect');
-    if (selectEl) selectEl.value = 'all';
-    const productsEl = document.getElementById('products');
-    if (productsEl) {
-      const yOffset = -85;
-      const y = productsEl.getBoundingClientRect().top + window.pageYOffset + yOffset;
-      window.scrollTo({ top: y, behavior: 'smooth' });
-    }
+  if (!resolved || resolved === 'all') {
+    showAllCrackers();
     return;
   }
+
+  updateCategoryIndicator(resolved);
+  currentCategoryFilter = resolved;
   mobileOpenCategories.add(resolved);
-  filterByCategory(resolved);
+
   const selectEl = document.getElementById('categoryJumpSelect');
   if (selectEl) selectEl.value = resolved;
+
+  renderPriceListTable();
+
   setTimeout(() => {
-    const targetEl = document.getElementById('products') || document.getElementById(resolved);
+    const targetEl = document.getElementById(resolved) || document.getElementById('products');
     if (targetEl) {
-      const yOffset = -85;
+      const yOffset = -90;
       const y = targetEl.getBoundingClientRect().top + window.pageYOffset + yOffset;
-      window.scrollTo({ top: y, behavior: 'smooth' });
+      window.scrollTo({ top: Math.max(0, y), behavior: 'smooth' });
     }
-  }, 50);
+  }, 60);
 }
 
 function filterByCategory(catSlug) {
-  currentCategoryFilter = catSlug;
-  if (catSlug !== 'all') {
-    mobileOpenCategories.add(catSlug);
+  if (!catSlug || catSlug === 'all') {
+    showAllCrackers();
+    return;
   }
-  renderPriceListTable();
+  handleCategoryJump(catSlug);
 }
 
 // ==========================================
