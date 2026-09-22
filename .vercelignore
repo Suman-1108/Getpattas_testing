@@ -4,9 +4,6 @@ server.js
 backend/
 models/
 uploads/
-package.json
-package-lock.json
-node_modules/
 .env*
 scratch/
 test_*.js
