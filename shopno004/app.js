@@ -2301,7 +2301,7 @@ function addComboToCart(comboKey) {
   // Add Grand Family Combo Pack (₹6,250)
   let comboItem = null;
   for (const bSlug in window.ALL_BRANDS_PRODUCTS) {
-    comboItem = window.ALL_BRANDS_PRODUCTS[bSlug].find(i => i.id === 'gp-15');
+    comboItem = window.ALL_BRANDS_PRODUCTS[bSlug].find(i => i.id === 'gp-combo-1' || i.id === 'rc-combo-1' || i.code === 'GP-DHK');
     if (comboItem) break;
   }
   if (!comboItem) {
@@ -2312,10 +2312,11 @@ function addComboToCart(comboKey) {
   }
 
   if (comboItem) {
-    changeQty(comboItem.id, 1);
+    setQtyDirect(comboItem.id, (qtyMap[comboItem.id] || 0) + 1);
     showToast(`🎉 Added ${comboItem.name} (₹${comboItem.price.toLocaleString('en-IN')}) to your order!`);
+    openCartDrawer();
   } else {
-    showToast('🎉 Added Diwali Family Combo Pack (₹6,250)!');
+    showToast('🎉 Added Get Pattas Grand Family Festival Dhamaka Pack (₹6,250)!');
   }
 }
 

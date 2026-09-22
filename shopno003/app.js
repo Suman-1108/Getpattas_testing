@@ -2298,24 +2298,25 @@ function printOrderInvoice() {
 // COMBO HAMPER BANNER SHORTCUT
 // ==========================================
 function addComboToCart(comboKey) {
-  // Add Grand Family Combo Pack (₹5,000)
+  // Add Grand Family Combo Pack (₹6,250)
   let comboItem = null;
   for (const bSlug in window.ALL_BRANDS_PRODUCTS) {
-    comboItem = window.ALL_BRANDS_PRODUCTS[bSlug].find(i => i.id === 'gp-15');
+    comboItem = window.ALL_BRANDS_PRODUCTS[bSlug].find(i => i.id === 'rc-combo-1' || i.id === 'gp-combo-1' || i.code === 'RED-DHK');
     if (comboItem) break;
   }
   if (!comboItem) {
     for (const bSlug in window.ALL_BRANDS_PRODUCTS) {
-      comboItem = window.ALL_BRANDS_PRODUCTS[bSlug].find(i => i.price === 5000 && (i.category.includes('Gift') || i.category.includes('Combo') || i.category.includes('பாக்ஸ்')));
+      comboItem = window.ALL_BRANDS_PRODUCTS[bSlug].find(i => (i.price === 6250 || i.price === 5000) && (i.category.includes('Gift') || i.category.includes('Combo') || i.category.includes('பாக்ஸ்')));
       if (comboItem) break;
     }
   }
 
   if (comboItem) {
-    changeQty(comboItem.id, 1);
+    setQtyDirect(comboItem.id, (qtyMap[comboItem.id] || 0) + 1);
     showToast(`🎉 Added ${comboItem.name} (₹${comboItem.price.toLocaleString('en-IN')}) to your order!`);
+    openCartDrawer();
   } else {
-    showToast('🎉 Added Diwali Family Combo Pack (₹5,000)!');
+    showToast('🎉 Added Get Pattas Grand Family Festival Dhamaka Pack (₹6,250)!');
   }
 }
 

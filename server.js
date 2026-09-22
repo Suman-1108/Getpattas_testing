@@ -16,10 +16,14 @@ const app = express();
 const PORT = process.env.PORT || 5000;
 const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost:27017/get_pattasu';
 
-// Ensure uploads folder exists
+// Ensure uploads folder exists (safely guarded for read-only / serverless environments)
 const uploadsDir = path.join(__dirname, 'uploads');
-if (!fs.existsSync(uploadsDir)) {
-  fs.mkdirSync(uploadsDir, { recursive: true });
+try {
+  if (!fs.existsSync(uploadsDir)) {
+    fs.mkdirSync(uploadsDir, { recursive: true });
+  }
+} catch (err) {
+  console.warn('⚠️ Notice: Could not create uploads directory (read-only filesystem):', err.message);
 }
 
 // Multer Storage Configuration
@@ -1513,14 +1517,19 @@ app.put('/api/config', async (req, res) => {
   }
 });
 
-// Start Express Server
-const server = app.listen(PORT, () => {
-  console.log(`🚀 Get Pattas Kadai Server is running on http://localhost:${PORT}`);
-});
+// Export Express app for Vercel / serverless runtime
+module.exports = app;
 
-server.on('error', (err) => {
-  if (err.code === 'EADDRINUSE') {
-    console.log(`⚠️ Port ${PORT} is already running an active server instance.`);
-    process.exit(0);
-  }
-});
+// Start Express Server only when run directly in local Node.js environment
+if (require.main === module && !process.env.VERCEL) {
+  const server = app.listen(PORT, () => {
+    console.log(`🚀 Get Pattas Kadai Server is running on http://localhost:${PORT}`);
+  });
+
+  server.on('error', (err) => {
+    if (err.code === 'EADDRINUSE') {
+      console.log(`⚠️ Port ${PORT} is already running an active server instance.`);
+      process.exit(0);
+    }
+  });
+}
