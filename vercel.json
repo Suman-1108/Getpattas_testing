@@ -3,6 +3,7 @@
   "cleanUrls": true,
   "trailingSlash": false,
   "rewrites": [
+    { "source": "/api/(.*)", "destination": "/api/index.js" },
     { "source": "/", "destination": "/index.html" },
     { "source": "/shopno003", "destination": "/shopno003/index.html" },
     { "source": "/shopno004", "destination": "/shopno004/index.html" },
