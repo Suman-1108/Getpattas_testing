@@ -1,9 +1,16 @@
 {
   "cleanUrls": true,
   "trailingSlash": false,
+  "functions": {
+    "api/index.js": {
+      "includeFiles": "{styles.css,catalogData.js,app.js,admin.css,admin.js,invoice.html,admin.html,html2pdf.bundle.min.js,gp-logo.jpg,assets/**,shopno001/**,shopno002/**,shopno003/**,shopno004/**}"
+    }
+  },
   "rewrites": [
-    { "source": "/shopno003/products", "destination": "/shopno003/products.html" },
-    { "source": "/shopno004/products", "destination": "/shopno004/products.html" }
+    { "source": "/api/(.*)", "destination": "/api/index.js" },
+    { "source": "/shopno003/products", "destination": "/api/index.js" },
+    { "source": "/shopno004/products", "destination": "/api/index.js" },
+    { "source": "/(.*)", "destination": "/api/index.js" }
   ],
   "headers": [
     {

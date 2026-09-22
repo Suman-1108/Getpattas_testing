@@ -56,6 +56,27 @@ app.use(express.static(rootDir, {
 }));
 app.use('/uploads', express.static(uploadsDir));
 
+// Reliable static asset resolver for Serverless & local environments
+app.use((req, res, next) => {
+  if (req.method !== 'GET' && req.method !== 'HEAD') return next();
+  const cleanPath = req.path.replace(/^\//, '');
+  if (!cleanPath || cleanPath.startsWith('api/')) return next();
+
+  const candidateDirs = [__dirname, process.cwd()];
+  for (const dir of candidateDirs) {
+    try {
+      const target = path.join(dir, cleanPath);
+      if (fs.existsSync(target) && fs.statSync(target).isFile()) {
+        if (/\.(js|css|html)$/i.test(target)) {
+          res.setHeader('Cache-Control', 'no-cache, must-revalidate');
+        }
+        return res.sendFile(target);
+      }
+    } catch (e) {}
+  }
+  next();
+});
+
 // Route Handlers for Main Site and Storefronts
 const serveIndex = (req, res) => res.sendFile(path.join(rootDir, 'index.html'));
 const serveShop1 = (req, res) => res.sendFile(path.join(rootDir, 'shopno001', 'index.html'));
